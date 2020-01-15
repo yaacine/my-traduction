@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles/signupForm.css" />
+    <link rel="stylesheet" href="styles/signinForm.css" />
+
+    <script src="./javascript/jquery.js"></script>
+    <script src="./javascript/navBar.js"></script>
+
+    <title>Acceuil</title>
+
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <!--Import materialize.css-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/materialize/css/materialize.min.css"
+      media="screen,projection"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles/home.css" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper blue-grey darken-3">
+        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+          ><i class="material-icons">menu</i></a
+        >
+        <ul class="left hide-on-med-and-down menu-items">
+          <li><a href="sass.html">Acceuil</a></li>
+          <li><a href="badges.html">Nos Offres</a></li>
+          <li><a href="nosTraducteurs.html">Nos Traducteurs</a></li>
+          <li><a href="mobile.html">Blog</a></li>
+          <li><a href="mobile.html">Devenir Traducteur</a></li>
+        </ul>
+        <ul
+          class="right hide-on-med-and-down   social-media-icons center-align"
+        >
+          <li>
+            <a href=""> <i class="fab fa-linkedin"></i> </a>
+          </li>
+          <li>
+            <a href=""
+              ><img src="./assets/png/001-linkedin.png" alt="linkedin logo" />
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img src="./assets/png/006-facebook-1.png" alt="facebook logo" />
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img src="./assets/png/005-twitter.png" alt="twitter logo" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    
+    <div class="carousel carousel-slider my-carousel-slider">
+      <a class="carousel-item" href="#one!"><img src="./assets/slider/download.jpeg" alt="test"></a>
+      <a class="carousel-item" href="#two!"><img src="./assets/slider/download.jpeg"></a>
+      <a class="carousel-item" href="#three!"><img src="./assets/slider/download.jpeg"></a>
+      <a class="carousel-item" href="#four!"><img src="./assets/slider/download.jpeg"></a>
+    </div>
+    <div  id="content">
+     
+      <div class="row">
+      <div id="articles-section" class="col s5">
+        <h4>Lire les derniers articles</h4>
+        <!-- <div class="divider"></div> -->
+        <div class="section card-panel hoverable  my-article">
+          <h6>Section 1</h6>
+          <p class="truncate">
+            Ad eiusmod enim sit sit aute occaecat excepteur ut est labore sit.
+            Et dolore ut ullamco tempor. Duis enim Lorem velit Lorem incididunt
+            magna. Excepteur consequat dolor nulla velit mollit cillum consequat
+            ea quis duis.
+          </p>
+          
+      <a class="waves-effect waves-teal btn-flat    blue lighten-2">Lire la suite</a>
+
+        </div>
+        <div class="divider"></div>
+        <div class="section card-panel hoverable">
+          <h6>Section 2</h6>
+          <p class="truncate">
+            Anim dolore qui incididunt irure aliquip proident magna minim do
+            fugiat laborum officia consectetur. Deserunt laborum magna nulla
+            aliquip laboris labore aliqua aliquip duis laborum ex. Occaecat id
+            occaecat ad ea dolore excepteur. Elit do quis dolore ullamco
+            adipisicing quis ex et. Nostrud qui velit est ea ut adipisicing non
+            sunt occaecat cillum elit. Ipsum exercitation exercitation pariatur
+            tempor non. Ipsum proident et cillum minim.
+          </p>
+          <a class="waves-effect waves-teal btn-flat    blue lighten-2">Lire la suite</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section card-panel hoverable">
+          <h6>Section 3</h6>
+          <p class="truncate">
+            Anim eiusmod laborum ex aute irure enim incididunt. Dolor pariatur
+            esse eiusmod duis duis cupidatat anim ullamco irure est. Eiusmod
+            laborum proident aliquip dolore magna. Cupidatat adipisicing eiusmod
+            deserunt excepteur adipisicing est irure dolore nostrud irure
+            officia est qui ut. Nulla duis ad velit elit nostrud ad pariatur sit
+            ex veniam dolore incididunt magna.
+          </p>
+          <a class="waves-effect waves-teal btn-flat    blue lighten-2">Lire la suite</a>
+        </div>
+      </div>
+      <div id="empty-sction" class="col s1 "></div>
+
+      <!-- partie droite (formulaire de demande de devis) -->
+      <div
+        id="form-sction"
+        class="col s6 center-align collection blue-grey lighten-5"
+      >
+        <div id="user-control">
+          <a onclick="document.getElementById('id02').style.display='block'" class="waves-effect waves-light btn-large  blue-grey darken-3"
+            >Connecion</a
+          >
+          Ou
+          <a onclick="document.getElementById('id01').style.display='block'"signupbtn class="waves-effect waves-light btn-large blue-grey darken-3"
+            >Inscription</a
+          >
+        </div>
+          <div class="divider"></div>
+          <span >
+            <h4 >Ou</h4>
+          </span>
+          <span >
+            <h5 >Demandez votre devis Maintenant !</h5>
+          </span>
+          <div class="divider"></div>
+
+          <div id="form-data">
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input
+                      placeholder="Placeholder"
+                      id="first_name"
+                      type="text"
+                      class="validate"
+                    />
+                    <label for="first_name">Prenom</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate" />
+                    <label for="last_name">Nom</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="email" type="email" class="validate" />
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="icon_telephone" type="tel" class="validate" />
+                    <label for="icon_telephone">Telephone</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea
+                      id="adresse"
+                      class="materialize-textarea"
+                    ></textarea>
+                    <label for="adresse">Adresse</label>
+                  </div>
+                </div>
+
+                <!-- languages sources & destination choice ramener les langues dynamiquement -->
+                <div class="row">
+                  <div class="input-field col s6">
+                    <select>
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="1">Option 1</option>
+                      <option value="2">Option 2</option>
+                      <option value="3">Option 3</option>
+                    </select>
+                    <label>Langue source</label>
+                  </div>
+
+                  <div class="input-field col s6">
+                    <select>
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="1">Option 1</option>
+                      <option value="2">Option 2</option>
+                      <option value="3">Option 3</option>
+                    </select>
+                    <label>Langue de destination</label>
+                  </div>
+                </div>
+               
+
+                <!-- type de traduction général, scientifique, site web -->
+                <div class="row">
+                  <p>Type de Traduction</p>
+                  <form class="row">
+                    <p class="col s4">
+                      <label>
+                        <input class="with-gap" name="group3" type="radio" checked />
+                        <span>Générale</span>
+                      </label>
+                    </p>
+                    <p class="col s4">
+                      <label>
+                        <input class="with-gap" name="group3" type="radio" checked />
+                        <span>Scientifique</span>
+                      </label>
+                    </p>
+                    <p class="col s4">
+                      <label>
+                        <input class="with-gap" name="group3" type="radio" checked />
+                        <span>Site web</span>
+                      </label>
+                    </p>
+                  </div>
+                  
+                  <!-- assermenté ou pas  -->
+                 <div class="row" >
+                   <p class="col s4">Interprète Assermenté ?</p>
+                  <div class="switch col s4">
+                    <label>
+                      Pas forcément
+                      <input type="checkbox">
+                      <span class="lever"></span>
+                      Oui
+                    </label>
+                  </div>
+                 </div>
+
+
+                <!-- file uploader -->
+                <form action="#">
+                  <div class="file-field input-field">
+                    <div class="btn">
+                      <span>File</span>
+                      <input type="file" multiple>
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                    </div>
+                  </div>
+                </form>
+
+                <!-- commantaire optionnel -->
+                
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Commantaire (Optionnel) </label>
+                      </div>
+                    </div>
+                  </form>
+             
+              
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Button to open the modal -->
+    <button onclick="document.getElementById('id01').style.display='block'">
+      Sign Up
+    </button>
+
+    <!-- The Modal (contains the Sign Up form) -->
+    <div id="id01" class="modal">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
+      <form class="modal-content" action="/action_page.php">
+        <div class="container">
+          <h1>Sign Up</h1>
+          <p>Please fill in this form to create an account.</p>
+          <hr />
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" required />
+
+          <label for="psw"><b>Password</b></label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            name="psw"
+            required
+          />
+
+          <label for="psw-repeat"><b>Repeat Password</b></label>
+          <input
+            type="password"
+            placeholder="Repeat Password"
+            name="psw-repeat"
+            required
+          />
+
+          <label>
+            <input
+              type="checkbox"
+              checked="checked"
+              name="remember"
+              style="margin-bottom:15px"
+            />
+            Remember me
+          </label>
+
+          <p>
+            By creating an account you agree to our
+            <a href="#" style="color:dodgerblue">Terms & Privacy</a>.
+          </p>
+
+          <div class="clearfix">
+            <button
+              type="button"
+              onclick="document.getElementById('id01').style.display='none'"
+              class="cancelbtn"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="signupbtn">Sign Up</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Button to open the modal login form -->
+    <button onclick="document.getElementById('id02').style.display='block'">
+      Login
+    </button>
+
+    <!-- The Modal -->
+    <div id="id02" class="modal-login">
+      <span
+        onclick="document.getElementById('id02').style.display='none'"
+        class="close-login"
+        title="close-login Modal"
+        >&times;</span
+      >
+
+      <!-- Modal Content -->
+      <form class="modal-login-content animate" action="/action_page.php">
+        <div class="imgcontainer">
+          <img src="assets/img_avatar1.jpg" alt="Avatar" class="avatar" />
+        </div>
+
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input
+            type="text"
+            placeholder="Enter Username"
+            name="uname"
+            required
+          />
+
+          <label for="psw"><b>Password</b></label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            name="psw"
+            required
+          />
+
+          <button type="submit">Login</button>
+          <label>
+            <input type="checkbox" checked="checked" name="remember" /> Remember
+            me
+          </label>
+        </div>
+
+        <div class="bottom-container">
+          <button
+            type="button"
+            onclick="document.getElementById('id02').style.display='none'"
+            class="cancelbtn-login"
+          >
+            Cancel
+          </button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("id01");
+      var modalLogin = document.getElementById("id02");
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+        if (event.target == modalLogin) {
+          modalLogin.style.display = "none";
+        }
+      };
+    </script>
+    <!--JavaScript at end of body for optimized loading-->
+    <script
+      type="text/javascript"
+      src="styles/materialize/js/materialize.min.js"
+    ></script>
+  </body>
+</html>

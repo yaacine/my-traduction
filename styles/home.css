@@ -1,0 +1,55 @@
+.menu-items{
+    margin-left: 25vmin;
+}
+
+#articles-section{
+    padding: 3vmin;
+}
+
+ .social-media-icons{
+    display: table;
+    /* align-content: center;
+    
+   justify-items: center;
+   justify-content: center; */
+}  
+
+ .social-media-icons a>img{
+    /* padding-top: 8px; */
+    height: 37px;
+} 
+
+#articles-section{
+    margin-top: 5vmin;
+}
+
+#form-sction{ 
+   
+    margin-top: 5vmin;
+    border-radius: 10px;
+}
+
+
+#user-control a{
+    margin: 3vmin;
+   
+}
+
+#user-control{
+    display: inline;
+}
+
+#content{
+    padding: 3vmin;
+}
+
+
+.my-carousel-slider a img{
+    height: 70vmin;
+}
+
+
+.my-article a{
+   
+    
+}
