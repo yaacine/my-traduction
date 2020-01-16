@@ -3,6 +3,11 @@
     padding: 3vmin;
 }
 
+
+
+
+@media only screen and (min-width: 760px) {
 .collection li a{
-    margin-left: 80%;
+    margin-left: 75%;
+}
 }

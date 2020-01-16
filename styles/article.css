@@ -1,0 +1,88 @@
+
+body {
+    background-color: rgb(232, 232, 232);
+  }
+  
+  .container.space-big {
+    margin-top: 5em;
+  }
+  
+  .card.medium-size {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  
+  /*
+  .share-button a{
+    position:absolute;
+    right: 34em;
+    z-index: 10;
+  }*/
+  
+  .collection.tags-collection {
+    border: none;
+  }
+  
+  .collection .badge {
+    right: -5px;
+  }
+  
+  .tags-collection span.badge.new:after {
+    content: "";
+  }
+  
+  
+  /**/
+  
+  .valign {
+    margin-top: 5%;
+  }
+  
+  .card-header img {
+    height: 20em;
+    width: 100%;
+  }
+  
+  
+  /*read-more trigger - because Materialize collapsible is too clunky*/
+  
+  .read-more-state {
+    display: none;
+  }
+  
+  .read-more-target {
+    opacity: 0;
+    max-height: 0;
+    font-size: 0;
+    transition: .20s ease-in-out;
+  }
+  
+  .read-more-state:checked ~ .read-more-wrap .read-more-target {
+    opacity: 1;
+    font-size: 1rem;
+    max-height: 999em;
+  }
+  
+  .read-more-state ~ .read-more-trigger:before {
+    content: 'Show more';
+  }
+  
+  .read-more-state:checked ~ .read-more-trigger:before {
+    content: 'Show less';
+  }
+  
+  .read-more-trigger {
+    cursor: pointer;
+    display: inline-block;
+    margin-top: .5em;
+    margin-bottom: 1em;
+    margin-left: 20%;
+    padding: 0 .5em;
+    background-color: #EEE;
+    color: #666;
+    font-size: .9em;
+    line-height: 2;
+    border: 1px solid #ddd;
+    border-radius: .25em;
+  }
