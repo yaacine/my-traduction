@@ -1,8 +1,8 @@
   // Or with jQuery
 
-  $(document).ready(function(){
-    $('.sidenav').sidenav();
-  });
+  // $(document).ready(function(){
+  //   $('.sidenav').sidenav();
+  // });
 
 
 
@@ -11,15 +11,15 @@
   //   var instances = M.Autocomplete.init(elems, options);
   // });
 
-  $(document).ready(function(){
-    $('input.autocomplete').autocomplete({
-      data: {
-        "Apple": null,
-        "Microsoft": null,
-        "Google": 'https://placehold.it/250x250'
-      },
-    });
-  });
+  // $(document).ready(function(){
+  //   $('input.autocomplete').autocomplete({
+  //     data: {
+  //       "Apple": null,
+  //       "Microsoft": null,
+  //       "Google": 'https://placehold.it/250x250'
+  //     },
+  //   });
+  // });
        
 
 
@@ -37,4 +37,10 @@
 
   $(document).ready(function(){
     $('.carousel').carousel();
+    
   });
+
+  $('.carousel').carousel();
+  setInterval(function() {
+    $('.carousel').carousel('next');
+  }, 2000); 
