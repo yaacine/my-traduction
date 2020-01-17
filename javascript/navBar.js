@@ -30,17 +30,16 @@
   // });
 
 
-  $(document).ready(function(){
-    $('select').formSelect();
-  });
+  // $(document).ready(function(){
+  //   $('select').formSelect();
+  // });
 
 
   $(document).ready(function(){
-    $('.carousel').carousel();
-    
+    $('.carousel').carousel(); 
   });
 
-  $('.carousel').carousel();
+  
   setInterval(function() {
     $('.carousel').carousel('next');
   }, 2000); 
