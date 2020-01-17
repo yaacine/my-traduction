@@ -97,7 +97,7 @@
      
       <div class="row">
       <div id="articles-section"  class="col s5">
-        <h4 style="text-align: center;">Lire les derniers articles</h4>
+        <h4 >Lire les derniers articles</h4>
 
   <div class="card">
     <div class="card-image waves-effect waves-block waves-light">
