@@ -24,8 +24,8 @@ class NosTraducteursView{
 
         <?php
         foreach($traducteurs as $row){
-          $langues=NULL;
-          $note=NULL;
+          $langues=null;
+          $note=null;
             //getting the mastered languages for singleTranslator 
             $langues=$t->getLanguagesForSingleTraducteur($row['idTraducteur']);
             $note=$t->getTraducteurNote($row['idTraducteur']);
@@ -44,18 +44,27 @@ class NosTraducteursView{
             <a href="#!" class="secondary-content">';
 
             for ($x = 0; $x <$note; $x++) {
-              echo  '<i class="material-icons">grade</i>';
+              echo  '<i class="material-icons ">grade</i>';
+            }
+
+            //complete with white stars
+            if($note<5){
+              for ($x; $x <5; $x++) {
+                echo  '<i class="material-icons " style="color:#eeeeee">grade</i>';
+              }
             }
            
              echo '</a>
             ';
-            if($langues !=NULL && !empty($langues)){
+            if($langues !=NULL && count($langues)>0){
                 foreach($langues as $rowLangue){
+                  
+                    if(!empty($rowLangue['designation'])){
                     echo'
                     <div class="chip">
                     '.$rowLangue['designation'].'
                     </div>
-                    ';
+                    ';}
                 }
             }
             echo'
