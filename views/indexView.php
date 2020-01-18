@@ -6,13 +6,6 @@ require_once __DIR__ . '/../controllers/authController.php';
 class IndexView{
     public function getContent(){
 
-      $a = new AuthController();
-
-      $a->deAuth();
-      $a->auth();
-      //$a->isAuthenticated();
-
-      echo'here man';
         $g= new GlobalItems();
         $g->getPageHead(); 
         $g->getNavbar();
@@ -227,24 +220,25 @@ class IndexView{
     
     <!-- login modal  -->
     
+      <?php
+          $a = new AuthController();
+       ?>
       <div id="login" class="modal">
         <h5 class="modal-close">&#10005;</h5>
         <div class="modal-content center">
           <h4>Connexion</h4>
           <br>
-      
-          <form action="#">
-      
+          <form class="" method="post" action="<?php $a->login() ?>" >
             <div class="input-field">
               <i class="material-icons prefix">person</i>
-              <input type="text" id="name">
-              <label for="name">Username</label>
+              <input type="text" name="email" id="name">
+              <label for="name">Email</label>
             </div>
             <br>
       
             <div class="input-field">
               <i class="material-icons prefix">lock</i>
-              <input type="password" id="pass">
+              <input type="password" name="password" id="pass">
               <label for="pass">Password</label>
             </div>
             <br>
@@ -258,6 +252,7 @@ class IndexView{
             <input type="submit" value="Login" class="btn btn-large">
             
           </form>
+         
         </div>
       </div>
     
@@ -266,30 +261,33 @@ class IndexView{
     
     
        <!-- Modal Body -->
+       <?php
+          $a = new AuthController();
+       ?>
        <div id="register-modal" class="modal">
         <div class="modal-content">
           <h4>Register</h4>
          <div class="col s6">
-            <form class="">
+            <form class="" method="post" action="<?php $a->register() ?>" >
           <div class="row">
              <div class="input-field col s12">
-              <input id="Name" type="text" class="validate">
-              <label for="Email">Name</label>
+              <input id="Name" type="text" name="name" class="validate">
+              <label for="Name">Name</label>
             </div>
              <div class="input-field col s12">
-              <input id="Email" type="email" class="validate">
+              <input id="Email" type="email" name="email"  class="validate">
               <label for="Email">Email</label>
             </div>
-            <div class="input-field col s12">
+            <!-- <div class="input-field col s12">
               <input id="Phone" type="text" class="validate">
               <label for="Phone">Phone</label>
-            </div>
+            </div> -->
             <div class="input-field col s12">
-              <input id="Password" type="password" class="validate">
+              <input id="Password" type="password" name="password"  class="validate">
               <label for="Password">Password</label>
             </div>
               <div class="input-field col s12">
-              <input id="CnfPassword" type="password" class="validate">
+              <input id="CnfPassword" type="password" name="confirm_password"  class="validate">
               <label for="CnfPassword">Confirm Password</label>
             </div>
              <div class="input-field col s12">

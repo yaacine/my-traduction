@@ -15,6 +15,7 @@ class DBManager{
             // set the PDO error mode to exception
             DBManager::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //echo "Connected successfully" ;
+        
                 
         }
         catch(PDOException $e)
