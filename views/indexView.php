@@ -1,16 +1,22 @@
 <?php
 require_once __DIR__ . '/../models/articleModel.php';
+require_once __DIR__ . '/../controllers/authController.php';
 
 
 class IndexView{
     public function getContent(){
-      
+
+      $a = new AuthController();
+
+      $a->deAuth();
+      $a->auth();
+      //$a->isAuthenticated();
+
+      echo'here man';
         $g= new GlobalItems();
         $g->getPageHead(); 
         $g->getNavbar();
        
-       
-
         $a= new ArticleModel();
        
         $articles = $a->getAllArticles();
