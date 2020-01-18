@@ -2,7 +2,8 @@
 
 class GlobalItems
 {
-    private function getPageHead(){
+    public function getPageHead(){
+      
         ?>
         <head>
             <meta charset="UTF-8" />
@@ -34,6 +35,7 @@ class GlobalItems
             <script type="text/javascript" src="./javascript/navBar.js"></script>
             <script type="text/javascript" src="./javascript/manageModals.js"></script>
 
+            <link rel="stylesheet" href="./styles/nosTraducteurs.css" />
             <!--Let browser know website is optimized for mobile-->
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </head>
@@ -42,18 +44,18 @@ class GlobalItems
     }
 
 
-    private function getNavbar(){
+    public function getNavbar(){
     ?>
         <nav id="navbar">
             <div class="nav-wrapper blue-grey darken-3">
                 <a href="#!" class="brand-logo">Logo</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="left hide-on-med-and-down menu-items">
-                    <li><a href="index.html">Acceuil</a></li>
-                    <li><a href="badges.html">Nos Offres</a></li>
-                    <li><a href="nosTraducteurs.html">Nos Traducteurs</a></li>
+                    <li><a href="index.php">Acceuil</a></li>
+                    <li><a href="badges.php">Nos Offres</a></li>
+                    <li><a href="nosTraducteurs.php">Nos Traducteurs</a></li>
                     <li><a href="blog.html">Blog</a></li>
-                    <li><a href="recrutement.html">Devenir Traducteur</a></li>
+                    <li><a href="recrutement.php">Devenir Traducteur</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down   social-media-icons center-align">
                     <li>
@@ -78,7 +80,7 @@ class GlobalItems
         </nav>
         <?php
     }
-    private function getFooter(){
+    public function getFooter(){
     ?>
 
         <footer class="page-footer grey darken-2">
