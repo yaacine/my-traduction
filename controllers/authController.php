@@ -41,62 +41,63 @@ class AuthController
 
     public function login()
     {
+        foreach ($_POST as $key => $value){
+            echo $key.'<'.$key.'  '.$value.'>'.$value;
+        }
         // Initialize the session
         session_start();
         // Check if the user is already logged in, if yes then redirect him to welcome page
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-            header("location: welcome.php");
+            echo 'flutter';
+            // header("location: welcome.php");
             exit;
         }
         $dbManager = new DBManager();
         DBManager::connection();
         $userModel = new UserModel();
-       
+
         // Define variables and initialize with empty values
         $email = $password = "";
         $email_err = $password_err = "";
 
         // Processing form data when form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            echo 'ecterne ==>'.trim($_POST["email"]);
-            // Check if username is empty
-            if (empty(trim($_POST["email"]))) {
-                $email_err = "Please enter email.";
-               
-               
-            } else {
-                $email = trim($_POST["email"]);
-              
-            }
+            echo 'alleezzzzz'.trim($_POST["email-login"]);
 
-            // Check if password is empty
-            if (empty(trim($_POST["password"]))) {
-                $password_err = "Please enter your password.";
-              
+
+            // Check if username is empty
+            if (empty(trim($_POST["email-login"]))) {
+                $email_err = "Please enter email.";
             } else {
-                $password = trim($_POST["password"]);
-               
+                $email = null;
+                $email = trim($_POST["email-login"]);
+            }
+            // Check if password is empty
+            if (empty(trim($_POST["password-login"]))) {
+                $password_err = "Please enter your password.";
+            } else {
+                $password = trim($_POST["password-login"]);
             }
 
             // Validate credentials
             if (empty($email_err) && empty($password_err)) {
+                //$userRows = null;
                 $userRows = $userModel->getUserByEmail($email);
-               
+
 
                 $i = 0;
                 foreach ($userRows as $row) {
-                    echo 'email ===>'.  $email ."email deux --->".$row['email'];
-                    $i++;   
+                    //echo 'email ===>'.  $email ."email deux --->".$row['email-login'];
+                    $i++;
                 }
-               
+
                 if ($i <= 0) {
-                    
+
                     $email_err = "No user with this email.";
-                    echo'row libre -->';
                 } else {
                     foreach ($userRows as $row) {
                         $pass = $row['password'];
-                        echo'row -->'.$pass;
+                        echo 'row -->' . $pass;
                         if ($pass != $password) {
                             $password_err = "password not valid";
                         } else {
@@ -108,7 +109,7 @@ class AuthController
                             $_SESSION["username"] = $row['email'];
 
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            // header("location: welcome.php");
                         }
                     }
                 }

@@ -1,8 +1,8 @@
   // Or with jQuery
 
-  // $(document).ready(function(){
-  //   $('.sidenav').sidenav();
-  // });
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
 
 
 
@@ -23,16 +23,16 @@
        
 
 
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   var elems = document.querySelectorAll('select');
-  //   console.log("here guys")
-  //   var instances = M.FormSelect.init(elems, options);
-  // });
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    console.log("here guys")
+    var instances = M.FormSelect.init(elems, options);
+  });
 
 
-  // $(document).ready(function(){
-  //   $('select').formSelect();
-  // });
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
 
 
   $(document).ready(function(){

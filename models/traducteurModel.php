@@ -32,6 +32,22 @@ class TraducteurModel{
        return ($stringNote);
    }
 
+
+   public function getAllTraducteursWilayas(){
+    DBManager::connection();
+    $wilayaQuery ="SELECT wilaya FROM Traducteur GROUP BY wilaya";
+    $wilayas = (DBManager::$conn)->query($wilayaQuery);
+    return ($wilayas);
+    
+   }
+
+   public function getAllLanguages(){
+    DBManager::connection();
+    $langueQuery ="SELECT * FROM `Langue`";
+    $langues = (DBManager::$conn)->query($langueQuery);
+    return ($langues);
+   }
+
    
    
 

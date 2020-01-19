@@ -9,6 +9,7 @@ class GlobalItems
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <!-- <meta http-equiv="pragma" content="no-cache" /> -->
             <!-- <link rel="stylesheet" href="styles/signupForm.css" />
     <link rel="stylesheet" href="styles/signinForm.css" /> -->
             <script type="text/javascript" src="./javascript/jquery.js"></script>
@@ -58,9 +59,7 @@ class GlobalItems
                     <li><a href="recrutement.php">Devenir Traducteur</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down   social-media-icons center-align">
-                    <li>
-                        <a href=""> <i class="fab fa-linkedin"></i> </a>
-                    </li>
+                   
                     <li>
                         <a href=""><img src="./assets/png/001-linkedin.png" alt="linkedin logo" />
                         </a>
@@ -75,6 +74,15 @@ class GlobalItems
                             <img src="./assets/png/005-twitter.png" alt="twitter logo" />
                         </a>
                     </li>
+                    <?php
+                         session_start();
+                         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+                             echo'<li style="display=block" ><a  href="">
+                             <i class="large material-icons btn tooltipped" data-position="bottom" data-tooltip="Voire le profil">person</i>
+                             
+                              </a> </li>';
+                         }
+                    ?>
                 </ul>
             </div>
         </nav>

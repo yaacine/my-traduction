@@ -5,16 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(lldb) Launch",
-            "type": "cppdbg",
+            "name": "Listen for XDebug",
+            "type": "php",
             "request": "launch",
-            "program": "enter program name, for example ${workspaceFolder}/a.out",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "lldb"
+            "port": 9000
+        },
+        {
+            "name": "Launch currently open script",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "port": 9000
         }
     ]
 }

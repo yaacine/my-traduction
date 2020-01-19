@@ -1,18 +1,23 @@
 <?php
 require_once __DIR__ . '/../models/articleModel.php';
+require_once __DIR__ . '/../models/traducteurModel.php';
 require_once __DIR__ . '/../controllers/authController.php';
 
 
 class IndexView{
     public function getContent(){
+    //   header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    //  header("Cache-Control: post-check=0, pre-check=0", false);
+    //  header("Pragma: no-cache");
 
         $g= new GlobalItems();
         $g->getPageHead(); 
         $g->getNavbar();
        
         $a= new ArticleModel();
-       
+        $t = new TraducteurModel();
         $articles = $a->getAllArticles();
+        $wilayas = $t->getAllTraducteursWilayas();
        
         ?>
     
@@ -79,30 +84,31 @@ class IndexView{
     
               <div id="form-data">
                 <div class="row">
-                  <form class="col s12">
+                  <form class="col s12" method="post" action="demandeDevis.php">
                     <div class="row">
                       <div class="input-field col s6">
                         <input
                           placeholder="Placeholder"
                           id="first_name"
+                          name="first_name"
                           type="text"
                           class="validate"
                         />
                         <label for="first_name">Prenom</label>
                       </div>
                       <div class="input-field col s6">
-                        <input id="last_name" type="text" class="validate" />
+                        <input id="last_name" name="last_name"type="text" class="validate" />
                         <label for="last_name">Nom</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s6">
-                        <input id="email" type="email" class="validate" />
+                        <input id="email"  name="email" type="email" class="validate" />
                         <label for="email">Email</label>
                       </div>
                       <div class="input-field col s6">
                         <i class="material-icons prefix">phone</i>
-                        <input id="icon_telephone" type="tel" class="validate" />
+                        <input id="icon_telephone"  name="icon_telephone" type="tel" class="validate" />
                         <label for="icon_telephone">Telephone</label>
                       </div>
                     </div>
@@ -111,6 +117,7 @@ class IndexView{
                       <div class="input-field col s12">
                         <textarea
                           id="adresse"
+                          name="adresse"
                           class="materialize-textarea"
                         ></textarea>
                         <label for="adresse">Adresse</label>
@@ -120,13 +127,13 @@ class IndexView{
                     <!-- languages sources & destination choice ramener les langues dynamiquement -->
                     <div class="row">
                       <div class="input-field col s6">
-                        <select>
-                          <option value="" disabled selected>Choose your option</option>
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
-                        </select>
-                        <label>Langue source</label>
+                      <select>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                      </select>
+                      <label>Materialize Select</label>
                       </div>
     
                       <div class="input-field col s6">
@@ -221,24 +228,24 @@ class IndexView{
     <!-- login modal  -->
     
       <?php
-          $a = new AuthController();
+          $b = new AuthController();
        ?>
       <div id="login" class="modal">
         <h5 class="modal-close">&#10005;</h5>
         <div class="modal-content center">
           <h4>Connexion</h4>
           <br>
-          <form class="" method="post" action="<?php $a->login() ?>" >
+          <form class="" method="post" action="login.php" >
             <div class="input-field">
               <i class="material-icons prefix">person</i>
-              <input type="text" name="email" id="name">
+              <input type="text" name="email-login" id="name">
               <label for="name">Email</label>
             </div>
             <br>
       
             <div class="input-field">
               <i class="material-icons prefix">lock</i>
-              <input type="password" name="password" id="pass">
+              <input type="password" name="password-login" id="pass">
               <label for="pass">Password</label>
             </div>
             <br>
@@ -249,7 +256,7 @@ class IndexView{
             </div>
             <br>
             
-            <input type="submit" value="Login" class="btn btn-large">
+            <input type="submit"  name="submit" value="Login" class="btn btn-large">
             
           </form>
          
@@ -268,7 +275,7 @@ class IndexView{
         <div class="modal-content">
           <h4>Register</h4>
          <div class="col s6">
-            <form class="" method="post" action="<?php $a->register() ?>" >
+            <form class="" method="post" action="register.php" >
           <div class="row">
              <div class="input-field col s12">
               <input id="Name" type="text" name="name" class="validate">
@@ -291,7 +298,7 @@ class IndexView{
               <label for="CnfPassword">Confirm Password</label>
             </div>
              <div class="input-field col s12">
-              <button type="submit" class="waves-effect waves-light btn">Register</button>
+              <button type="submit" class="waves-effect waves-light btn" name="submit">Register</button>
             </div>        
           </div>	
           </form>
