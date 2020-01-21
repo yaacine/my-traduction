@@ -23,11 +23,11 @@
        
 
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    console.log("here guys")
-    var instances = M.FormSelect.init(elems, options);
-  });
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   var elems = document.querySelectorAll('select');
+  //   console.log("here guys")
+  //   var instances = M.FormSelect.init(elems, options);
+  // });
 
 
   $(document).ready(function(){
@@ -43,3 +43,8 @@
   setInterval(function() {
     $('.carousel').carousel('next');
   }, 2000); 
+
+
+
+  $('.dropdown-trigger').dropdown();
+        

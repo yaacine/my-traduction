@@ -48,6 +48,16 @@ class TraducteurModel{
     return ($langues);
    }
 
+   //gets all trad with specified filtes in index.php 
+   // langages + asérmenté
+   public function getFiltredTraducteur(){
+    DBManager::connection();
+    $langueQuery ='SELECT * FROM Traducteur t JOIN MaitriseLangue m on m.traducteur_id=t.idTraducteur and t.assermente=1';
+    $langues = (DBManager::$conn)->query($langueQuery);
+    return ($langues);
+   
+   }
+
    
    
 
