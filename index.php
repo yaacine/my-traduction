@@ -8,4 +8,7 @@ DBManager::connection();
 $c = new IndexView();
 $c->getContent();
 
+
+
+
 ?>

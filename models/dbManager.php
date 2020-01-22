@@ -13,7 +13,7 @@ class DBManager{
         try {
             DBManager::$conn = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
             // set the PDO error mode to exception
-            DBManager::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+           // DBManager::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //echo "Connected successfully" ;
         
                 
@@ -22,6 +22,10 @@ class DBManager{
         {
             echo "Connection failed: " . $e->getMessage();
         }
+   }
+
+   public static function deconnexion(){
+    DBManager::$conn = null;
    }
  
 }

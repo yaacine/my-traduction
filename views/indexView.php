@@ -64,7 +64,20 @@ class IndexView
 
         <!-- partie droite (formulaire de demande de devis) -->
         <div id="form-sction" class="col s6 center-align collection blue-grey lighten-5">
-          <div id="user-control">
+
+          <?php
+          if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === false) {
+            echo '<div id="user-control">
+           <a href="#login" class="waves-effect waves-light btn-large  blue-grey darken-3 modal-trigger">Connecion</a>
+           Ou
+           <a href="#register-modal" class="waves-effect waves-light btn-large blue-grey darken-3 modal-trigger">Inscription</a>
+         </div>
+         <div class="divider"></div>
+         <span>
+           <h4>Ou</h4>
+         </span>';
+          }elseif(!isset($_SESSION["loggedin"]) ){
+            echo '<div id="user-control">
             <a href="#login" class="waves-effect waves-light btn-large  blue-grey darken-3 modal-trigger">Connecion</a>
             Ou
             <a href="#register-modal" class="waves-effect waves-light btn-large blue-grey darken-3 modal-trigger">Inscription</a>
@@ -72,7 +85,10 @@ class IndexView
           <div class="divider"></div>
           <span>
             <h4>Ou</h4>
-          </span>
+          </span>';
+          }
+          ?>
+         
           <span>
             <h5>Demandez votre devis Maintenant !</h5>
           </span>
@@ -113,12 +129,12 @@ class IndexView
                 <!-- languages sources & destination choice ramener les langues dynamiquement -->
                 <div class="row">
                   <div class="input-field col s6">
-                    <select name="langue_source">
+                    <select id="langue_source_select" name="langue_source">
                       <option value="" disabled selected>Choisir une langue</option>
 
                       <?php
                       foreach ($langues as $row) {
-                        echo '<option value="'. $row['idLangue'].'">' . $row['designation'] . '</option>';
+                        echo '<option value="' . $row['idLangue'] . '">' . $row['designation'] . '</option>';
                       }
 
                       ?>
@@ -128,7 +144,7 @@ class IndexView
                   </div>
 
                   <div class="input-field col s6">
-                    <select name="langue_destination">
+                    <select id="langue_destination_select" name="langue_destination">
                       <option value="" disabled selected>Choisir une langue</option>
                       <?php
                       foreach ($langues2 as $row) {
@@ -172,7 +188,7 @@ class IndexView
                   <div class="switch col s4">
                     <label>
                       Pas forcément
-                      <input name="assermente" type="checkbox">
+                      <input id="assermente_switch" name="assermente" type="checkbox">
                       <span class="lever"></span>
                       Oui
                     </label>
@@ -206,15 +222,19 @@ class IndexView
 
                 <script type="text/javascript">
                   $(document).ready(function() {
-
                     $("#getTraducteurs").click(function() {
-
                       $.ajax({ //create an ajax request to display.php
-                        type: "GET",
+                        type: "POST",
                         url: "traducteursSearch.php",
+                        data: { langueSrcFilter: $("#langue_source_select").children("option:selected").val() , 
+                                langueDestFilter :$("#langue_destination_select").children("option:selected").val(),
+                                assermenteFilter:$("#assermente_switch").val() 
+         
+                              },
                         dataType: "html", //expect html to be returned                
                         success: function(response) {
                           $("#responsecontainer").html(response);
+                          
                           //alert(response);
                         }
 
@@ -225,12 +245,13 @@ class IndexView
 
 
 
-                <input type="button" id="getTraducteurs" class=" btn" value="Choisir un traducteur" />
+                <input type="button" id="getTraducteurs" class="btn" value="Choisir un traducteur" />
                 <br>
 
+                <p>Choisissez un Traducteur</p>
                 <div id="responsecontainer" align="center">
                   <div class="row">
-                    <p>Choisissez un Traducteur</p>
+                  
                     <div class="row">
                       <p class="col s12 m6">
                         <label>
@@ -240,7 +261,7 @@ class IndexView
                       </p>
                       <p class="col s4">
                         <label>
-                          <input type="checkbox" name="traducteurs_ckecked[]"  value="yacine" class="filled-in" checked="checked" />
+                          <input type="checkbox" name="traducteurs_ckecked[]" value="yacine" class="filled-in" checked="checked" />
                           <span>Filled in</span>
                         </label>
                       </p>
@@ -359,3 +380,5 @@ class IndexView
 
 
 ?>
+
+

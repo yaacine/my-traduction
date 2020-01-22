@@ -2,9 +2,11 @@
 
 class GlobalItems
 {
-    public function getPageHead(){
-      
-        ?>
+    public function getPageHead()
+    {
+
+?>
+
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,69 +43,99 @@ class GlobalItems
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </head>
 
-        <?php
+    <?php
     }
 
 
-    public function getNavbar(){
+    public function getNavbar()
+    {
     ?>
         <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">one</a></li>
-        <li><a href="#!">two</a></li>
-        <li class="divider"></li>
-        <li><a href="#!">three</a></li>
+            <li><a href="#!">one</a></li>
+            <li><a href="#!">two</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">three</a></li>
         </ul>
 
-     <div class="navbar-fixed">
-     <nav id="navbar">
-            <div class="nav-wrapper blue-grey darken-3">
-                <a href="#!" class="brand-logo">Logo</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="left hide-on-med-and-down menu-items">
-                    <li><a href="index.php">Acceuil</a></li>
-                    <li><a href="badges.php">Nos Offres</a></li>
-                    <li><a href="nosTraducteurs.php">Nos Traducteurs</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="recrutement.php">Devenir Traducteur</a></li>
-                </ul>
-                <ul class="right hide-on-med-and-down   social-media-icons center-align right hide-on-med-and-down">
-                   
-                    <li>
-                        <a href=""><img src="./assets/png/001-linkedin.png" alt="linkedin logo" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="./assets/png/006-facebook-1.png" alt="facebook logo" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="./assets/png/005-twitter.png" alt="twitter logo" />
-                        </a>
-                    </li>
-                   
+        <div class="navbar-fixed">
+            <nav id="navbar">
+                <div class="nav-wrapper blue-grey darken-3">
+                    <a href="#!" class="brand-logo">Logo</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul class="left hide-on-med-and-down menu-items">
+                        <li><a href="index.php">Acceuil</a></li>
+                        <li><a href="badges.php">Nos Offres</a></li>
+                        <?php
+                        if (isset($_SESSION["isTraducteur"])&& $_SESSION["isTraducteur"] == false) {
+                            echo '<li><a href="nosTraducteurs.php">Nos Traducteurs</a></li>';
+                        }elseif(!isset($_SESSION["isTraducteur"])){
+                            echo '<li><a href="nosTraducteurs.php">Nos Traducteurs</a></li>';
+                            
+                        }
+                        ?>
+                       
+                        <li><a href="blog.html">Blog</a></li>
+                        <?php
+                        if (isset($_SESSION["isTraducteur"])&& $_SESSION["isTraducteur"] == false) {
+                            echo '<li><a href="recrutement.php">Devenir Traducteur</a></li>';
+                        }elseif(!isset($_SESSION["isTraducteur"])){
+                            echo '<li><a href="recrutement.php">Devenir Traducteur</a></li>';
+                            
+                        }
+                        ?>
 
-                    <?php
-                         session_start();
-                         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-                             echo'  <li>
-                             <a class="dropdown-trigger" href="logout.php" data-target="dropdown1">'.$_SESSION["name"].'
-                                  <i class=" material-icons  tooltipped  right" data-position="bottom" data-tooltip="Voire le profil">person</i>
-                                 
-                             
-                             </a></li>';
-                         }
-                    ?>
-                </ul>
-                
-            </div>
-        </nav>
-     </div>
-        
-        <?php
+<?php
+                        session_start();
+                        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+                            echo '  <li style="display= flex">
+                             <a class="dropdown-trigger" href="logout.php" data-target="dropdown1">
+                                  <i class=" material-icons  tooltipped  left" data-position="bottom" data-tooltip="Voire le profil">person</i>
+                                  ' .strtoupper( $_SESSION["name"])  . '
+                                  </a></li>
+                            
+                             ';
+                        }
+                        ?>
+
+                    </ul>
+                    <ul class="right    social-media-icons">
+
+                        <li>
+                            <a href=""><img src="./assets/png/001-linkedin.png" alt="linkedin logo" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="./assets/png/006-facebook-1.png" alt="facebook logo" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="./assets/png/005-twitter.png" alt="twitter logo" />
+                            </a>
+                        </li>
+
+                       
+                        <?php
+                        session_start();
+                        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+                            echo '
+                             <a class="dropdown-trigger tooltipped  btn right" href="logout.php" data-target="dropdown1">Deconnexion
+                                  
+                             </a></li>
+                             ';
+                        }
+                        ?>
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+
+    <?php
     }
-    public function getFooter(){
+    public function getFooter()
+    {
     ?>
 
         <footer class="page-footer grey darken-2">
@@ -175,7 +207,7 @@ class GlobalItems
                 </div>
             </div>
         </footer>
-    <?php
+<?php
     }
 }
 

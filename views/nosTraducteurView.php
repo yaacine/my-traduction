@@ -31,7 +31,7 @@ class NosTraducteursView{
             $note=$t->getTraducteurNote($row['idTraducteur']);
             
             echo'
-         
+            
             <li class="collection-item avatar    card-panel hoverable">
             <img src="assets/img_avatar2.png" alt="" class="circle responsive-img">
             <h4 >'.$row['nom'].' '.$row['prenom'].'</h4>

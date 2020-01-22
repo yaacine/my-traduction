@@ -10,8 +10,14 @@ class ArticleModel{
         }
         $formationsQuery ="SELECT * FROM `Articles`";
         $articles = (DBManager::$conn)->query($formationsQuery);
+        
+         
+
         return $articles;
+
    }
 }
+
+
 
 ?>
