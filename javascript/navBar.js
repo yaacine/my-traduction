@@ -78,3 +78,20 @@ $(document).ready(function() {
     }
   });
 });
+
+
+
+$(document).ready(function() {
+  $("#montantTraduction").hide(100);
+});
+
+$(document).ready(function() {
+  $("#demandeTraductionReponse").change(function() {
+    var val = $(this).val();
+    if (val == "accepter") {
+      $("#montantTraduction").show(500);
+    } else {
+      $("#montantTraduction").hide(500);
+    }
+  });
+});

@@ -90,7 +90,7 @@ class TraducteurProfileView
                                     <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>
                                     <div style="display:flex; justify-content:space-between">
                                         <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeDevis(' . $row['idDemandeDevis'] . ') href="#modal1" name="action">Annuler
+                                        <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeDevis(' . $row['idDemandeDevis'] . ') href="#modal1" name="action">Repondre
                                             <i class="material-icons right">send</i>
                                         </button>
                                     </div>
@@ -158,7 +158,7 @@ class TraducteurProfileView
                                   <i class="material-icons">announcement</i>
                                   <div class="row" style="width:100%">
                                       <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
-                                              <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
+                                              <h6>' . $row['nomClient'] . ' ' . $row['prenomClient'] . '</h6>
                                           </a></div>
                                       <div class="col s4 ">Soumise le : ' . $row['date'] . '</div>
                                   </div>
@@ -180,7 +180,7 @@ class TraducteurProfileView
                                   <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>
                                   <div style="display:flex; justify-content:space-between">
                                       <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                      <button class="btn waves-effect waves-light modal-trigger" onclick="deleteDemandeTraduction(' . $row['idTraduction'] . ')" href="#modal2" name="action">Annuler
+                                      <button class="btn waves-effect waves-light modal-trigger" onclick="deleteDemandeTraduction(' . $row['idTraduction'] . ')" href="#modal2" name="action">Repondre
                                           <i class="material-icons right">send</i>
                                       </button>
                                   </div>
@@ -219,7 +219,7 @@ class TraducteurProfileView
                                     <p> <b>Commentaire : </b> Lorem ipsum dolor sit amet.</p>
                                     <div style="display:flex; justify-content:space-between">
                                         <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger" href="#modal1" name="action">Annuler
+                                        <button class="btn waves-effect waves-light modal-trigger" href="#modal1" name="action">Repondre
                                             <i class="material-icons right">send</i>
                                         </button>
                                     </div>
@@ -250,7 +250,7 @@ class TraducteurProfileView
                 <div class="modal-content">
 
                     <h4>Repondre</h4>
-                    <p></p>
+                    <p>Demande de devis de traduction</p>
                     <select id="demandeDevisReponse" name="demandeDevisReponse" class="validate">
                         <option value="" disabled selected>Choisir une Reponse</option>
                         <option value="refuser">Refuser</option>
@@ -258,11 +258,9 @@ class TraducteurProfileView
                     </select>
 
                     <div id="montantDevisTraduction">
-                        <input type="number" placeholder="1200"  name="montantDevisTraductionInput" id="montantDevisTraductionInput" class="validate">
+                        <input type="number" placeholder="1200" name="montantDevisTraductionInput" id="montantDevisTraductionInput" class="validate">
                         <label for="montantDevisTraduction">Montant</label>
                     </div>
-                   
-
                     <textarea name="commentReponseDemandeDevis" id="textarea1" class="materialize-textarea"></textarea>
                     <label for="textarea1">Commantaire (Optionnel) </label>
                     <br>
@@ -277,16 +275,32 @@ class TraducteurProfileView
 
         <!-- modal of cancelling demande traduction -->
         <div id="modal2" class="modal  ">
-            <div class="modal-content">
-                <h4>Confirmation</h4>
-                <p>Etes-vous sur de vouloir annuler cette demande de traduction ?</p>
-            </div>
-            <div class="modal-footer">
-                <form action="deleteDemandeTraduction.php" enctype="multipart/form-data" method="post">
-                    <input type="hidden" name="deleteDemandeTraductionId" value="none" id="hiddenDeleteDemandeTraduction">
-                    <button type="submit" class="modal-close waves-effect waves-green btn-flat">Confirmer</button>
-                </form>
-            </div>
+            <form action="deleteDemandeDevis.php" enctype="multipart/form-data" method="post">
+
+                <div class="modal-content">
+
+                    <h4>Repondre</h4>
+                    <p>Demande de traduction</p>
+                    <select id="demandeTraductionReponse" name="demandeTraductionReponse" class="validate">
+                        <option value="" disabled selected>Choisir une Reponse</option>
+                        <option value="refuser">Refuser</option>
+                        <option value="accepter">Accepter</option>
+                    </select>
+
+                    <div id="montantTraduction">
+                        <input type="number" placeholder="1200" name="montantTraductionInput" id="montantTraductionInput" class="validate">
+                        <label for="montantTraduction">Montant</label>
+                    </div>
+                    <textarea name="commentReponseDemandeTraduction" id="textarea1" class="materialize-textarea"></textarea>
+                    <label for="textarea1">Commantaire (Optionnel) </label>
+                    <br>
+                    <button type="submit" class=" waves-effect waves-green btn right">Confirmer</button>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="ResponseDemandeTraductionId" value="none" id="hiddenResponseDemandeTraduction">
+                </div>
+            </form>
 
         </div>
 <?php
