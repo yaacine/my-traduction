@@ -66,31 +66,31 @@ class GlobalItems
                         <li><a href="index.php">Acceuil</a></li>
                         <li><a href="badges.php">Nos Offres</a></li>
                         <?php
-                        if (isset($_SESSION["isTraducteur"])&& $_SESSION["isTraducteur"] == false) {
+                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == false) {
                             echo '<li><a href="nosTraducteurs.php">Nos Traducteurs</a></li>';
-                        }elseif(!isset($_SESSION["isTraducteur"])){
-                            echo '<li><a href="nosTraducteurs.php">Nos Traducteurs</a></li>';
-                            
                         }
-                        ?>
-                       
-                        <li><a href="blog.html">Blog</a></li>
-                        <?php
-                        if (isset($_SESSION["isTraducteur"])&& $_SESSION["isTraducteur"] == false) {
-                            echo '<li><a href="recrutement.php">Devenir Traducteur</a></li>';
-                        }elseif(!isset($_SESSION["isTraducteur"])){
-                            echo '<li><a href="recrutement.php">Devenir Traducteur</a></li>';
-                            
+                         elseif (!isset($_SESSION["isTraducteur"])) {
+                            echo '<li><a href="nosTraducteurs.php">Nos Traducteurs</a></li>';
                         }
                         ?>
 
-<?php
+                        <li><a href="blog.html">Blog</a></li>
+                        <?php
+                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == false) {
+                            echo '<li><a href="recrutement.php">Devenir Traducteur</a></li>';
+                        }
+                        //  elseif (!isset($_SESSION["isTraducteur"])) {
+                        //     echo '<li><a href="recrutement.php">Devenir Traducteur</a></li>';
+                        // }
+                        ?>
+
+                        <?php
                         session_start();
                         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                             echo '  <li style="display= flex">
-                             <a class="dropdown-trigger" href="logout.php" data-target="dropdown1">
-                                  <i class=" material-icons  tooltipped  left" data-position="bottom" data-tooltip="Voire le profil">person</i>
-                                  ' .strtoupper( $_SESSION["name"])  . '
+                             <a class="dropdown-trigger tooltipped" data-position="bottom" data-tooltip="Mon Historique d\'activité" href="logout.php" data-target="dropdown1">
+                                  <i class=" material-icons left ">person</i>
+                                  ' . strtoupper($_SESSION["name"])  . '
                                   </a></li>
                             
                              ';
@@ -115,12 +115,12 @@ class GlobalItems
                             </a>
                         </li>
 
-                       
+
                         <?php
                         session_start();
                         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                             echo '
-                             <a class="dropdown-trigger tooltipped  btn right" href="logout.php" data-target="dropdown1">Deconnexion
+                             <a class="dropdown-trigger   btn right" href="logout.php" >Deconnexion
                                   
                              </a></li>
                              ';

@@ -62,6 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tradRows = $traducteurModel->getTraducteurByEmail($email);
         $i = 0;
         foreach ($tradRows as $rowtrad) {
+            echo'<script >
+            alert("thid is traducteur");
+            location="index.php";
+             </script>';
             $i++;
             $pass = $rowtrad['password'];
             $userId = $rowtrad['idTraducteur'];
@@ -75,6 +79,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userRows = $userModel->getUserByEmail($email);
             $i = 0;
             foreach ($userRows as $row) {
+                echo'<script >
+                alert("thid is user");
+                location="index.php";
+                 </script>';
                 $i++;
                 $pass = $row['password'];
                 $userId = $row['idClient'];

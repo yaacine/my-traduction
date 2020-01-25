@@ -11,6 +11,16 @@ class UserModel{
         $user = (DBManager::$conn)->query($userQuery);
         return $user;
    }
+   
+
+   public function getUserById($id){ 
+    if(DBManager::$conn == NULL){  
+        DBManager::connection();    
+    }
+    $userQuery ='SELECT * FROM Client c WHERE c.idClient="'.$id.'"';
+    $user = (DBManager::$conn)->query($userQuery);
+    return $user;
+    }
 
 
    public function createUser($email,$password){
@@ -22,5 +32,3 @@ class UserModel{
     return $user;
    }
 }
-
-?>

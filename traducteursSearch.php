@@ -32,13 +32,13 @@ foreach($traducteurs as $row){
     //getting the mastered languages for singleTranslator 
     $langues=$t->getLanguagesForSingleTraducteur($row['idTraducteur']);
     $note=$t->getTraducteurNote($row['idTraducteur']);
-
+    
     echo'
    
     <li class="collection-item avatar   card-panel hoverable">
     <div style="z-index:0; margin:5px" class="left">
     <label>
-    <input  type="checkbox" name="traducteurs_ckecked[]" checked="cheched" value="'.$row['idTraducteur'].'" class="filled-in"  style="pointer-events: auto;" />
+    <input  type="checkbox" name="traducteurs_ckecked[]" value="'.$row['idTraducteur'].'" class="filled-in"  style="pointer-events: auto;" />
     <span>Choisir</span>
     </label>
     </div>

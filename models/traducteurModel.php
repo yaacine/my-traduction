@@ -8,8 +8,7 @@ class TraducteurModel{
       
        DBManager::connection();
        
-        $traducteursQuery ="SELECT * FROM Traducteur t LEFT OUTER JOIN MaitriseLangue m ON t.idTraducteur=m.traducteur_id 
-                        LEFT OUTER JOIN Langue l on m.langue_id=l.idLangue";
+        $traducteursQuery ="SELECT * FROM Traducteur";
         $traducteurs = (DBManager::$conn)->query($traducteursQuery);
          
         return ($traducteurs);
@@ -67,6 +66,7 @@ class TraducteurModel{
     if(DBManager::$conn == NULL){  
         DBManager::connection();    
     }
+    DBManager::connection();  
     $traducteurQuery ='SELECT * FROM Traducteur c WHERE c.email="'.$email.'"';
     $traducteur = (DBManager::$conn)->query($traducteurQuery);
      
