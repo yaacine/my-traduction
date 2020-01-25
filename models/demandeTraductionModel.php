@@ -9,9 +9,9 @@ require_once __DIR__.'/dbManager.php' ;
  * refused : refused by the translator
  */
 
-class DemandeDevisModel{
+class DemandeTraductionModel{
    
-   public function getAllDemandeDevis(){
+   public function getAllDemandeTraduction(){
         if(DBManager::$conn == NULL){  
             DBManager::connection();    
         }
@@ -20,23 +20,23 @@ class DemandeDevisModel{
         return $articles;
    }
 
-   public function getDemandeDevisForClient($clientId){
+   public function getDemandeTraductionForClient($clientId){
         if(DBManager::$conn == NULL){  
             DBManager::connection();    
         }
         DBManager::connection();
         $formationsQuery ='SELECT tab1.* , tab2.designation lngSrc , tab3.designation lngDest FROM 
-                            ((SELECT d.*, t.nom nomTrad, t.prenom prenomTrad , t.idTraducteur  FROM DemandeDevis d 
-                            JOIN Traducteur t on d.traducteur_id= 			t.idTraducteur
-                            WHERE client_id ='.$clientId.' order by date DESC) tab1 
-                            JOIN Langue tab2 on tab1.langueSource_id = tab2.idLangue)
-                            JOIN Langue tab3 on tab1.langueDestination_id=tab3.idLangue;';
+        ((SELECT d.*, t.nom nomTrad, t.prenom prenomTrad , t.idTraducteur  FROM DemandeTraduction d 
+        JOIN Traducteur t on d.traducteur_id= 			t.idTraducteur
+        WHERE client_id ='.$clientId.' order by date DESC) tab1 
+        JOIN Langue tab2 on tab1.langueSource_id = tab2.idLangue)
+        JOIN Langue tab3 on tab1.langueDestination_id=tab3.idLangue;';
         $articles = (DBManager::$conn)->query($formationsQuery);
         return $articles;
    }
 
 
-   public function getDemandeDevisForClientPerStatus($clientId ,$status){
+   public function getDemandeTraductionForClientPerStatus($clientId ,$status){
     if(DBManager::$conn == NULL){  
         DBManager::connection();    
     }
@@ -47,7 +47,7 @@ class DemandeDevisModel{
 
 
 
-   public function getDemandeDevisForTraducteur($traducteurId){
+   public function getDemandeTraductionForTraducteur($traducteurId){
     if(DBManager::$conn == NULL){  
         DBManager::connection();    
     }
@@ -57,7 +57,7 @@ class DemandeDevisModel{
    }
 
 
-   public function getDemandeDevisForTraducteurPerStatus($traducteurId, $status){
+   public function getDemandeTraductionForTraducteurPerStatus($traducteurId, $status){
     if(DBManager::$conn == NULL){  
         DBManager::connection();    
     }
@@ -68,7 +68,7 @@ class DemandeDevisModel{
 
 
 
-   public function createDemandeDevis($idclient, $idTraducteur, $date, $file, $langSrc, $langDest, $typeTrad, $nom, $prenom,$telephone, $adresse, $status )
+   public function createDemandeTraduction($idclient, $idTraducteur, $date, $file, $langSrc, $langDest, $typeTrad, $nom, $prenom,$telephone, $adresse, $status )
    {
         if(DBManager::$conn == null){  
             DBManager::connection();    

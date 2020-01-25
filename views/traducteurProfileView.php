@@ -4,7 +4,7 @@ require_once __DIR__ . '/../models/userModel.php';
 
 require_once __DIR__ . '/globalItems.php';
 
-class ClientProfileView
+class TraducteurProfileView
 {
     public function getContent()
     {

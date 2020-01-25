@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/traducteurModel.php';
 require_once __DIR__ . '/../models/userModel.php';
 require_once __DIR__ . '/../models/demandeDevisModel.php';
-
+require_once __DIR__ . '/../models/demandeTraductionModel.php';
 require_once __DIR__ . '/globalItems.php';
 
 class ClientProfileView
@@ -26,7 +26,7 @@ class ClientProfileView
 
 
 ?>
-        <div id="content">
+        <div id="content" style="padding:10px">
             <div class="row">
                 <div class="col s12 m4">
                     <div class="card">
@@ -56,10 +56,8 @@ class ClientProfileView
                         <ul class="collapsible popout">
                             <?php
                           
-                            $demandeDevisM = new DemandeDevisModel();
-                            
+                            $demandeDevisM = new DemandeDevisModel(); 
                             $ListDemandesDevis = $demandeDevisM->getDemandeDevisForClient($userId);
-                         
                             foreach ($ListDemandesDevis as $row) {
                                 echo ' 
                                 <li>
@@ -144,6 +142,50 @@ class ClientProfileView
                     <!-- demandes de traductions  -->
                     <div id="test-swipe-2" class="col s12">
                         <ul class="collapsible popout">
+                        <?php
+                          
+                          $demandeDevisM = new DemandeDevisModel(); 
+                          $demandeTraductionM = new DemandeTraductionModel(); 
+                          $ListDemandesTrad = $demandeTraductionM->getDemandeTraductionForClient($userId);
+                          foreach ($ListDemandesTrad as $row) {
+                              
+                              echo ' 
+                              <li>
+                              <div class="collapsible-header ">
+                                  <i class="material-icons">announcement</i>
+                                  <div class="row" style="width:100%">
+                                      <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                              <h6>'.$row['nomTrad'].' '.$row['prenomTrad'].'</h6>
+                                          </a></div>
+                                      <div class="col s4 ">Soumise le : '.$row['date'].'</div>
+                                  </div>
+
+
+                              </div>
+                              <div class="collapsible-body ">
+                                  <div style="display:flex; justify-content:space-between">
+                                      <div>
+                                          <span id="langue-source" class="chip">'.$row['lngSrc'].'</span>
+                                          <i class="material-icons">arrow_forward</i>
+                                          <span id="langue-source" class="chip">'.$row['lngDest'].' </span>
+                                      </div>
+                                      <div>
+                                          <p><b>Etat : </b> '.$row['status'].' </p>
+                                      </div>
+                                  </div>
+
+                                  <p><b>Commentaire : </b> '.$row['commentaire'].' </p>
+                                  <div style="display:flex; justify-content:space-between">
+                                      <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
+                                      <button class="btn waves-effect waves-light modal-trigger" href="#modal2" name="action">Repondre
+                                          <i class="material-icons right">send</i>
+                                      </button>
+                                  </div>
+
+                              </div>
+                          </li>';
+                          }
+                          ?>
                             <li>
                                 <div class="collapsible-header ">
                                     <i class="material-icons">announcement</i>
