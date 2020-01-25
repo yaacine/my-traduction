@@ -62,37 +62,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tradRows = $traducteurModel->getTraducteurByEmail($email);
         $i = 0;
         foreach ($tradRows as $rowtrad) {
-            echo'<script >
-            alert("thid is traducteur");
-            location="index.php";
-             </script>';
             $i++;
             $pass = $rowtrad['password'];
             $userId = $rowtrad['idTraducteur'];
             $userMail = $rowtrad['email'];
             $userName = $rowtrad['nom'];
-            $isTraducteur = true;
+            $isTraducteur = 'TRUE';
         }
 
-        //si ce n'est pas un traducteur 
+        //si ce n'est pas un traducteur  ==> verifier si c'est un utilisateur simple
         if ($i == 0) {
             $userRows = $userModel->getUserByEmail($email);
             $i = 0;
             foreach ($userRows as $row) {
-                echo'<script >
-                alert("thid is user");
-                location="index.php";
-                 </script>';
                 $i++;
                 $pass = $row['password'];
                 $userId = $row['idClient'];
                 $userMail = $row['email'];
                 $userName = $row['nom'];
-                $isTraducteur = false;
+                $isTraducteur = 'FALSE';
             }
         }
 
-
+        
 
         if ($i <= 0) {
             $email_err = "No user with this email.";
@@ -119,6 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["userId"] = $userId;
                 $_SESSION["email"] = $userMail;
                 $_SESSION["name"] = $userName;
+                
                 $_SESSION["isTraducteur"] = $isTraducteur;
              
 
@@ -128,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         alert("Cennexion Reussie , Bienvenu ' . $userName . ' !");
                         location="index.php";
                         </script>';
-                header("location: index.php");
+                //header("location: index.php");
             }
         }
     }

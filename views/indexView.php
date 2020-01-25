@@ -140,7 +140,7 @@ class IndexView
                       ?>
 
                     </select>
-                    <label>Materialize Select</label>
+                    <label>Langue Source</label>
                   </div>
 
                   <div class="input-field col s6">
@@ -152,7 +152,7 @@ class IndexView
                       }
                       ?>
                     </select>
-                    <label>Langue de destination</label>
+                    <label>Langue Destination</label>
                   </div>
                 </div>
 

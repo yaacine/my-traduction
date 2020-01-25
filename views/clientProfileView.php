@@ -9,24 +9,22 @@ class ClientProfileView
 {
     public function getContent()
     {
-
         $g = new GlobalItems();
         $g->getPageHead();
-?><title>Acceuil</title> <?php
-                                    $g->getNavbar();
 
-                                    $userId = $_SESSION["userId"];
-                                    $userM = new UserModel();
+        $g->getNavbar();
 
-                                    $users = $userM->getUserById($userId);
+        $userId = $_SESSION["userId"];
+        $userM = new UserModel();
 
-                                    //get the user
-                                    foreach ($users as $row) {
-                                        $user = $row;
-                                    }
+        $users = $userM->getUserById($userId);
 
+        //get the user
+        foreach ($users as $row) {
+            $user = $row;
+        }
 
-                                    ?>
+?>
         <div id="content">
             <div class="row">
                 <div class="col s12 m4">
@@ -252,7 +250,7 @@ class ClientProfileView
             <div class="modal-footer">
                 <form action="deleteDemandeDevis.php" enctype="multipart/form-data" method="post">
                     <input type="hidden" name="deleteDemandeDevisId" value="none" id="hiddenDeleteDemandeDevis">
-                    <button  type="submit" class="modal-close waves-effect waves-green btn-flat">Confirmer</button>
+                    <button type="submit" class="modal-close waves-effect waves-green btn-flat">Confirmer</button>
                 </form>
 
             </div>
@@ -265,12 +263,12 @@ class ClientProfileView
                 <p>Etes-vous sur de vouloir annuler cette demande de traduction ?</p>
             </div>
             <div class="modal-footer">
-            <form action="deleteDemandeTraduction.php" enctype="multipart/form-data" method="post">
-                <input type="hidden" name="deleteDemandeTraductionId" value="none" id="hiddenDeleteDemandeTraduction">
-                <button type="submit" class="modal-close waves-effect waves-green btn-flat">Confirmer</button>
-            </form>
+                <form action="deleteDemandeTraduction.php" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="deleteDemandeTraductionId" value="none" id="hiddenDeleteDemandeTraduction">
+                    <button type="submit" class="modal-close waves-effect waves-green btn-flat">Confirmer</button>
+                </form>
             </div>
-         
+
         </div>
 <?php
 

@@ -47,6 +47,8 @@ class DemandeTraductionModel{
 
 
 
+
+
    public function getDemandeTraductionForTraducteur($traducteurId){
     if(DBManager::$conn == NULL){  
         DBManager::connection();    

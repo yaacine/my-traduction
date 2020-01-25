@@ -66,7 +66,7 @@ class GlobalItems
                         <li><a href="index.php">Acceuil</a></li>
                         <li><a href="badges.php">Nos Offres</a></li>
                         <?php
-                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == false) {
+                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == 'FALSE') {
                             echo '<li><a href="nosTraducteurs.php">Nos Traducteurs</a></li>';
                         }
                          elseif (!isset($_SESSION["isTraducteur"])) {
@@ -76,7 +76,7 @@ class GlobalItems
 
                         <li><a href="blog.html">Blog</a></li>
                         <?php
-                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == false) {
+                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == 'FALSE' ) {
                             echo '<li><a href="recrutement.php">Devenir Traducteur</a></li>';
                         }
                         //  elseif (!isset($_SESSION["isTraducteur"])) {
