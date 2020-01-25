@@ -65,3 +65,18 @@
   $(document).ready(function(){
     $('.modal').modal();
   });
+
+
+  // passing the id to delete to the modal
+  function deleteDemandeDevis( id ){
+    $('#hiddenDeleteDemandeDevis').val(id);
+
+
+
+  }  // passing the id to delete to the modal
+  function deleteDemandeTraduction( id ){
+    $('#hiddenDeleteDemandeTraduction').val(id);
+  }
+
+
+  

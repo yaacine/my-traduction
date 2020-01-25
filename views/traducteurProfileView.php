@@ -8,19 +8,21 @@ class TraducteurProfileView
 {
     public function getContent()
     {
-        
+
         $g = new GlobalItems();
         $g->getPageHead();
         $g->getNavbar();
 
-        $userId= $_SESSION["userId"] ;
+        $userId = $_SESSION["userId"];
         $userM = new UserModel();
-        $users =$userM->getUserById($userId);
-        
-        $user =array_pop(array_reverse($users));
+        $users = $userM->getUserById($userId);
+
+        $user = array_pop(array_reverse($users));
 ?>
         <div id="content">
             <div class="row">
+
+                <!-- left section for profile details -->
                 <div class="col s12 m4">
                     <div class="card">
                         <div class="card-image">
@@ -30,12 +32,16 @@ class TraducteurProfileView
                         <div class="card-content">
                             <span class="card-title" style="color: black">User Name</span>
                             <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                            <div class="blue-grey lighten-5">
+                                flutterize
+                            </div>
                         </div>
                     </div>
-                    <div class="blue-grey lighten-5">
-                        flutter
-                    </div>
+
                 </div>
+
+
+                <!-- right section for activity -->
                 <div class="col s12 m8">
 
                     <ul id="tabs-swipe-demo black" class="tabs ">
@@ -88,7 +94,7 @@ class TraducteurProfileView
                                 <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
                             </li>
                         </ul>
-                        
+
                     </div>
                     <div id="test-swipe-2" class="col s12">
                         <ul class="collapsible popout">
@@ -122,7 +128,7 @@ class TraducteurProfileView
                                     <p> <b>Commentaire : </b> Lorem ipsum dolor sit amet.</p>
                                     <div style="display:flex; justify-content:space-between">
                                         <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger"  href="#modal1" name="action">Annuler
+                                        <button class="btn waves-effect waves-light modal-trigger" href="#modal1" name="action">Annuler
                                             <i class="material-icons right">send</i>
                                         </button>
                                     </div>
@@ -165,9 +171,9 @@ class TraducteurProfileView
                 <p>Etes-vous sur de vouloir annuler cette demande de traduction</p>
             </div>
             <div class="modal-footer" style="display:flex; justify-content:space-between">
-            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Disagree</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-          </div>
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat">Disagree</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
         </div>
 <?php
 

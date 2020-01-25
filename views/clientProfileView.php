@@ -12,21 +12,22 @@ class ClientProfileView
 
         $g = new GlobalItems();
         $g->getPageHead();
-        $g->getNavbar();
+?><title>Acceuil</title> <?php
+                                    $g->getNavbar();
 
-        $userId = $_SESSION["userId"];
-        $userM = new UserModel();
+                                    $userId = $_SESSION["userId"];
+                                    $userM = new UserModel();
 
-        $users = $userM->getUserById($userId);
+                                    $users = $userM->getUserById($userId);
 
-        //get the user
-        foreach ($users as $row) {
-            $user = $row;
-        }
+                                    //get the user
+                                    foreach ($users as $row) {
+                                        $user = $row;
+                                    }
 
 
-?>
-        <div id="content" style="padding:10px">
+                                    ?>
+        <div id="content">
             <div class="row">
                 <div class="col s12 m4">
                     <div class="card">
@@ -37,11 +38,13 @@ class ClientProfileView
                         <div class="card-content">
                             <span class="card-title" style="color: black">User Name</span>
                             <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                            <br>
+                            <div class="blue-grey lighten-5">
+                                flutter
+                            </div>
                         </div>
                     </div>
-                    <div class="blue-grey lighten-5">
-                        flutter
-                    </div>
+
                 </div>
                 <div class="col s12 m8">
 
@@ -55,8 +58,8 @@ class ClientProfileView
                     <div id="test-swipe-1" class="col s12 ">
                         <ul class="collapsible popout">
                             <?php
-                          
-                            $demandeDevisM = new DemandeDevisModel(); 
+
+                            $demandeDevisM = new DemandeDevisModel();
                             $ListDemandesDevis = $demandeDevisM->getDemandeDevisForClient($userId);
                             foreach ($ListDemandesDevis as $row) {
                                 echo ' 
@@ -65,9 +68,9 @@ class ClientProfileView
                                     <i class="material-icons">announcement</i>
                                     <div class="row" style="width:100%">
                                         <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
-                                                <h6>'.$row['nomTrad'].' '.$row['prenomTrad'].'</h6>
+                                                <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
                                             </a></div>
-                                        <div class="col s4 ">Soumise le : '.$row['date'].'</div>
+                                        <div class="col s4 ">Soumise le : ' . $row['date'] . '</div>
                                     </div>
 
 
@@ -75,19 +78,19 @@ class ClientProfileView
                                 <div class="collapsible-body ">
                                     <div style="display:flex; justify-content:space-between">
                                         <div>
-                                            <span id="langue-source" class="chip">'.$row['lngSrc'].'</span>
+                                            <span id="langue-source" class="chip">' . $row['lngSrc'] . '</span>
                                             <i class="material-icons">arrow_forward</i>
-                                            <span id="langue-source" class="chip">'.$row['lngDest'].' </span>
+                                            <span id="langue-source" class="chip">' . $row['lngDest'] . ' </span>
                                         </div>
                                         <div>
-                                            <p><b>Etat : </b> '.$row['status'].' </p>
+                                            <p><b>Etat : </b> ' . $row['status'] . ' </p>
                                         </div>
                                     </div>
 
-                                    <p><b>Commentaire : </b> '.$row['commentaire'].' </p>
+                                    <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>
                                     <div style="display:flex; justify-content:space-between">
                                         <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger" href="#modal2" name="action">Repondre
+                                        <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeDevis(' . $row['idDemandeDevis'] . ') href="#modal1" name="action">Annuler
                                             <i class="material-icons right">send</i>
                                         </button>
                                     </div>
@@ -142,22 +145,22 @@ class ClientProfileView
                     <!-- demandes de traductions  -->
                     <div id="test-swipe-2" class="col s12">
                         <ul class="collapsible popout">
-                        <?php
-                          
-                          $demandeDevisM = new DemandeDevisModel(); 
-                          $demandeTraductionM = new DemandeTraductionModel(); 
-                          $ListDemandesTrad = $demandeTraductionM->getDemandeTraductionForClient($userId);
-                          foreach ($ListDemandesTrad as $row) {
-                              
-                              echo ' 
+                            <?php
+
+                            $demandeDevisM = new DemandeDevisModel();
+                            $demandeTraductionM = new DemandeTraductionModel();
+                            $ListDemandesTrad = $demandeTraductionM->getDemandeTraductionForClient($userId);
+                            foreach ($ListDemandesTrad as $row) {
+
+                                echo ' 
                               <li>
                               <div class="collapsible-header ">
                                   <i class="material-icons">announcement</i>
                                   <div class="row" style="width:100%">
                                       <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
-                                              <h6>'.$row['nomTrad'].' '.$row['prenomTrad'].'</h6>
+                                              <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
                                           </a></div>
-                                      <div class="col s4 ">Soumise le : '.$row['date'].'</div>
+                                      <div class="col s4 ">Soumise le : ' . $row['date'] . '</div>
                                   </div>
 
 
@@ -165,27 +168,27 @@ class ClientProfileView
                               <div class="collapsible-body ">
                                   <div style="display:flex; justify-content:space-between">
                                       <div>
-                                          <span id="langue-source" class="chip">'.$row['lngSrc'].'</span>
+                                          <span id="langue-source" class="chip">' . $row['lngSrc'] . '</span>
                                           <i class="material-icons">arrow_forward</i>
-                                          <span id="langue-source" class="chip">'.$row['lngDest'].' </span>
+                                          <span id="langue-source" class="chip">' . $row['lngDest'] . ' </span>
                                       </div>
                                       <div>
-                                          <p><b>Etat : </b> '.$row['status'].' </p>
+                                          <p><b>Etat : </b> ' . $row['status'] . ' </p>
                                       </div>
                                   </div>
 
-                                  <p><b>Commentaire : </b> '.$row['commentaire'].' </p>
+                                  <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>
                                   <div style="display:flex; justify-content:space-between">
                                       <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                      <button class="btn waves-effect waves-light modal-trigger" href="#modal2" name="action">Repondre
+                                      <button class="btn waves-effect waves-light modal-trigger" onclick="deleteDemandeTraduction(' . $row['idTraduction'] . ')" href="#modal2" name="action">Annuler
                                           <i class="material-icons right">send</i>
                                       </button>
                                   </div>
 
                               </div>
                           </li>';
-                          }
-                          ?>
+                            }
+                            ?>
                             <li>
                                 <div class="collapsible-header ">
                                     <i class="material-icons">announcement</i>
@@ -241,27 +244,33 @@ class ClientProfileView
         </div>
 
         <!-- modal of cancelling demande devis -->
-        <div id="modal1" class="modal">
+        <div id="modal1" class="modal ">
             <div class="modal-content">
                 <h4>Confirmation</h4>
-                <p>Etes-vous sur de vouloir annuler cette demande de devis</p>
+                <p>Etes-vous sur de vouloir annuler cette demande de devis ?</p>
             </div>
-            <div class="modal-footer " style="display:flex; justify-content:space-between">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Confirmer</a>
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Retour</a>
+            <div class="modal-footer">
+                <form action="deleteDemandeDevis.php" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="deleteDemandeDevisId" value="none" id="hiddenDeleteDemandeDevis">
+                    <button  type="submit" class="modal-close waves-effect waves-green btn-flat">Confirmer</button>
+                </form>
+
             </div>
         </div>
 
         <!-- modal of cancelling demande traduction -->
-        <div id="modal2" class="modal">
+        <div id="modal2" class="modal  ">
             <div class="modal-content">
                 <h4>Confirmation</h4>
-                <p>Etes-vous sur de vouloir annuler cette demande de traduction</p>
+                <p>Etes-vous sur de vouloir annuler cette demande de traduction ?</p>
             </div>
-            <div class="modal-footer" style="display:flex; justify-content:space-between">
-                <a href="#!" class="modal-close waves-effect waves-red btn-flat">Disagree</a>
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            <div class="modal-footer">
+            <form action="deleteDemandeTraduction.php" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="deleteDemandeTraductionId" value="none" id="hiddenDeleteDemandeTraduction">
+                <button type="submit" class="modal-close waves-effect waves-green btn-flat">Confirmer</button>
+            </form>
             </div>
+         
         </div>
 <?php
 
