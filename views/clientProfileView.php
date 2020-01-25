@@ -32,26 +32,56 @@ class ClientProfileView
                 </div>
                 <div class="col s12 m8">
 
-                    <ul id="tabs-swipe-demo black" class="tabs">
-                        <li class="tab col s4"><a href="#test-swipe-1">Test 1</a></li>
-                        <li class="tab col s4"><a class="active" href="#test-swipe-2">Test 2</a></li>
+                    <ul id="tabs-swipe-demo black" class="tabs ">
+                        <li class="tab col s4"><a href="#test-swipe-1">Mes demandes de devis</a></li>
+                        <li class="tab col s4"><a class="active" href="#test-swipe-2">Mes demandes de Traduction</a></li>
                         <li class="tab col s4"><a href="#test-swipe-3">Test 3</a></li>
                     </ul>
                     <div id="test-swipe-1" class="col s12 ">
-                    <ul class="collapsible">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
+                        <ul class="collapsible popout">
+                            <li>
+                                <div class="collapsible-header ">
+                                    <i class="material-icons">announcement</i>
+                                    <div class="row" style="width:100%">
+                                        <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                                <h6>Zidelmal Traducteur</h6>
+                                            </a></div>
+                                        <div class="col s4 ">Soumise le : date</div>
+                                    </div>
+
+
+                                </div>
+                                <div class="collapsible-body ">
+                                    <div style="display:flex; justify-content:space-between">
+                                        <div>
+                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
+                                            <i class="material-icons">arrow_forward</i>
+                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
+                                        </div>
+                                        <div>
+                                            <p><b>Etat : </b> En attente </p>
+                                        </div>
+                                    </div>
+
+                                    <p>Lorem ipsum dolor sit amet.</p>
+                                    <div style="display:flex; justify-content:space-between">
+                                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
+                                        <button class="btn waves-effect waves-light" type="submit" name="action">Repondre
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">arrow_forward</i>Second</div>
+                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                            </li>
+                        </ul>
                         <!-- <div class="card material-table">
                             <div class="table-header">
                                 <span class="table-title">Mes Actions</span>
@@ -180,7 +210,55 @@ class ClientProfileView
                             </table>
                         </div> -->
                     </div>
-                    <div id="test-swipe-2" class="col s12 red">Test 2</div>
+                    <div id="test-swipe-2" class="col s12">
+                    <ul class="collapsible popout">
+                            <li>
+                                <div class="collapsible-header ">
+                                    <i class="material-icons">announcement</i>
+                                    <div class="row" style="width:100%">
+                                        <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                                <h6>Zidelmal Traducteur</h6>
+                                            </a></div>
+                                        <div class="col s4 ">Soumise le : date</div>
+                                    </div>
+
+
+                                </div>
+                                <div class="collapsible-body ">
+                                    <div style="display:flex; justify-content:space-between">
+                                        <div>
+                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
+                                            <i class="material-icons">arrow_forward</i>
+                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
+                                        </div>
+                                        <div>
+                                            <p><b>Etat : </b> En attente </p>
+                                        </div>
+                                    </div>
+                                   
+                                    <div>
+                                        <p> <b>Montant:  </b> 12345 DZD</p>
+                                    </div>
+                                    <p> <b>Commentaire :  </b> Lorem ipsum dolor sit amet.</p>
+                                    <div style="display:flex; justify-content:space-between">
+                                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
+                                        <button class="btn waves-effect waves-light" type="submit" name="action">Annuler
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">arrow_forward</i>Second</div>
+                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                            </li>
+                        </ul>
+                    </div>
                     <div id="test-swipe-3" class="col s12 green">Test 3</div>
 
                 </div>
