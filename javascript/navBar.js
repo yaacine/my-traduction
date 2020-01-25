@@ -11,15 +11,15 @@
   //   var instances = M.Autocomplete.init(elems, options);
   // });
 
-  $(document).ready(function(){
-    $('input.autocomplete').autocomplete({
-      data: {
-        "Apple": null,
-        "Microsoft": null,
-        "Google": 'https://placehold.it/250x250'
-      },
-    });
-  });
+  // $(document).ready(function(){
+  //   $('input.autocomplete').autocomplete({
+  //     data: {
+  //       "Apple": null,
+  //       "Microsoft": null,
+  //       "Google": 'https://placehold.it/250x250'
+  //     },
+  //   });
+  // });
        
 
 
@@ -36,5 +36,32 @@
 
 
   $(document).ready(function(){
-    $('.carousel').carousel();
+    $('.carousel').carousel(); 
+  });
+
+  
+  setInterval(function() {
+    $('.carousel').carousel('next');
+  }, 2000); 
+
+
+
+  $('.dropdown-trigger').dropdown();
+    
+  $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+
+
+  $(document).ready(function(){
+    $('.tabs').tabs();
+  });
+
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });``
+
+
+  $(document).ready(function(){
+    $('.modal').modal();
   });

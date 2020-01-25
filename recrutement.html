@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="styles/signupForm.css" />
-    <link rel="stylesheet" href="styles/signinForm.css" />
+    <!-- <link rel="stylesheet" href="styles/signupForm.css" />
+    <link rel="stylesheet" href="styles/signinForm.css" /> -->
 
     <script src="./javascript/jquery.js"></script>
     <script src="./javascript/navBar.js"></script>
@@ -32,22 +32,25 @@
     />
 
     <link rel="stylesheet" href="./styles/home.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <nav>
+    <nav id="navbar">
       <div class="nav-wrapper blue-grey darken-3">
         <a href="#!" class="brand-logo">Logo</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a
         >
         <ul class="left hide-on-med-and-down menu-items">
-          <li><a href="sass.html">Acceuil</a></li>
+          <li><a href="index.html">Acceuil</a></li>
           <li><a href="badges.html">Nos Offres</a></li>
           <li><a href="nosTraducteurs.html">Nos Traducteurs</a></li>
-          <li><a href="mobile.html">Blog</a></li>
-          <li><a href="mobile.html">Devenir Traducteur</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="recrutement.html">Devenir Traducteur</a></li>
         </ul>
         <ul
           class="right hide-on-med-and-down   social-media-icons center-align"
@@ -74,72 +77,25 @@
       </div>
     </nav>
 
-    
-    <div class="carousel carousel-slider my-carousel-slider">
-      <a class="carousel-item" href="#one!"><img src="./assets/slider/download.jpeg" alt="test"></a>
-      <a class="carousel-item" href="#two!"><img src="./assets/slider/download.jpeg"></a>
-      <a class="carousel-item" href="#three!"><img src="./assets/slider/download.jpeg"></a>
-      <a class="carousel-item" href="#four!"><img src="./assets/slider/download.jpeg"></a>
-    </div>
+   
     <div  id="content">
      
       <div class="row">
-      <div id="articles-section" class="col s5">
-        <h4>Lire les derniers articles</h4>
-        <!-- <div class="divider"></div> -->
-        <div class="section card-panel hoverable  my-article">
-          <h6>Section 1</h6>
-          <p class="truncate">
-            Ad eiusmod enim sit sit aute occaecat excepteur ut est labore sit.
-            Et dolore ut ullamco tempor. Duis enim Lorem velit Lorem incididunt
-            magna. Excepteur consequat dolor nulla velit mollit cillum consequat
-            ea quis duis.
-          </p>
-          
-      <a class="waves-effect waves-teal btn-flat    blue lighten-2">Lire la suite</a>
-
-        </div>
-        <div class="divider"></div>
-        <div class="section card-panel hoverable">
-          <h6>Section 2</h6>
-          <p class="truncate">
-            Anim dolore qui incididunt irure aliquip proident magna minim do
-            fugiat laborum officia consectetur. Deserunt laborum magna nulla
-            aliquip laboris labore aliqua aliquip duis laborum ex. Occaecat id
-            occaecat ad ea dolore excepteur. Elit do quis dolore ullamco
-            adipisicing quis ex et. Nostrud qui velit est ea ut adipisicing non
-            sunt occaecat cillum elit. Ipsum exercitation exercitation pariatur
-            tempor non. Ipsum proident et cillum minim.
-          </p>
-          <a class="waves-effect waves-teal btn-flat    blue lighten-2">Lire la suite</a>
-        </div>
-        <div class="divider"></div>
-        <div class="section card-panel hoverable">
-          <h6>Section 3</h6>
-          <p class="truncate">
-            Anim eiusmod laborum ex aute irure enim incididunt. Dolor pariatur
-            esse eiusmod duis duis cupidatat anim ullamco irure est. Eiusmod
-            laborum proident aliquip dolore magna. Cupidatat adipisicing eiusmod
-            deserunt excepteur adipisicing est irure dolore nostrud irure
-            officia est qui ut. Nulla duis ad velit elit nostrud ad pariatur sit
-            ex veniam dolore incididunt magna.
-          </p>
-          <a class="waves-effect waves-teal btn-flat    blue lighten-2">Lire la suite</a>
-        </div>
-      </div>
-      <div id="empty-sction" class="col s1 "></div>
-
+    
       <!-- partie droite (formulaire de demande de devis) -->
+      <div class="col m2"></div>
       <div
         id="form-sction"
-        class="col s6 center-align collection blue-grey lighten-5"
+        
+        class="col s12 m8 center-align collection blue-grey lighten-5"
       >
+    <h4>Devenez Traducteur Maintenant !</h4>
         <div id="user-control">
-          <a onclick="document.getElementById('id02').style.display='block'" class="waves-effect waves-light btn-large  blue-grey darken-3"
+          <a  href="#login" class="waves-effect waves-light btn-large  blue-grey darken-3 modal-trigger"
             >Connecion</a
           >
           Ou
-          <a onclick="document.getElementById('id01').style.display='block'"signupbtn class="waves-effect waves-light btn-large blue-grey darken-3"
+          <a href="#register-modal"  class="waves-effect waves-light btn-large blue-grey darken-3 modal-trigger"
             >Inscription</a
           >
         </div>
@@ -284,147 +240,162 @@
             
           </div>
         </div>
+        <div class="col m2"></div>
       </div>
     </div>
     </div>
 
-    <!-- Button to open the modal -->
-    <button onclick="document.getElementById('id01').style.display='block'">
-      Sign Up
-    </button>
 
-    <!-- The Modal (contains the Sign Up form) -->
-    <div id="id01" class="modal">
-      <span
-        onclick="document.getElementById('id01').style.display='none'"
-        class="close"
-        title="Close Modal"
-        >&times;</span
-      >
-      <form class="modal-content" action="/action_page.php">
-        <div class="container">
-          <h1>Sign Up</h1>
-          <p>Please fill in this form to create an account.</p>
-          <hr />
-          <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" required />
 
-          <label for="psw"><b>Password</b></label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            name="psw"
-            required
-          />
 
-          <label for="psw-repeat"><b>Repeat Password</b></label>
-          <input
-            type="password"
-            placeholder="Repeat Password"
-            name="psw-repeat"
-            required
-          />
+    <!-- login modal btn -->
 
-          <label>
-            <input
-              type="checkbox"
-              checked="checked"
-              name="remember"
-              style="margin-bottom:15px"
-            />
-            Remember me
-          </label>
+<!-- login modal  -->
 
-          <p>
-            By creating an account you agree to our
-            <a href="#" style="color:dodgerblue">Terms & Privacy</a>.
-          </p>
-
-          <div class="clearfix">
-            <button
-              type="button"
-              onclick="document.getElementById('id01').style.display='none'"
-              class="cancelbtn"
-            >
-              Cancel
-            </button>
-            <button type="submit" class="signupbtn">Sign Up</button>
-          </div>
+  <div id="login" class="modal">
+    <h5 class="modal-close">&#10005;</h5>
+    <div class="modal-content center">
+      <h4>Connexion</h4>
+      <br>
+  
+      <form action="#">
+  
+        <div class="input-field">
+          <i class="material-icons prefix">person</i>
+          <input type="text" id="name">
+          <label for="name">Username</label>
         </div>
+        <br>
+  
+        <div class="input-field">
+          <i class="material-icons prefix">lock</i>
+          <input type="password" id="pass">
+          <label for="pass">Password</label>
+        </div>
+        <br>
+  
+        <div class="left" style="margin-left:20px;">
+          <input type="checkbox" id="check">
+          <label for="check">Remember Me</label>
+        </div>
+        <br>
+        
+        <input type="submit" value="Login" class="btn btn-large">
+        
       </form>
     </div>
+  </div>
 
-    <!-- Button to open the modal login form -->
-    <button onclick="document.getElementById('id02').style.display='block'">
-      Login
-    </button>
 
-    <!-- The Modal -->
-    <div id="id02" class="modal-login">
-      <span
-        onclick="document.getElementById('id02').style.display='none'"
-        class="close-login"
-        title="close-login Modal"
-        >&times;</span
-      >
+  <!-- register modal -->
 
-      <!-- Modal Content -->
-      <form class="modal-login-content animate" action="/action_page.php">
-        <div class="imgcontainer">
-          <img src="assets/img_avatar1.jpg" alt="Avatar" class="avatar" />
+
+   <!-- Modal Body -->
+   <div id="register-modal" class="modal">
+    <div class="modal-content">
+      <h4>Register</h4>
+	 <div class="col s6">
+		<form class="">
+      <div class="row">
+		 <div class="input-field col s12">
+          <input id="Name" type="text" class="validate">
+          <label for="Email">Name</label>
         </div>
-
-        <div class="container">
-          <label for="uname"><b>Username</b></label>
-          <input
-            type="text"
-            placeholder="Enter Username"
-            name="uname"
-            required
-          />
-
-          <label for="psw"><b>Password</b></label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            name="psw"
-            required
-          />
-
-          <button type="submit">Login</button>
-          <label>
-            <input type="checkbox" checked="checked" name="remember" /> Remember
-            me
-          </label>
+		 <div class="input-field col s12">
+          <input id="Email" type="email" class="validate">
+          <label for="Email">Email</label>
         </div>
-
-        <div class="bottom-container">
-          <button
-            type="button"
-            onclick="document.getElementById('id02').style.display='none'"
-            class="cancelbtn-login"
-          >
-            Cancel
-          </button>
-          <span class="psw">Forgot <a href="#">password?</a></span>
+		<div class="input-field col s12">
+          <input id="Phone" type="text" class="validate">
+          <label for="Phone">Phone</label>
         </div>
+        <div class="input-field col s12">
+          <input id="Password" type="password" class="validate">
+          <label for="Password">Password</label>
+        </div>
+		  <div class="input-field col s12">
+          <input id="CnfPassword" type="password" class="validate">
+          <label for="CnfPassword">Confirm Password</label>
+        </div>
+		 <div class="input-field col s12">
+          <button type="submit" class="waves-effect waves-light btn">Register</button>
+        </div>        
+      </div>	
       </form>
+     </div>
     </div>
+    <div class="modal-footer">
+      <h5 class="modal-close">&#10005;</h5>
+      <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a> -->
+    </div>
+  </div> 
 
-    <script>
-      // Get the modal
-      var modal = document.getElementById("id01");
-      var modalLogin = document.getElementById("id02");
 
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-        if (event.target == modalLogin) {
-          modalLogin.style.display = "none";
-        }
-      };
-    </script>
+ <!-- footer -->
+
+  <footer class="page-footer grey darken-2">
+    <div class="container">
+            <div class="row">
+              <div class="col s12 l4 m10">
+                <h5 class="white-text">Follow "BlogName"</h5>
+                <p class="white-text">Get every new post delivered to your inbox.</p>
+			     <form>
+			    
+			      <div class="input-field">
+			        <i class="mdi-communication-email prefix"></i>
+			        <input id="icon_prefix" type="email" class="validate">
+			        <label for="icon_prefix">Email</label>
+			      </div>
+			     
+			     </form>
+			    
+			    <a class="waves-effect waves-light btn">Sign Up
+                    <i class="fa fa-sign-in right"></i></a>
+       </div><!--col-->
+              
+              
+              <div id="categories" class="col l3 offset-l1 s12 m8">
+                <h5 class="white-text">Categories</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Category1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Category2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Category3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Category4</a></li>
+                </ul>
+              </div><!--col-->
+              
+              
+              
+              <div class="col l3 s12 m8">
+                <h5 class="white-text">Archives</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">March 2015</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">April 2015</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">May 2015</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">June 2015</a></li>
+                </ul>
+              </div><!--col-->
+              
+            </div><!--row-->
+            
+            <div class="row">
+            	<div class="col s12 l3 offset-l5">
+            		
+            	
+            	<a href="#"><i style="font-size: 38px;" class="fa fa-facebook-square"></i></a> &nbsp;&nbsp;&nbsp;
+            	<a href="#"><i style="font-size: 38px;" class="fa fa-twitter-square"></i></a>&nbsp;&nbsp;&nbsp;
+            	<a href="#"><i style="font-size: 38px;" class="fa fa-google-plus-square"></i></a>
+            	</div>
+            	
+            </div><!--row-->
+          </div><!--conatiner-->
+    <div class="footer-copyright">
+      <div class="container">
+       <p>Copyright © Your website name</p>
+       <br>
+      </div>
+    </div>
+  </footer>
     <!--JavaScript at end of body for optimized loading-->
     <script
       type="text/javascript"
