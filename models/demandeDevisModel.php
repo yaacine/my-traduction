@@ -24,7 +24,13 @@ class DemandeDevisModel{
         if(DBManager::$conn == NULL){  
             DBManager::connection();    
         }
-        $formationsQuery ="SELECT * FROM `DemandeDevis` WHERE cleint_id ".$clientId;
+        DBManager::connection();
+        $formationsQuery ='SELECT tab1.* , tab2.designation lngSrc , tab3.designation lngDest FROM 
+                            ((SELECT d.*, t.nom nomTrad, t.prenom prenomTrad , t.idTraducteur  FROM DemandeDevis d 
+                            JOIN Traducteur t on d.traducteur_id= 			t.idTraducteur
+                            WHERE cleint_id ='.$clientId.' order by date DESC) tab1 
+                            JOIN Langue tab2 on tab1.langueSource_id = tab2.idLangue)
+                            JOIN Langue tab3 on tab1.langueDestination_id=tab3.idLangue;';
         $articles = (DBManager::$conn)->query($formationsQuery);
         return $articles;
    }

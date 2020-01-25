@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/traducteurModel.php';
 require_once __DIR__ . '/../models/userModel.php';
-require_once __DIR__ . '/../models/demandeDevisModel.php';
 
 require_once __DIR__ . '/globalItems.php';
 
@@ -9,22 +8,16 @@ class ClientProfileView
 {
     public function getContent()
     {
-
+        
         $g = new GlobalItems();
         $g->getPageHead();
         $g->getNavbar();
 
-        $userId = $_SESSION["userId"];
+        $userId= $_SESSION["userId"] ;
         $userM = new UserModel();
-
-        $users = $userM->getUserById($userId);
-
-        //get the user
-        foreach ($users as $row) {
-            $user = $row;
-        }
-
-
+        $users =$userM->getUserById($userId);
+        
+        $user =array_pop(array_reverse($users));
 ?>
         <div id="content">
             <div class="row">
@@ -50,54 +43,8 @@ class ClientProfileView
                         <li class="tab col s4"><a class="active" href="#test-swipe-2">Mes demandes de Traduction</a></li>
                         <li class="tab col s4"><a href="#test-swipe-3">Test 3</a></li>
                     </ul>
-
-                    <!-- demandes de devis -->
                     <div id="test-swipe-1" class="col s12 ">
                         <ul class="collapsible popout">
-                            <?php
-                          
-                            $demandeDevisM = new DemandeDevisModel();
-                            
-                            $ListDemandesDevis = $demandeDevisM->getDemandeDevisForClient($userId);
-                         
-                            foreach ($ListDemandesDevis as $row) {
-                                echo ' 
-                                <li>
-                                <div class="collapsible-header ">
-                                    <i class="material-icons">announcement</i>
-                                    <div class="row" style="width:100%">
-                                        <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
-                                                <h6>'.$row['nomTrad'].' '.$row['prenomTrad'].'</h6>
-                                            </a></div>
-                                        <div class="col s4 ">Soumise le : '.$row['date'].'</div>
-                                    </div>
-
-
-                                </div>
-                                <div class="collapsible-body ">
-                                    <div style="display:flex; justify-content:space-between">
-                                        <div>
-                                            <span id="langue-source" class="chip">'.$row['lngSrc'].'</span>
-                                            <i class="material-icons">arrow_forward</i>
-                                            <span id="langue-source" class="chip">'.$row['lngDest'].' </span>
-                                        </div>
-                                        <div>
-                                            <p><b>Etat : </b> '.$row['status'].' </p>
-                                        </div>
-                                    </div>
-
-                                    <p><b>Commentaire : </b> '.$row['commentaire'].' </p>
-                                    <div style="display:flex; justify-content:space-between">
-                                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger" href="#modal2" name="action">Repondre
-                                            <i class="material-icons right">send</i>
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </li>';
-                            }
-                            ?>
                             <li>
                                 <div class="collapsible-header ">
                                     <i class="material-icons">announcement</i>
@@ -132,16 +79,17 @@ class ClientProfileView
 
                                 </div>
                             </li>
-
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">arrow_forward</i>Second</div>
+                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                            </li>
                             <li>
                                 <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
                                 <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
                             </li>
                         </ul>
-
+                        
                     </div>
-
-                    <!-- demandes de traductions  -->
                     <div id="test-swipe-2" class="col s12">
                         <ul class="collapsible popout">
                             <li>
@@ -174,7 +122,7 @@ class ClientProfileView
                                     <p> <b>Commentaire : </b> Lorem ipsum dolor sit amet.</p>
                                     <div style="display:flex; justify-content:space-between">
                                         <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger" href="#modal1" name="action">Annuler
+                                        <button class="btn waves-effect waves-light modal-trigger"  href="#modal1" name="action">Annuler
                                             <i class="material-icons right">send</i>
                                         </button>
                                     </div>
@@ -217,9 +165,9 @@ class ClientProfileView
                 <p>Etes-vous sur de vouloir annuler cette demande de traduction</p>
             </div>
             <div class="modal-footer" style="display:flex; justify-content:space-between">
-                <a href="#!" class="modal-close waves-effect waves-red btn-flat">Disagree</a>
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Disagree</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
         </div>
 <?php
 

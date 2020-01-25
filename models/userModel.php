@@ -1,34 +1,39 @@
 <?php
 
-require_once __DIR__.'/dbManager.php' ;
+require_once __DIR__ . '/dbManager.php';
 
-class UserModel{
-   public function getUserByEmail($email){ 
-        if(DBManager::$conn == NULL){  
-            DBManager::connection();    
+class UserModel
+{
+    public function getUserByEmail($email)
+    {
+        if (DBManager::$conn == NULL) {
+            DBManager::connection();
         }
-        $userQuery ='SELECT * FROM Client c WHERE c.email="'.$email.'"';
+        $userQuery = 'SELECT * FROM Client c WHERE c.email="' . $email . '"';
         $user = (DBManager::$conn)->query($userQuery);
         return $user;
-   }
-   
-
-   public function getUserById($id){ 
-    if(DBManager::$conn == NULL){  
-        DBManager::connection();    
-    }
-    $userQuery ='SELECT * FROM Client c WHERE c.idClient="'.$id.'"';
-    $user = (DBManager::$conn)->query($userQuery);
-    return $user;
     }
 
 
-   public function createUser($email,$password){
-    if(DBManager::$conn == NULL){  
-        DBManager::connection();    
+    public function getUserById($id)
+    {
+        DBManager::connection();
+        if (DBManager::$conn == NULL) {
+            DBManager::connection();
+        }
+        $userQuery = 'SELECT * FROM Client c WHERE c.idClient="' . $id . '"';
+        $user = (DBManager::$conn)->query($userQuery);
+        return $user;
     }
-    $userQuery ='INSERT INTO `Client` (`email`, `password`) VALUES ("'.$email.'", "'.$password.'")';
-    $user = (DBManager::$conn)->query($userQuery);
-    return $user;
-   }
+
+
+    public function createUser($email, $password)
+    {
+        if (DBManager::$conn == NULL) {
+            DBManager::connection();
+        }
+        $userQuery = 'INSERT INTO `Client` (`email`, `password`) VALUES ("' . $email . '", "' . $password . '")';
+        $user = (DBManager::$conn)->query($userQuery);
+        return $user;
+    }
 }

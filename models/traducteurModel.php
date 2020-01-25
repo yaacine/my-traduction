@@ -73,6 +73,17 @@ class TraducteurModel{
     return $traducteur;
 }
 
+    public function getTraducteurById($id){ 
+        if(DBManager::$conn == NULL){  
+            DBManager::connection();    
+        }
+        DBManager::connection();  
+        $traducteurQuery ='SELECT * FROM Traducteur c WHERE c.idTraducteur="'.$id.'"';
+        $traducteur = (DBManager::$conn)->query($traducteurQuery);
+        
+        return $traducteur;
+    }
+
 
 public function createTraducteur($email,$password){
 if(DBManager::$conn == NULL){  
