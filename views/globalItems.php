@@ -88,7 +88,7 @@ class GlobalItems
                         session_start();
                         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                             echo '  <li style="display= flex">
-                             <a class="dropdown-trigger tooltipped" data-position="bottom" data-tooltip="Mon Historique d\'activité" href="logout.php" data-target="dropdown1">
+                             <a class="dropdown-trigger tooltipped" data-position="bottom" data-tooltip="Mon Historique d\'activité" href="profile.php" data-target="dropdown1">
                                   <i class=" material-icons left ">person</i>
                                   ' . strtoupper($_SESSION["name"])  . '
                                   </a></li>

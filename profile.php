@@ -4,7 +4,7 @@
      $isTraducteur =$_SESSION["isTraducteur"];
 
      if(!$isTraducteur){
-        header("Location: views/clientProfileView.php");
+        header("Location: user-profile.php");
         exit(0);   
      }
      else{ // it's a traducteur
