@@ -20,6 +20,16 @@ class DemandeDevisModel{
         return $articles;
    }
 
+   public function getAllDemandeDevisById($id){
+    DBManager::connection();    
+    $formationsQuery ='SELECT * FROM `DemandeDevis` WHERE idDemandeDevis='.$id;
+    $articles = (DBManager::$conn)->query($formationsQuery);
+    return $articles;
+}
+
+
+
+
    public function getDemandeDevisForClient($clientId){
         if(DBManager::$conn == NULL){  
             DBManager::connection();    
@@ -89,15 +99,15 @@ class DemandeDevisModel{
        
    }
 
-   public function alterDemandeDevisStatus($idDemande, $newStatus){
-  
+   public function updateDemandeDevisStatus($idDemande, $newStatus){
+
     if(DBManager::$conn == null){  
         DBManager::connection();    
     }
     DBManager::connection();    
 
 
-    $updateDDevisQuery =' UPDATE `DemandeDevis` SET `status`='.$newStatus.' WHERE idDemandeDevis='.$idDemande;
+    $updateDDevisQuery =' UPDATE `DemandeDevis` SET `status`="'.$newStatus.'" WHERE idDemandeDevis='.$idDemande;
     echo $updateDDevisQuery;  
     (DBManager::$conn)->query( $updateDDevisQuery );
    

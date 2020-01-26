@@ -56,7 +56,7 @@ $(document).ready(function() {
   $(".modal").modal();
 });
 
-// passing the id to delete to the modal
+// passing the id to cancel to the modal
 function deleteDemandeDevis(id) {
   $("#hiddenDeleteDemandeDevis").val(id);
 } // passing the id to delete to the modal
@@ -84,6 +84,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   $("#montantTraduction").hide(100);
 });
+
 
 $(document).ready(function() {
   $("#demandeTraductionReponse").change(function() {

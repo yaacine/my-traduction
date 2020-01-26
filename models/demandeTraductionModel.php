@@ -83,7 +83,7 @@ class DemandeTraductionModel{
         DBManager::connection();    
 
 
-        $createDTraductionQuery ='INSERT INTO `DemandeTraduction`( `cleint_id`, `traducteur_id`, `date`, `fileLink`, `langueSource_id`, `langueDestination_id`, `typeTraduction`, `nom`, `prenom`, `telephone`, `adresse` ,`status`) 
+        $createDTraductionQuery ='INSERT INTO `DemandeTraduction`( `clie    nt_id`, `traducteur_id`, `date`, `fileLink`, `langueSource_id`, `langueDestination_id`, `typeTraduction`, `nom`, `prenom`, `telephone`, `adresse` ,`status`) 
         VALUES ('.$idclient.','.$idTraducteur.',NOW(),"'.$file.'",'.$langSrc.','.$langDest.',"'.$typeTrad.'","'.$nom.'","'.$prenom.'","'.$telephone.'","'. $adresse .'","'.$status .'")';
 
         echo $createDTraductionQuery;  
