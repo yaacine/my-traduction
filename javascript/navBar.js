@@ -59,10 +59,24 @@ $(document).ready(function() {
 // passing the id to cancel to the modal
 function deleteDemandeDevis(id) {
   $("#hiddenDeleteDemandeDevis").val(id);
-} // passing the id to delete to the modal
+} 
+
+
+// passing the id to response demande devis modal modal
+function respondeDemandeDevis(id) {
+  $("#hiddenResponseDemandeDevis").val(id);
+} 
+
+// passing the id to delete to the modal
 function deleteDemandeTraduction(id) {
   $("#hiddenDeleteDemandeTraduction").val(id);
 }
+
+
+function responseDemandeTraduction(id) {
+  $("#hiddenDeleteDemandeTraduction").val(id);
+}
+
 
 $(document).ready(function() {
   $("#montantDevisTraduction").hide(100);

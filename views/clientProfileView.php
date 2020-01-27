@@ -62,7 +62,7 @@ class ClientProfileView
                             foreach ($ListDemandesDevis as $row) {
 
                                 $phpdate = strtotime( $row['date']  );
-                                $mysqldate = date( 'Y-m-d H:i', $phpdate );
+                                $mysqldate = date( 'Y-m-d à H:i', $phpdate );
                                 if ($row['status'] != 'archivée') {
                                     echo ' 
                                     <li>
@@ -88,9 +88,21 @@ class ClientProfileView
                                             <div>
                                               <p><b>Etat : </b> ' . $row['status'] . ' </p>
                                           </div>
-                                        </div>
-    
-                                        <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>
+                                        </div>';
+                                    if(isset($row['commentaire']) && !empty($row['commentaire'])){
+                                        echo' <p><b>Mon Commentaire : </b> ' . $row['commentaire'] . ' </p>';
+                                    }
+
+                                    if(isset( $row['montant'] ) && !empty( $row['montant'] )){
+                                        echo' <p><b>Montant Proposé: </b> ' . $row['montant'] . ' DZD</p>';
+                                    }
+
+                                    if(isset( $row['responseCommentaire'] ) && !empty( $row['responseCommentaire'] )){
+                                        echo' <p><b>Commentaire du traducteur: </b> ' .$row['responseCommentaire'] . ' </p>';
+                                    }
+                                       
+                                        
+                                    echo'
                                         <div style="display:flex; justify-content:space-between">
                                             <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>';
                                     if ($row['status'] == "ouverte") {

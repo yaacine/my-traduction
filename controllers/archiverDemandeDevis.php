@@ -10,6 +10,6 @@ if(isset($_POST['idDemandeDevisArchiver'])) {
     $demandeDevisM->updateDemandeDevisStatus($_POST['idDemandeDevisArchiver'], 'archivée');
 
 }
-header("Location: ../user-profile.php");
+header("Location: ../user-profile.php#test-swipe-1");
 
 ?>

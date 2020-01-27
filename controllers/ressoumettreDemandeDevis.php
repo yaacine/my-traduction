@@ -9,6 +9,6 @@ if(isset($_POST['idDemandeDevisResoumettre'])) {
     $demandeDevisM->updateDemandeDevisStatus($_POST['idDemandeDevisResoumettre'], 'ouverte');
     echo'fluutttt';
 }
-header("Location: ../user-profile.php");
+header("Location: ../user-profile.php#test-swipe-1");
 
 ?>

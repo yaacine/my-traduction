@@ -8,6 +8,6 @@ session_start();
 if(isset($_POST['deleteDemandeDevisId'])) {
     $demandeDevisM->updateDemandeDevisStatus($_POST['deleteDemandeDevisId'], 'archivée');
 }
-header("Location: ../user-profile.php");
+header("Location: ../user-profile.php#test-swipe-1");
 
 ?>

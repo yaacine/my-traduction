@@ -113,4 +113,25 @@ class DemandeDevisModel{
    
    }
 
+
+
+   public function updateDemandeDevisPrice($idDemande, $newPrice){
+
+    DBManager::connection();    
+
+    $updateDDevisQuery =' UPDATE `DemandeDevis` SET `montant`= ' .$newPrice. ' WHERE idDemandeDevis='.$idDemande;
+    echo $updateDDevisQuery;  
+    (DBManager::$conn)->query( $updateDDevisQuery );
+   }
+
+   public  function setResponseComment($idDemande, $comment)
+   {
+    DBManager::connection();    
+    $updateDDevisQuery =' UPDATE `DemandeDevis` SET `responseCommentaire`="'.$comment.'" WHERE idDemandeDevis='.$idDemande;
+    echo $updateDDevisQuery;  
+    (DBManager::$conn)->query( $updateDDevisQuery );
+   }
+
+   
+
 }

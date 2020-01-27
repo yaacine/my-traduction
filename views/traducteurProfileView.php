@@ -11,6 +11,7 @@ class TraducteurProfileView
     public function getContent()
     {
 
+       
         $g = new GlobalItems();
         $g->getPageHead();
         $g->getNavbar();
@@ -62,15 +63,19 @@ class TraducteurProfileView
                             $demandeDevisM = new DemandeDevisModel();
                             $ListDemandesDevis = $demandeDevisM->getDemandeDevisForTraducteur($userId);
                             foreach ($ListDemandesDevis as $row) {
+                                
+                                $phpdate = strtotime( $row['date']  );
+                                $mysqldate = date( 'Y-m-d à H:i', $phpdate );
                                 echo ' 
                                 <li>
                                 <div class="collapsible-header ">
                                     <i class="material-icons">announcement</i>
-                                    <div class="row" style="width:100%">
+                                    <div style="width:100%;display:flex; justify-content:space-between">
                                         <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
                                                 <h6>' . $row['nomClient'] . ' ' . $row['prenomClient'] . '</h6>
                                             </a></div>
-                                        <div class="col s4 ">Recue le : ' . $row['date'] . '</div>
+                                        <div class="col s4 ">Recue le : ' . $mysqldate. '</div>
+                                        <div class="col s4 ">Etat : ' . $row['status'] . '</div>
                                     </div>
 
 
@@ -87,12 +92,29 @@ class TraducteurProfileView
                                         </div>
                                     </div>
 
-                                    <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>
+                                   
+                                    ';
+
+                                    if(isset($row['commentaire']) &&  !empty( $row['commentaire']) ){
+                                        echo ' <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>';
+                                    }
+                                    if(isset( $row['responseCommentaire']) &&  !empty($row['responseCommentaire']) ){
+                                        echo '<p><b>Votre commentaire de réponse : </b> ' . $row['responseCommentaire'] . ' </p>';
+                                    }
+                                    if(isset( $row['montant']) &&  !empty($row['montant']) ){
+                                        echo '<p><b>Montant proposé: </b> ' . $row['montant'] . ' </p>';
+                                    }
+                                   
+                                    echo'
                                     <div style="display:flex; justify-content:space-between">
-                                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeDevis(' . $row['idDemandeDevis'] . ') href="#modal1" name="action">Repondre
+                                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>';
+                                        if( $row['status']== 'ouverte'){
+                                            echo'<button class="btn waves-effect waves-light modal-trigger" onclick=respondeDemandeDevis(' . $row['idDemandeDevis'] . ') href="#modal1" name="action">Repondre
                                             <i class="material-icons right">send</i>
-                                        </button>
+                                        </button>';
+                                        }
+                                        echo'
+                                        
                                     </div>
 
                                 </div>
@@ -151,16 +173,18 @@ class TraducteurProfileView
                             $demandeTraductionM = new DemandeTraductionModel();
                             $ListDemandesTrad = $demandeTraductionM->getDemandeTraductionForTraducteur($userId);
                             foreach ($ListDemandesTrad as $row) {
-
+                                $phpdate = strtotime( $row['date']  );
+                                $mysqldate = date( 'Y-m-d à H:i', $phpdate );
                                 echo ' 
                               <li>
                               <div class="collapsible-header ">
                                   <i class="material-icons">announcement</i>
-                                  <div class="row" style="width:100%">
-                                      <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                  <div  style="width:100%;display:flex; justify-content:space-between">
+                                      <div "> <a href="http://" target="_blank" rel="noopener noreferrer">
                                               <h6>' . $row['nomClient'] . ' ' . $row['prenomClient'] . '</h6>
                                           </a></div>
-                                      <div class="col s4 ">Soumise le : ' . $row['date'] . '</div>
+                                      <div  ">Soumise le : ' .$mysqldate . '</div>
+                                      <div  ">Soumise le : ' .$row['status'].'</div>
                                   </div>
 
 
@@ -245,7 +269,7 @@ class TraducteurProfileView
 
         <!-- modal of responding for demande devis -->
         <div id="modal1" class="modal ">
-            <form action="deleteDemandeDevis.php" enctype="multipart/form-data" method="post">
+            <form action="controllers/responseDemandeDevis.php" enctype="multipart/form-data" method="post">
 
                 <div class="modal-content">
 
@@ -256,7 +280,7 @@ class TraducteurProfileView
                         <option value="refuser">Refuser</option>
                         <option value="accepter">Accepter</option>
                     </select>
-
+                    <input type="hidden" name="hiddenResponseDemandeDevis"  value="none" id="hiddenResponseDemandeDevis">
                     <div id="montantDevisTraduction">
                         <input type="number" placeholder="1200" name="montantDevisTraductionInput" id="montantDevisTraductionInput" class="validate">
                         <label for="montantDevisTraduction">Montant</label>
@@ -264,7 +288,7 @@ class TraducteurProfileView
                     <textarea name="commentReponseDemandeDevis" id="textarea1" class="materialize-textarea"></textarea>
                     <label for="textarea1">Commantaire (Optionnel) </label>
                     <br>
-                    <button type="submit" class=" waves-effect waves-green btn right">Confirmer</button>
+                    <button type="submitResponseDemandeDevis" name="submitResponseDemandeDevis" class=" waves-effect waves-green btn right">Confirmer</button>
 
                 </div>
                 <div class="modal-footer">
@@ -273,9 +297,9 @@ class TraducteurProfileView
             </form>
         </div>
 
-        <!-- modal of cancelling demande traduction -->
+        <!-- modal of responding demande traduction -->
         <div id="modal2" class="modal  ">
-            <form action="deleteDemandeDevis.php" enctype="multipart/form-data" method="post">
+            <form action="controllers/responseDemandeDevis.php" enctype="multipart/form-data" method="post">
 
                 <div class="modal-content">
 
@@ -294,7 +318,7 @@ class TraducteurProfileView
                     <textarea name="commentReponseDemandeTraduction" id="textarea1" class="materialize-textarea"></textarea>
                     <label for="textarea1">Commantaire (Optionnel) </label>
                     <br>
-                    <button type="submit" class=" waves-effect waves-green btn right">Confirmer</button>
+                    <button type="submitResponseDemandeTraduction" class=" waves-effect waves-green btn right">Confirmer</button>
 
                 </div>
                 <div class="modal-footer">
