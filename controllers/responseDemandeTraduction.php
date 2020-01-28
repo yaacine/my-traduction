@@ -39,7 +39,7 @@ if(isset($_POST['submitResponseDemandeTraduction'])){
 
 }
 
-//header("Location: ../trad-profile.php#test-swipe-2");
+header("Location: ../trad-profile.php#test-swipe-2");
 
 ?>
 

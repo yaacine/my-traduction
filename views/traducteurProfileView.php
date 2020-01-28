@@ -50,9 +50,9 @@ class TraducteurProfileView
                 <div class="col s12 m8">
 
                     <ul id="tabs-swipe-demo black" class="tabs ">
-                        <li class="tab col s4"><a href="#test-swipe-1">Mes demandes de devis</a></li>
-                        <li class="tab col s4"><a class="active" href="#test-swipe-2">Mes demandes de Traduction</a></li>
-                        <li class="tab col s4"><a href="#test-swipe-3">Test 3</a></li>
+                        <li class="tab col s4"><a href="#test-swipe-1"> <b>Devis</b> </a></li>
+                        <li class="tab col s4"><a class="active" href="#test-swipe-2"><b>Traduction</b></a></li>
+                        <li class="tab col s4"><a href="#test-swipe-3"><b>Archives</b></a></li>
                     </ul>
 
                     <!-- demandes de devis -->
@@ -71,11 +71,11 @@ class TraducteurProfileView
                                 <div class="collapsible-header ">
                                     <i class="material-icons">announcement</i>
                                     <div style="width:100%;display:flex; justify-content:space-between">
-                                        <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <div class="col s5 "> <a href="http://" target="_blank" rel="noopener noreferrer">
                                                 <h6>' . $row['nomClient'] . ' ' . $row['prenomClient'] . '</h6>
                                             </a></div>
-                                        <div class="col s4 ">Recue le : ' . $mysqldate. '</div>
-                                        <div class="col s4 ">Etat : ' . $row['status'] . '</div>
+                                        <div class="col s3 "><b>Recue le : </b>' . $mysqldate. '</div>
+                                        <div class="col s4 "><b>Etat : </b>' . $row['status'] . '</div>
                                     </div>
 
 
@@ -121,45 +121,7 @@ class TraducteurProfileView
                             </li>';
                             }
                             ?>
-                            <li>
-                                <div class="collapsible-header ">
-                                    <i class="material-icons">announcement</i>
-                                    <div class="row" style="width:100%">
-                                        <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
-                                                <h6>Zidelmal Traducteur</h6>
-                                            </a></div>
-                                        <div class="col s4 ">Soumise le : date</div>
-                                    </div>
-
-
-                                </div>
-                                <div class="collapsible-body ">
-                                    <div style="display:flex; justify-content:space-between">
-                                        <div>
-                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
-                                            <i class="material-icons">arrow_forward</i>
-                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
-                                        </div>
-                                        <div>
-                                            <p><b>Etat : </b> En attente </p>
-                                        </div>
-                                    </div>
-
-                                    <p>Lorem ipsum dolor sit amet.</p>
-                                    <div style="display:flex; justify-content:space-between">
-                                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger" href="#modal2" name="action">Repondre
-                                            <i class="material-icons right">send</i>
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                            </li>
+                            
                         </ul>
 
                     </div>
@@ -180,11 +142,11 @@ class TraducteurProfileView
                               <div class="collapsible-header ">
                                   <i class="material-icons">announcement</i>
                                   <div  style="width:100%;display:flex; justify-content:space-between">
-                                      <div "> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                      <div class="col s5 "> <a href="http://" target="_blank" rel="noopener noreferrer">
                                               <h6>' . $row['nomClient'] . ' ' . $row['prenomClient'] . '</h6>
                                           </a></div>
-                                      <div  ">Soumise le : ' .$mysqldate . '</div>
-                                      <div  ">Soumise le : ' .$row['status'].'</div>
+                                      <div  class="col s3 "><b>Soumise le :</b> ' .$mysqldate . '</div>
+                                      <div  class="col s4 "> <b>Etat : </b>' .$row['status'].'</div>
                                   </div>
 
 
@@ -217,6 +179,19 @@ class TraducteurProfileView
                                     if( $row['status']== 'ouverte'){
                                         echo'<button class="btn waves-effect waves-light modal-trigger" onclick=respondeDemandeTraduction(' . $row['idDemandeTrad'] . ') href="#modal2_traducion" name="action">Repondre
                                         <i class="material-icons right">send</i>
+                                    </button>';
+                                    }elseif( $row['status']== 'payée'){
+                                        echo'  
+                                         <form action="controllers/entammerTraduction.php" enctype="multipart/form-data" method="post">
+                                            <input type="hidden" name="idDemandeTraductionPayee" value="' . $row['idDemandeTrad'] . '" id="idDemandeTraductionPayee">
+                                            <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="submitDemandeTraductionPayee">Marquer Entammée
+                                            <i class="material-icons right">assignment_turned_in</i>
+                                            </button>
+                                        </form>
+                                    ';
+                                    }elseif( $row['status']== 'entammée'){
+                                        echo'<button class="btn waves-effect waves-light modal-trigger" onclick=resultDemandeTraduction(' . $row['idDemandeTrad'] . ') href="#modal2_resultat" name="action">Soumttre 
+                                        <i class="material-icons right">done</i>
                                     </button>';
                                     }
                                     echo'
@@ -295,6 +270,41 @@ class TraducteurProfileView
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="ResponseDemandeTraductionId" value="none" id="ResponseDemandeTraductionId">
+                </div>
+            </form>
+
+        </div>
+
+
+
+         <!-- modal of  traduction result submitting -->
+         <div id="modal2_resultat" class="modal">
+            <form action="controllers/terminerTraduction.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="hiddenNotertraducteurID" value="none" id="hiddenNotertraducteurID">
+                <div class="modal-content">
+
+                    <h4>Fin De Traduction</h4>
+                    <p>Veuillez vous assurez de soumettres les bons documents   </p>
+
+                     <!-- file uploader -->
+                            <div>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>File</span>
+                                        <input type="file" name="fileToUploadResult" multiple>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" name="fileToUploadResult" type="text" id="fileToUploadResult" placeholder="Upload one or more files">
+                                    </div>
+                                </div>
+                            </div>
+
+                    <br>
+                    <button type="submit" name="submitDemandeTraductionResult" class=" waves-effect waves-green btn right">Soumettre</button>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="ResultDemandeTraductionId" value="none" id="ResultDemandeTraductionId">
                 </div>
             </form>
 

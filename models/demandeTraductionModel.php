@@ -120,4 +120,15 @@ class DemandeTraductionModel{
     (DBManager::$conn)->query( $updateDDevisQuery );
    }
 
+   public  function setResultFileLink($idDemande, $link)
+   {
+    DBManager::connection();    
+    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `resultFileLink`="'.$link.'" WHERE idDemandeTraduction='.$idDemande;
+    echo $updateDDevisQuery;  
+    (DBManager::$conn)->query( $updateDDevisQuery );
+   }
+
+
+
+
 }

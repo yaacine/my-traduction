@@ -70,11 +70,11 @@ class ClientProfileView
                                     <div class="collapsible-header ">
                                         <i class="material-icons">announcement</i>
                                         <div style="width:100% ;display:flex; justify-content:space-between">
-                                            <div class=""> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                            <div class="col s4"> <a href="http://" target="_blank" rel="noopener noreferrer">
                                                     <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
                                                 </a></div>
-                                            <div class=""> <b>Soumise le :</b> ' . $mysqldate . '</div>
-                                            <div class=""><b>Etat :</b>  ' . $row['status'] . '</div>
+                                            <div class="col s4"> <b>Soumise le :</b> ' . $mysqldate . '</div>
+                                            <div class="col s4"><b>Etat :</b>  ' . $row['status'] . '</div>
                                         </div>
     
     
@@ -167,11 +167,11 @@ class ClientProfileView
                                     <div class="collapsible-header ">
                                         <i class="material-icons">announcement</i>
                                         <div style="width:100% ;display:flex; justify-content:space-between">
-                                            <div class=""> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                            <div class="col s4"> <a href="http://" target="_blank" rel="noopener noreferrer">
                                                     <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
                                                 </a></div>
-                                            <div class=""> <b>Soumise le :</b> ' . $mysqldate . '</div>
-                                            <div class=""><b>Etat :</b>  ' . $row['status'] . '</div>
+                                            <div class="col s4"> <b>Soumise le :</b> ' . $mysqldate . '</div>
+                                            <div class="col s4"><b>Etat :</b>  ' . $row['status'] . '</div>
                                         </div>
     
     
@@ -356,9 +356,10 @@ class ClientProfileView
                     <p>Pour un meilleure service prière de noter le travail de travail du traducteur</p>
 
                     <div>
-                        <input type="number" min="0" max="5" placeholder="1200" name="noteTraductionInput" id="noteTraductionInput" class="validate">
-                        <label for="montantTraduction">Montant Payé</label>
+                        <input placeholder="Donnez une note de 1 à 5" type="number" min="0" max="5" placeholder="1200" name="noteTraductionInput" id="noteTraductionInput" class="validate">
+                        <label for="montantTraduction">Votre Note /5</label>
                         <br>
+
                         <br>
                         <div>
                         <a class="waves-effect waves-teal btn-flat grey lighten-3">Document Traduit</a>

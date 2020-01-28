@@ -92,6 +92,11 @@ function respondeDemandeTraduction(id) {
 }
 
 
+function resultDemandeTraduction(id) {
+  $("#ResultDemandeTraductionId").val(id);
+}
+
+
 $(document).ready(function() {
   $("#montantDevisTraduction").hide(100);
 });
