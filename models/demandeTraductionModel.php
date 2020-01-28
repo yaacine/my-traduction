@@ -100,4 +100,24 @@ class DemandeTraductionModel{
    
    }
 
+
+
+
+   public function updateDemandeTraductionPrice($idDemande, $newPrice){
+
+    DBManager::connection();    
+    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `montant`= ' .$newPrice. ' WHERE idDemandeTraduction='.$idDemande;
+    echo $updateDDevisQuery;  
+    (DBManager::$conn)->query( $updateDDevisQuery );
+   }
+
+
+   public  function setResponseComment($idDemande, $comment)
+   {
+    DBManager::connection();    
+    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `responseCommentaire`="'.$comment.'" WHERE idDemandeTraduction='.$idDemande;
+    echo $updateDDevisQuery;  
+    (DBManager::$conn)->query( $updateDDevisQuery );
+   }
+
 }

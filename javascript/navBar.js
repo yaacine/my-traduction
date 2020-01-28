@@ -78,8 +78,17 @@ function payerDemandeTraduction(id) {
 }
 
 
-function responseDemandeTraduction(id) {
-  $("#hiddenDeleteDemandeTraduction").val(id);
+// passing the id to payement to the of notation
+function noterDemandeTraduction(id, idTrad) {
+  $("#ResponseDemandeTraductionId").val(id);
+  $("#hiddenNotertraducteurID").val(idTrad);
+}
+
+
+
+
+function respondeDemandeTraduction(id) {
+  $("#ResponseDemandeTraductionId").val(id);
 }
 
 
@@ -115,3 +124,10 @@ $(document).ready(function() {
     }
   });
 });
+
+
+$(document).ready(function(){
+  $('.tap-target').tapTarget();
+});
+
+$('.tap-target').tapTarget('open');

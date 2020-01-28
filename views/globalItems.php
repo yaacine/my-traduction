@@ -60,7 +60,7 @@ class GlobalItems
         <div class="navbar-fixed">
             <nav id="navbar">
                 <div class="nav-wrapper blue-grey darken-3">
-                    <a href="#!" class="brand-logo">Logo</a>
+                    <a href="#!" class="brand-logo">T'Raduiz</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="left hide-on-med-and-down menu-items">
                         <li><a href="index.php">Acceuil</a></li>

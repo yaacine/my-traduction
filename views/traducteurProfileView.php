@@ -199,65 +199,37 @@ class TraducteurProfileView
                                       <div>
                                           <p><b>Etat : </b> ' . $row['status'] . ' </p>
                                       </div>
-                                  </div>
+                                  </div>';
+                                  if(isset($row['commentaire']) &&  !empty( $row['commentaire']) ){
+                                    echo ' <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>';
+                                }
+                                if(isset( $row['responseCommentaire']) &&  !empty($row['responseCommentaire']) ){
+                                    echo '<p><b>Votre commentaire de réponse : </b> ' . $row['responseCommentaire'] . ' </p>';
+                                }
+                                if(isset( $row['montant']) &&  !empty($row['montant']) ){
+                                    echo '<p><b>Montant proposé: </b> ' . $row['montant'] . ' </p>';
+                                }
+                               
+                                echo'
+                                <div style="display:flex; justify-content:space-between">
+                                    <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>';
+                                  
+                                    if( $row['status']== 'ouverte'){
+                                        echo'<button class="btn waves-effect waves-light modal-trigger" onclick=respondeDemandeTraduction(' . $row['idDemandeTrad'] . ') href="#modal2_traducion" name="action">Repondre
+                                        <i class="material-icons right">send</i>
+                                    </button>';
+                                    }
+                                    echo'
+                                    
+                                </div>
 
-                                  <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>
-                                  <div style="display:flex; justify-content:space-between">
-                                      <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                      <button class="btn waves-effect waves-light modal-trigger" onclick="deleteDemandeTraduction(' . $row['idTraduction'] . ')" href="#modal2" name="action">Repondre
-                                          <i class="material-icons right">send</i>
-                                      </button>
-                                  </div>
+                            </div>
+                        </li>';
 
-                              </div>
-                          </li>';
+                      
                             }
                             ?>
-                            <li>
-                                <div class="collapsible-header ">
-                                    <i class="material-icons">announcement</i>
-                                    <div class="row" style="width:100%">
-                                        <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
-                                                <h6>Zidelmal Traducteur</h6>
-                                            </a></div>
-                                        <div class="col s4 ">Soumise le : date</div>
-                                    </div>
-
-
-                                </div>
-                                <div class="collapsible-body ">
-                                    <div style="display:flex; justify-content:space-between">
-                                        <div>
-                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
-                                            <i class="material-icons">arrow_forward</i>
-                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
-                                        </div>
-                                        <div>
-                                            <p><b>Etat : </b> En attente </p>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <p> <b>Montant: </b> 12345 DZD</p>
-                                    </div>
-                                    <p> <b>Commentaire : </b> Lorem ipsum dolor sit amet.</p>
-                                    <div style="display:flex; justify-content:space-between">
-                                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger" href="#modal1" name="action">Repondre
-                                            <i class="material-icons right">send</i>
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </li>
-                            <li>
-                                <div class="collapsible-header"><i class="material-icons">arrow_forward</i>Second</div>
-                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                            </li>
-                            <li>
-                                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                            </li>
+                           
                         </ul>
                     </div>
                     <div id="test-swipe-3" class="col s12 green">Test 3</div>
@@ -298,8 +270,8 @@ class TraducteurProfileView
         </div>
 
         <!-- modal of responding demande traduction -->
-        <div id="modal2" class="modal  ">
-            <form action="controllers/responseDemandeDevis.php" enctype="multipart/form-data" method="post">
+        <div id="modal2_traducion" class="modal ">
+            <form action="controllers/responseDemandeTraduction.php" enctype="multipart/form-data" method="post">
 
                 <div class="modal-content">
 
@@ -318,11 +290,11 @@ class TraducteurProfileView
                     <textarea name="commentReponseDemandeTraduction" id="textarea1" class="materialize-textarea"></textarea>
                     <label for="textarea1">Commantaire (Optionnel) </label>
                     <br>
-                    <button type="submitResponseDemandeTraduction" class=" waves-effect waves-green btn right">Confirmer</button>
+                    <button type="submit" name="submitResponseDemandeTraduction" class=" waves-effect waves-green btn right">Confirmer</button>
 
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="ResponseDemandeTraductionId" value="none" id="hiddenResponseDemandeTraduction">
+                    <input type="hidden" name="ResponseDemandeTraductionId" value="none" id="ResponseDemandeTraductionId">
                 </div>
             </form>
 

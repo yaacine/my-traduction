@@ -37,7 +37,7 @@ if(isset($_POST['submitResponseDemandeDevis'])){
 
 }
 
-//header("Location: ../trad-profile.php#test-swipe-1");
+header("Location: ../trad-profile.php#test-swipe-1");
 
 ?>
 

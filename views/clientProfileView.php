@@ -25,6 +25,7 @@ class ClientProfileView
         }
 
 ?>
+
         <div id="content">
             <div class="row">
                 <div class="col s12 m4">
@@ -104,7 +105,7 @@ class ClientProfileView
 
                                     echo '
                                         <div style="display:flex; justify-content:space-between">
-                                            <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>';
+                                            <a class="waves-effect waves-teal btn-flat grey lighten-3">Document Original</a>';
                                     if ($row['status'] == "ouverte") {
                                         echo '
                                                      <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeDevis(' . $row['idDemandeDevis'] . ') href="#modal1" name="action">Annuler
@@ -201,7 +202,7 @@ class ClientProfileView
 
                                     echo '
                                         <div style="display:flex; justify-content:space-between">
-                                            <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>';
+                                            <a class="waves-effect waves-teal btn-flat grey lighten-3" href="uploads/01:40:11pmEssay Form_Internship _2019.pdf" target="_blank">Document Original <i class="material-icons right">attach_file</i></a>';
                                     if ($row['status'] == "ouverte") {
                                         echo '
                                                      <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeTraduction(' . $row['idDemandeTrad'] . ') href="#modal2" name="action">Annuler
@@ -220,17 +221,30 @@ class ClientProfileView
                                     } elseif ($row['status'] == "acceptée") {
                                         echo '
                    
-                                                     <button type="submit" class="btn waves-effect waves-light modal-trigger"  onclick=payerDemandeTraduction(' . $row['idDemandeTrad'] . ')  href="#modal-payement" name="action">Payer
+                                                     <button id="payer_btn" type="submit" class="btn waves-effect waves-light modal-trigger"  onclick=payerDemandeTraduction(' . $row['idDemandeTrad'] . ')  href="#modal-payement"   name="action">Payer
                                                     <i class="material-icons right">send</i>
                                                     </button>
                                          ';
-                                    } elseif ($row['status'] == "soumise pour traduction") {
+                                    } elseif ($row['status'] == "payée") {
                                         echo ' <form action="controllers/archiverDemandeDevis.php" enctype="multipart/form-data" method="post">
                                                     <input type="hidden" name="idDemandeDevisArchiver" value="' . $row['idDemandeTrad'] . '" id="hiddenArchiverDemandeDevis">
                                                     <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="action">Archiver
                                                     <i class="material-icons right">send</i>
                                                     </button>
                                                 </form>';
+                                    } elseif ($row['status'] == "terminée") {
+                                        echo '
+                                                     <button type="submit" class="btn waves-effect waves-light modal-trigger"  onclick=noterDemandeTraduction('. $row['idDemandeTrad'] .','.$row['idTraducteur']. ')  href="#modal-notation" name="action">Resultat
+                                                    <i class="material-icons right">send</i>
+                                                    </button>
+                                         ';
+                                    }
+                                    elseif ($row['status'] == "achevée") {
+                                        echo '
+                                        <button type="submit" class="btn waves-effect waves-light modal-trigger">Document Traduit
+                                        <i class="material-icons right">attach_file</i>
+                                        </button>    
+                                         ';
                                     }
                                     echo '  
                                         </div>
@@ -249,6 +263,16 @@ class ClientProfileView
             </div>
 
         </div>
+
+
+        <!-- payement feature discovery  -->
+        <!-- Tap Target Structure -->
+  <div class="tap-target" data-target="payer_btn">
+    <div class="tap-target-content">
+      <h5>Title</h5>
+      <p>A bunch of text</p>
+    </div>
+  </div>
 
         <!-- modal of cancelling demande devis -->
         <div id="modal1" class="modal ">
@@ -283,7 +307,7 @@ class ClientProfileView
 
         <!-- modal of responding demande traduction payement -->
         <div id="modal-payement" class="modal">
-            <form action="controllers/payerTraduction.php"  method="post">
+            <form action="controllers/payerTraduction.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="payementDemandeTraductionId" value="none" id="payementDemandeTraductionId">
                 <div class="modal-content">
 
@@ -294,13 +318,16 @@ class ClientProfileView
                         <input type="number" placeholder="1200" name="montantTraductionInput" id="montantTraductionInput" class="validate">
                         <label for="montantTraduction">Montant Payé</label>
                         <div>
-                            <div class="file-field input-field">
-                                <div class="btn">
-                                    <span>File</span>
-                                    <input type="file" name="fileToUploadPayement" multiple>
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" name="fileToUploadPayement" type="text" id="fileToUploadPayement" placeholder="Uploader ici votre mondat de payement">
+                            <!-- file uploader -->
+                            <div>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>File</span>
+                                        <input type="file" name="fileToUpload" multiple>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" name="fileToUpload" type="text" id="fileToUpload" placeholder="Upload one or more files">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -312,6 +339,38 @@ class ClientProfileView
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="ResponseDemandeTraductionId" value="none" id="hiddenResponseDemandeTraduction">
+                </div>
+            </form>
+
+        </div>
+
+
+
+            <!-- modal of responding demande traduction notation -->
+            <div id="modal-notation" class="modal">
+            <form action="controllers/noterTraduction.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="hiddenNotertraducteurID" value="none" id="hiddenNotertraducteurID">
+                <div class="modal-content">
+
+                    <h4>Service Fait</h4>
+                    <p>Pour un meilleure service prière de noter le travail de travail du traducteur</p>
+
+                    <div>
+                        <input type="number" min="0" max="5" placeholder="1200" name="noteTraductionInput" id="noteTraductionInput" class="validate">
+                        <label for="montantTraduction">Montant Payé</label>
+                        <br>
+                        <br>
+                        <div>
+                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Document Traduit</a>
+                        </div>
+                    </div>
+
+                    <br>
+                    <button type="submit" name="submitDemandeTraductionPayement" class=" waves-effect waves-green btn right">Confirmer</button>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="ResponseDemandeTraductionId" value="none" id="ResponseDemandeTraductionId">
                 </div>
             </form>
 
