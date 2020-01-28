@@ -72,6 +72,11 @@ function deleteDemandeTraduction(id) {
   $("#hiddenDeleteDemandeTraduction").val(id);
 }
 
+// passing the id to payement to the modal
+function payerDemandeTraduction(id) {
+  $("#hiddenResponseDemandeTraduction").val(id);
+}
+
 
 function responseDemandeTraduction(id) {
   $("#hiddenDeleteDemandeTraduction").val(id);

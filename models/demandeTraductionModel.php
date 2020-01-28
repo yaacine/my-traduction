@@ -91,15 +91,10 @@ class DemandeTraductionModel{
        
    }
 
-   public function alterDemandeTraductionStatus($idDemande, $newStatus){
-  
-    if(DBManager::$conn == null){  
-        DBManager::connection();    
-    }
+   public function updateDemandeTraductionStatus($idDemande, $newStatus){
+
     DBManager::connection();    
-
-
-    $updateDTraductionQuery =' UPDATE `DemandeTraduction` SET `status`='.$newStatus.' WHERE idDemandeTraduction='.$idDemande;
+    $updateDTraductionQuery =' UPDATE `DemandeTraduction` SET `status`="'.$newStatus.'" WHERE idDemandeTrad='.$idDemande;
     echo $updateDTraductionQuery;  
     (DBManager::$conn)->query( $updateDTraductionQuery );
    

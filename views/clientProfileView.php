@@ -61,8 +61,8 @@ class ClientProfileView
                             $ListDemandesDevis = $demandeDevisM->getDemandeDevisForClient($userId);
                             foreach ($ListDemandesDevis as $row) {
 
-                                $phpdate = strtotime( $row['date']  );
-                                $mysqldate = date( 'Y-m-d à H:i', $phpdate );
+                                $phpdate = strtotime($row['date']);
+                                $mysqldate = date('Y-m-d à H:i', $phpdate);
                                 if ($row['status'] != 'archivée') {
                                     echo ' 
                                     <li>
@@ -72,7 +72,7 @@ class ClientProfileView
                                             <div class=""> <a href="http://" target="_blank" rel="noopener noreferrer">
                                                     <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
                                                 </a></div>
-                                            <div class=""> <b>Soumise le :</b> ' .$mysqldate . '</div>
+                                            <div class=""> <b>Soumise le :</b> ' . $mysqldate . '</div>
                                             <div class=""><b>Etat :</b>  ' . $row['status'] . '</div>
                                         </div>
     
@@ -89,20 +89,20 @@ class ClientProfileView
                                               <p><b>Etat : </b> ' . $row['status'] . ' </p>
                                           </div>
                                         </div>';
-                                    if(isset($row['commentaire']) && !empty($row['commentaire'])){
-                                        echo' <p><b>Mon Commentaire : </b> ' . $row['commentaire'] . ' </p>';
+                                    if (isset($row['commentaire']) && !empty($row['commentaire'])) {
+                                        echo ' <p><b>Mon Commentaire : </b> ' . $row['commentaire'] . ' </p>';
                                     }
 
-                                    if(isset( $row['montant'] ) && !empty( $row['montant'] )){
-                                        echo' <p><b>Montant Proposé: </b> ' . $row['montant'] . ' DZD</p>';
+                                    if (isset($row['montant']) && !empty($row['montant'])) {
+                                        echo ' <p><b>Montant Proposé: </b> ' . $row['montant'] . ' DZD</p>';
                                     }
 
-                                    if(isset( $row['responseCommentaire'] ) && !empty( $row['responseCommentaire'] )){
-                                        echo' <p><b>Commentaire du traducteur: </b> ' .$row['responseCommentaire'] . ' </p>';
+                                    if (isset($row['responseCommentaire']) && !empty($row['responseCommentaire'])) {
+                                        echo ' <p><b>Commentaire du traducteur: </b> ' . $row['responseCommentaire'] . ' </p>';
                                     }
-                                       
-                                        
-                                    echo'
+
+
+                                    echo '
                                         <div style="display:flex; justify-content:space-between">
                                             <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>';
                                     if ($row['status'] == "ouverte") {
@@ -114,7 +114,7 @@ class ClientProfileView
                                     } elseif ($row['status'] == "refusée") {
                                         echo '
                                                     <form action="controllers/ressoumettreDemandeDevis.php" enctype="multipart/form-data" method="post">
-                                                        <input type="hidden" name="idDemandeDevisResoumettre" value="'. $row['idDemandeDevis'] .'" id="hiddenResoumettreDemandeDevis">
+                                                        <input type="hidden" name="idDemandeDevisResoumettre" value="' . $row['idDemandeDevis'] . '" id="hiddenResoumettreDemandeDevis">
                                                         <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="action">Ressoumettre
                                                         <i class="material-icons right">send</i>
                                                         </button>
@@ -123,14 +123,14 @@ class ClientProfileView
                                     } elseif ($row['status'] == "acceptée") {
                                         echo '
                                                  <form action="controllers/demanderTraductionDemandeDevis.php" enctype="multipart/form-data" method="post">
-                                                    <input type="hidden" name="idDemandeDevisTraduire" value="'. $row['idDemandeDevis'] .'" id="hiddenTraduireDemandeDevis">
+                                                    <input type="hidden" name="idDemandeDevisTraduire" value="' . $row['idDemandeDevis'] . '" id="hiddenTraduireDemandeDevis">
                                                      <button type="submit" class="btn waves-effect waves-light modal-trigger" name="action">Demander La Traduction
                                                     <i class="material-icons right">send</i>
                                                     </button>
                                                 </form>';
                                     } elseif ($row['status'] == "soumise pour traduction") {
                                         echo ' <form action="controllers/archiverDemandeDevis.php" enctype="multipart/form-data" method="post">
-                                                    <input type="hidden" name="idDemandeDevisArchiver" value="'. $row['idDemandeDevis'] .'" id="hiddenArchiverDemandeDevis">
+                                                    <input type="hidden" name="idDemandeDevisArchiver" value="' . $row['idDemandeDevis'] . '" id="hiddenArchiverDemandeDevis">
                                                     <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="action">Archiver
                                                     <i class="material-icons right">send</i>
                                                     </button>
@@ -144,9 +144,8 @@ class ClientProfileView
                                 }
                             }
                             ?>
-             
-                        </ul>
 
+                        </ul>
                     </div>
 
                     <!-- demandes de traductions  -->
@@ -159,88 +158,89 @@ class ClientProfileView
                             $ListDemandesTrad = $demandeTraductionM->getDemandeTraductionForClient($userId);
                             foreach ($ListDemandesTrad as $row) {
 
-                                echo ' 
-                              <li>
-                              <div class="collapsible-header ">
-                                  <i class="material-icons">announcement</i>
-                                  <div class="row" style="width:100%">
-                                      <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
-                                              <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
-                                          </a></div>
-                                      <div class="col s4 ">Soumise le : ' . $row['date'] . '</div>
-                                  </div>
+                                $phpdate = strtotime($row['date']);
+                                $mysqldate = date('Y-m-d à H:i', $phpdate);
+                                if ($row['status'] != 'archivée') {
+                                    echo ' 
+                                    <li>
+                                    <div class="collapsible-header ">
+                                        <i class="material-icons">announcement</i>
+                                        <div style="width:100% ;display:flex; justify-content:space-between">
+                                            <div class=""> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                                    <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
+                                                </a></div>
+                                            <div class=""> <b>Soumise le :</b> ' . $mysqldate . '</div>
+                                            <div class=""><b>Etat :</b>  ' . $row['status'] . '</div>
+                                        </div>
+    
+    
+                                    </div>
+                                    <div class="collapsible-body ">
+                                        <div style="display:flex; justify-content:space-between">
+                                            <div>
+                                                <span id="langue-source" class="chip">' . $row['lngSrc'] . '</span>
+                                                <i class="material-icons">arrow_forward</i>
+                                                <span id="langue-source" class="chip">' . $row['lngDest'] . ' </span>
+                                            </div>
+                                            <div>
+                                              <p><b>Etat : </b> ' . $row['status'] . ' </p>
+                                          </div>
+                                        </div>';
+                                    if (isset($row['commentaire']) && !empty($row['commentaire'])) {
+                                        echo ' <p><b>Mon Commentaire : </b> ' . $row['commentaire'] . ' </p>';
+                                    }
+
+                                    if (isset($row['montant']) && !empty($row['montant'])) {
+                                        echo ' <p><b>Montant Proposé: </b> ' . $row['montant'] . ' DZD</p>';
+                                    }
+
+                                    if (isset($row['responseCommentaire']) && !empty($row['responseCommentaire'])) {
+                                        echo ' <p><b>Commentaire du traducteur: </b> ' . $row['responseCommentaire'] . ' </p>';
+                                    }
 
 
-                              </div>
-                              <div class="collapsible-body ">
-                                  <div style="display:flex; justify-content:space-between">
-                                      <div>
-                                          <span id="langue-source" class="chip">' . $row['lngSrc'] . '</span>
-                                          <i class="material-icons">arrow_forward</i>
-                                          <span id="langue-source" class="chip">' . $row['lngDest'] . ' </span>
-                                      </div>
-                                      <div>
-                                          <p><b>Etat : </b> ' . $row['status'] . ' </p>
-                                      </div>
-                                  </div>
-
-                                  <p><b>Commentaire : </b> ' . $row['commentaire'] . ' </p>
-                                  <div style="display:flex; justify-content:space-between">
-                                      <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                      <button class="btn waves-effect waves-light modal-trigger" onclick="deleteDemandeTraduction(' . $row['idTraduction'] . ')" href="#modal2" name="action">Annuler
-                                          <i class="material-icons right">send</i>
-                                      </button>
-                                  </div>
-
-                              </div>
-                          </li>';
+                                    echo '
+                                        <div style="display:flex; justify-content:space-between">
+                                            <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>';
+                                    if ($row['status'] == "ouverte") {
+                                        echo '
+                                                     <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeTraduction(' . $row['idDemandeTrad'] . ') href="#modal2" name="action">Annuler
+                                                    <i class="material-icons right">send</i>
+                                                    </button>
+                                                ';
+                                    } elseif ($row['status'] == "refusée") {
+                                        echo '
+                                                    <form action="controllers/ressoumettreDemandeTraduction.php" enctype="multipart/form-data" method="post">
+                                                        <input type="hidden" name="idDemandeTraductionResoumettre" value="' . $row['idDemandeTrad'] . '" id="hiddenResoumettreDemandeDevis">
+                                                        <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="action">Ressoumettre
+                                                        <i class="material-icons right">send</i>
+                                                        </button>
+                                                    </form>
+                                                ';
+                                    } elseif ($row['status'] == "acceptée") {
+                                        echo '
+                   
+                                                     <button type="submit" class="btn waves-effect waves-light modal-trigger"  onclick=payerDemandeTraduction(' . $row['idDemandeTrad'] . ')  href="#modal-payement" name="action">Payer
+                                                    <i class="material-icons right">send</i>
+                                                    </button>
+                                         ';
+                                    } elseif ($row['status'] == "soumise pour traduction") {
+                                        echo ' <form action="controllers/archiverDemandeDevis.php" enctype="multipart/form-data" method="post">
+                                                    <input type="hidden" name="idDemandeDevisArchiver" value="' . $row['idDemandeTrad'] . '" id="hiddenArchiverDemandeDevis">
+                                                    <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="action">Archiver
+                                                    <i class="material-icons right">send</i>
+                                                    </button>
+                                                </form>';
+                                    }
+                                    echo '  
+                                        </div>
+    
+                                    </div>
+                                </li>';
+                                }
                             }
                             ?>
-                            <li>
-                                <div class="collapsible-header ">
-                                    <i class="material-icons">announcement</i>
-                                    <div class="row" style="width:100%">
-                                        <div class="col s8 "> <a href="http://" target="_blank" rel="noopener noreferrer">
-                                                <h6>Zidelmal Traducteur</h6>
-                                            </a></div>
-                                        <div class="col s4 ">Soumise le : date</div>
-                                    </div>
 
-
-                                </div>
-                                <div class="collapsible-body ">
-                                    <div style="display:flex; justify-content:space-between">
-                                        <div>
-                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
-                                            <i class="material-icons">arrow_forward</i>
-                                            <span id="langue-source" class="chip">Zidelmal yacine </span>
-                                        </div>
-                                        <div>
-                                            <p><b>Etat : </b> En attente </p>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <p> <b>Montant: </b> 12345 DZD</p>
-                                    </div>
-                                    <p> <b>Commentaire : </b> Lorem ipsum dolor sit amet.</p>
-                                    <div style="display:flex; justify-content:space-between">
-                                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>
-                                        <button class="btn waves-effect waves-light modal-trigger" href="#modal1" name="action">Annuler
-                                            <i class="material-icons right">send</i>
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </li>
-                            <li>
-                                <div class="collapsible-header"><i class="material-icons">arrow_forward</i>Second</div>
-                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                            </li>
-                            <li>
-                                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                            </li>
                         </ul>
                     </div>
                     <div id="test-swipe-3" class="col s12 green">Test 3</div>
@@ -266,17 +266,54 @@ class ClientProfileView
         </div>
 
         <!-- modal of cancelling demande traduction -->
-        <div id="modal2" class="modal  ">
+        <div id="modal2" class="modal">
             <div class="modal-content">
                 <h4>Confirmation</h4>
                 <p>Etes-vous sur de vouloir annuler cette demande de traduction ?</p>
             </div>
             <div class="modal-footer">
-                <form action="deleteDemandeTraduction.php" enctype="multipart/form-data" method="post">
+                <form action="controllers/cancelDemandeTraduction.php" enctype="multipart/form-data" method="post">
                     <input type="hidden" name="deleteDemandeTraductionId" value="none" id="hiddenDeleteDemandeTraduction">
                     <button type="submit" class="modal-close waves-effect waves-green btn-flat">Confirmer</button>
                 </form>
             </div>
+
+        </div>
+
+
+        <!-- modal of responding demande traduction payement -->
+        <div id="modal-payement" class="modal">
+            <form action="controllers/payerTraduction.php"  method="post">
+                <input type="hidden" name="payementDemandeTraductionId" value="none" id="payementDemandeTraductionId">
+                <div class="modal-content">
+
+                    <h4>Payement</h4>
+                    <p>Demande de traduction</p>
+
+                    <div>
+                        <input type="number" placeholder="1200" name="montantTraductionInput" id="montantTraductionInput" class="validate">
+                        <label for="montantTraduction">Montant Payé</label>
+                        <div>
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>File</span>
+                                    <input type="file" name="fileToUploadPayement" multiple>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" name="fileToUploadPayement" type="text" id="fileToUploadPayement" placeholder="Uploader ici votre mondat de payement">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <button type="submit" name="submitDemandeTraductionPayement" class=" waves-effect waves-green btn right">Confirmer</button>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="ResponseDemandeTraductionId" value="none" id="hiddenResponseDemandeTraduction">
+                </div>
+            </form>
 
         </div>
 <?php

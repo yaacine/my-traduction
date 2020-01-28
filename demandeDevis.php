@@ -5,10 +5,6 @@ require_once __DIR__ . '/models/userModel.php';
 require_once __DIR__ . '/models/demandeDevisModel.php';
 
 
-echo '<script >
-alert("cava");
-location="index.php";
-</script>';
 
 // Initialize the session
 session_start();
@@ -102,14 +98,14 @@ if (isset($_POST["submit-ask"])) {
     }
 
     // Allow certain file formats
-    if (
-        $imageFileType != "pdf" && $imageFileType != "docx" && $imageFileType != "odt"
-        && $imageFileType != "doc"
-    ) {
-        //echo "Sorry, only PDF, DOCX, DOC & ODT files are allowed.";
-        $uploadError = 2;
-        $uploadOk = 0;
-    }
+    // if (
+    //     $imageFileType != "pdf" && $imageFileType != "docx" && $imageFileType != "odt"
+    //     && $imageFileType != "doc"
+    // ) {
+    //     //echo "Sorry, only PDF, DOCX, DOC & ODT files are allowed.";
+    //     $uploadError = 2;
+    //     $uploadOk = 0;
+    // }
 
     if ($uploadOk == 0) {
         //echo "Sorry, your file was not uploaded.";
