@@ -14,6 +14,7 @@ if(isset($_POST['submitDemandeTraductionResult'])){
      // get the file
      $target_dir = "../uploads/results/";
      $target_file = $target_dir . date("h:i:sa") . basename($_FILES["fileToUploadResult"]["name"]);
+     $target_file =str_replace(' ', '', $target_file);
      $uploadOk = 1;
      $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
      $uploadError = 0;
@@ -26,14 +27,14 @@ if(isset($_POST['submitDemandeTraductionResult'])){
      }
  
      //Allow certain file formats
-     if (
-         $imageFileType != "pdf" && $imageFileType != "docx" && $imageFileType != "odt"
-         && $imageFileType != "doc"
-     ) {
-         //echo "Sorry, only PDF, DOCX, DOC & ODT files are allowed.";
-         $uploadError = 2;
-         $uploadOk = 0;
-     }
+    //  if (
+    //      $imageFileType != "pdf" && $imageFileType != "docx" && $imageFileType != "odt"
+    //      && $imageFileType != "doc"
+    //  ) {
+    //      //echo "Sorry, only PDF, DOCX, DOC & ODT files are allowed.";
+    //      $uploadError = 2;
+    //      $uploadOk = 0;
+    //  }
  
      if ($uploadOk == 0) {
          //echo "Sorry, your file was not uploaded.";
@@ -44,7 +45,8 @@ if(isset($_POST['submitDemandeTraductionResult'])){
               echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
 
               $demandeTraductionM->updateDemandeTraductionStatus( $demandeId , 'terminée');
-              $demandeTraductionM->setResultFileLink( $demandeId , $target_file);
+              $storefile= substr("$target_file", 3);
+              $demandeTraductionM->setResultFileLink( $demandeId , $storefile);
               echo'<script >
               alert("Fichier Bien Soumis, Merci Pour Le Beau Travail 💪");
               location="../trad-profile.php#test-swipe-2";
@@ -61,4 +63,4 @@ if(isset($_POST['submitDemandeTraductionResult'])){
  
 }
 
-header("Location: ../trad-profile.php#test-swipe-2");
+//header("Location: ../trad-profile.php#test-swipe-2");

@@ -79,9 +79,11 @@ function payerDemandeTraduction(id) {
 
 
 // passing the id to payement to the of notation
-function noterDemandeTraduction(id, idTrad) {
+function noterDemandeTraduction(id, idTrad, fileResultLINK) {
   $("#ResponseDemandeTraductionId").val(id);
   $("#hiddenNotertraducteurID").val(idTrad);
+  $("#resultPopupLink").attr("href", fileResultLINK);
+  
 }
 
 
@@ -136,3 +138,4 @@ $(document).ready(function(){
 });
 
 $('.tap-target').tapTarget('open');
+

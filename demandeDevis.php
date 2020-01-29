@@ -85,6 +85,7 @@ if (isset($_POST["submit-ask"])) {
     // get the file
     $target_dir = "uploads/results/";
     $target_file = $target_dir . date("h:i:sa") . basename($_FILES["fileToUpload"]["name"]);
+    $target_file =str_replace(' ', '', $target_file);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $uploadError = 0;

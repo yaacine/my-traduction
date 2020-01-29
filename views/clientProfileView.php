@@ -21,51 +21,61 @@ class ClientProfileView
 
         //get the user
         foreach ($users as $row) {
+
             $user = $row;
         }
 
-?>
-
+        echo '
+        
         <div id="content">
             <div class="row">
                 <div class="col s12 m4">
                     <div class="card">
                         <div class="card-image">
                             <img src="assets/slider/download.jpeg">
-                            <a class="btn-floating halfway-fab  waves-light red"><i class="material-icons blue-grey">edit</i></a>
+                            <a class="btn-floating halfway-fab  waves-light red modal-trigger" href="#modal-profile"><i class="material-icons blue-grey">edit</i></a>
                         </div>
                         <div class="card-content">
-                            <span class="card-title" style="color: black">User Name</span>
+                            <span class="card-title" style="color: black"> ' . $user['nom'] . ' ' . $user['prenom'] . ' </span>
                             <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
                             <br>
-                            <div class="blue-grey lighten-5">
-                                flutter
+                            <div class="blue-grey lighten-5 " style="padding:10px;">
+                               <p><b>Nom:</b> ' . $user['nom'] . '</p> 
+                               <p><b>Prenom:</b> ' . $user['prenom'] . '</p> 
+                               <p><b>email:</b> ' . $user['email'] . '</p> 
+                               <p><b>Wilaya:</b> ' . $user['wilaya'] . '</p> 
+                               <p><b>Commune:</b> ' . $user['commune'] . '</p> 
+                               <p><b>Adresse:</b> ' . $user['adresse'] . '</p> 
+                               <p><b>Telephone:</b> ' . $user['telephone'] . '</p> 
+                               <p><b>Fax:</b> ' . $user['fax'] . '</p> <br>
                             </div>
                         </div>
                     </div>
 
-                </div>
-                <div class="col s12 m8">
+                </div>';
+?>
 
-                    <ul id="tabs-swipe-demo black" class="tabs ">
-                        <li class="tab col s4"><a href="#test-swipe-1">Mes demandes de devis</a></li>
-                        <li class="tab col s4"><a class="active" href="#test-swipe-2">Mes demandes de Traduction</a></li>
-                        <li class="tab col s4"><a href="#test-swipe-3">Test 3</a></li>
-                    </ul>
+        <div class="col s12 m8">
 
-                    <!-- demandes de devis -->
-                    <div id="test-swipe-1" class="col s12 ">
-                        <ul class="collapsible popout">
-                            <?php
+            <ul id="tabs-swipe-demo black" class="tabs ">
+                <li class="tab col s4"><a href="#test-swipe-1"> <b>Devis </b></a></li>
+                <li class="tab col s4"><a class="active" href="#test-swipe-2"><b>Traductions</b></a></li>
+                <li class="tab col s4"><a href="#test-swipe-3"><b>Archives</b></a></li>
+            </ul>
 
-                            $demandeDevisM = new DemandeDevisModel();
-                            $ListDemandesDevis = $demandeDevisM->getDemandeDevisForClient($userId);
-                            foreach ($ListDemandesDevis as $row) {
+            <!-- demandes de devis -->
+            <div id="test-swipe-1" class="col s12 ">
+                <ul class="collapsible popout">
+                    <?php
 
-                                $phpdate = strtotime($row['date']);
-                                $mysqldate = date('Y-m-d à H:i', $phpdate);
-                                if ($row['status'] != 'archivée') {
-                                    echo ' 
+                    $demandeDevisM = new DemandeDevisModel();
+                    $ListDemandesDevis = $demandeDevisM->getDemandeDevisForClient($userId);
+                    foreach ($ListDemandesDevis as $row) {
+
+                        $phpdate = strtotime($row['date']);
+                        $mysqldate = date('Y-m-d à H:i', $phpdate);
+                        if ($row['status'] != 'archivée') {
+                            echo ' 
                                     <li>
                                     <div class="collapsible-header ">
                                         <i class="material-icons">announcement</i>
@@ -90,30 +100,30 @@ class ClientProfileView
                                               <p><b>Etat : </b> ' . $row['status'] . ' </p>
                                           </div>
                                         </div>';
-                                    if (isset($row['commentaire']) && !empty($row['commentaire'])) {
-                                        echo ' <p><b>Mon Commentaire : </b> ' . $row['commentaire'] . ' </p>';
-                                    }
+                            if (isset($row['commentaire']) && !empty($row['commentaire'])) {
+                                echo ' <p><b>Mon Commentaire : </b> ' . $row['commentaire'] . ' </p>';
+                            }
 
-                                    if (isset($row['montant']) && !empty($row['montant'])) {
-                                        echo ' <p><b>Montant Proposé: </b> ' . $row['montant'] . ' DZD</p>';
-                                    }
+                            if (isset($row['montant']) && !empty($row['montant'])) {
+                                echo ' <p><b>Montant Proposé: </b> ' . $row['montant'] . ' DZD</p>';
+                            }
 
-                                    if (isset($row['responseCommentaire']) && !empty($row['responseCommentaire'])) {
-                                        echo ' <p><b>Commentaire du traducteur: </b> ' . $row['responseCommentaire'] . ' </p>';
-                                    }
+                            if (isset($row['responseCommentaire']) && !empty($row['responseCommentaire'])) {
+                                echo ' <p><b>Commentaire du traducteur: </b> ' . $row['responseCommentaire'] . ' </p>';
+                            }
 
 
-                                    echo '
+                            echo '
                                         <div style="display:flex; justify-content:space-between">
-                                            <a class="waves-effect waves-teal btn-flat grey lighten-3">Document Original</a>';
-                                    if ($row['status'] == "ouverte") {
-                                        echo '
+                                            <a class="waves-effect waves-teal btn-flat grey href="" lighten-3" href="' . $row['fileLink'] . '" target="_blank">Document Original <i class="material-icons right">attach_file</i></a>';
+                            if ($row['status'] == "ouverte") {
+                                echo '
                                                      <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeDevis(' . $row['idDemandeDevis'] . ') href="#modal1" name="action">Annuler
                                                     <i class="material-icons right">send</i>
                                                     </button>
                                                 ';
-                                    } elseif ($row['status'] == "refusée") {
-                                        echo '
+                            } elseif ($row['status'] == "refusée") {
+                                echo '
                                                     <form action="controllers/ressoumettreDemandeDevis.php" enctype="multipart/form-data" method="post">
                                                         <input type="hidden" name="idDemandeDevisResoumettre" value="' . $row['idDemandeDevis'] . '" id="hiddenResoumettreDemandeDevis">
                                                         <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="action">Ressoumettre
@@ -121,48 +131,49 @@ class ClientProfileView
                                                         </button>
                                                     </form>
                                                 ';
-                                    } elseif ($row['status'] == "acceptée") {
-                                        echo '
+                            } elseif ($row['status'] == "acceptée") {
+                                echo '
                                                  <form action="controllers/demanderTraductionDemandeDevis.php" enctype="multipart/form-data" method="post">
                                                     <input type="hidden" name="idDemandeDevisTraduire" value="' . $row['idDemandeDevis'] . '" id="hiddenTraduireDemandeDevis">
                                                      <button type="submit" class="btn waves-effect waves-light modal-trigger" name="action">Demander La Traduction
                                                     <i class="material-icons right">send</i>
                                                     </button>
                                                 </form>';
-                                    } elseif ($row['status'] == "soumise pour traduction") {
-                                        echo ' <form action="controllers/archiverDemandeDevis.php" enctype="multipart/form-data" method="post">
+                            } elseif ($row['status'] == "soumise pour traduction") {
+                                echo ' <form action="controllers/archiverDemandeDevis.php" enctype="multipart/form-data" method="post">
                                                     <input type="hidden" name="idDemandeDevisArchiver" value="' . $row['idDemandeDevis'] . '" id="hiddenArchiverDemandeDevis">
                                                     <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="action">Archiver
                                                     <i class="material-icons right">send</i>
                                                     </button>
                                                 </form>';
-                                    }
-                                    echo '  
+                            }
+                            echo '  
                                         </div>
     
                                     </div>
                                 </li>';
-                                }
-                            }
-                            ?>
+                        }
+                    }
+                    ?>
 
-                        </ul>
-                    </div>
+                </ul>
+            </div>
 
-                    <!-- demandes de traductions  -->
-                    <div id="test-swipe-2" class="col s12">
-                        <ul class="collapsible popout">
-                            <?php
+            <!-- demandes de traductions  -->
+            <div id="test-swipe-2" class="col s12">
+                <ul class="collapsible popout">
+                    <?php
 
-                            $demandeDevisM = new DemandeDevisModel();
-                            $demandeTraductionM = new DemandeTraductionModel();
-                            $ListDemandesTrad = $demandeTraductionM->getDemandeTraductionForClient($userId);
-                            foreach ($ListDemandesTrad as $row) {
+                    $demandeDevisM = new DemandeDevisModel();
+                    $demandeTraductionM = new DemandeTraductionModel();
+                    $ListDemandesTrad = $demandeTraductionM->getDemandeTraductionForClient($userId);
+                    foreach ($ListDemandesTrad as $row) {
 
-                                $phpdate = strtotime($row['date']);
-                                $mysqldate = date('Y-m-d à H:i', $phpdate);
-                                if ($row['status'] != 'archivée') {
-                                    echo ' 
+                        $phpdate = strtotime($row['date']);
+                        $mysqldate = date('Y-m-d à H:i', $phpdate);
+                        if ($row['status'] != 'archivée') {
+                            echo ' 
+
                                     <li>
                                     <div class="collapsible-header ">
                                         <i class="material-icons">announcement</i>
@@ -187,30 +198,30 @@ class ClientProfileView
                                               <p><b>Etat : </b> ' . $row['status'] . ' </p>
                                           </div>
                                         </div>';
-                                    if (isset($row['commentaire']) && !empty($row['commentaire'])) {
-                                        echo ' <p><b>Mon Commentaire : </b> ' . $row['commentaire'] . ' </p>';
-                                    }
+                            if (isset($row['commentaire']) && !empty($row['commentaire'])) {
+                                echo ' <p><b>Mon Commentaire : </b> ' . $row['commentaire'] . ' </p>';
+                            }
 
-                                    if (isset($row['montant']) && !empty($row['montant'])) {
-                                        echo ' <p><b>Montant Proposé: </b> ' . $row['montant'] . ' DZD</p>';
-                                    }
+                            if (isset($row['montant']) && !empty($row['montant'])) {
+                                echo ' <p><b>Montant Proposé: </b> ' . $row['montant'] . ' DZD</p>';
+                            }
 
-                                    if (isset($row['responseCommentaire']) && !empty($row['responseCommentaire'])) {
-                                        echo ' <p><b>Commentaire du traducteur: </b> ' . $row['responseCommentaire'] . ' </p>';
-                                    }
+                            if (isset($row['responseCommentaire']) && !empty($row['responseCommentaire'])) {
+                                echo ' <p><b>Commentaire du traducteur: </b> ' . $row['responseCommentaire'] . ' </p>';
+                            }
 
 
-                                    echo '
+                            echo '
                                         <div style="display:flex; justify-content:space-between">
-                                            <a class="waves-effect waves-teal btn-flat grey lighten-3" href="uploads/01:40:11pmEssay Form_Internship _2019.pdf" target="_blank">Document Original <i class="material-icons right">attach_file</i></a>';
-                                    if ($row['status'] == "ouverte") {
-                                        echo '
+                                            <a class="waves-effect waves-teal btn-flat grey lighten-3" href="' . $row['fileLink'] . '" target="_blank">Document Original <i class="material-icons right">attach_file</i></a>';
+                            if ($row['status'] == "ouverte") {
+                                echo '
                                                      <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeTraduction(' . $row['idDemandeTrad'] . ') href="#modal2" name="action">Annuler
                                                     <i class="material-icons right">send</i>
                                                     </button>
                                                 ';
-                                    } elseif ($row['status'] == "refusée") {
-                                        echo '
+                            } elseif ($row['status'] == "refusée") {
+                                echo '
                                                     <form action="controllers/ressoumettreDemandeTraduction.php" enctype="multipart/form-data" method="post">
                                                         <input type="hidden" name="idDemandeTraductionResoumettre" value="' . $row['idDemandeTrad'] . '" id="hiddenResoumettreDemandeDevis">
                                                         <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="action">Ressoumettre
@@ -218,61 +229,55 @@ class ClientProfileView
                                                         </button>
                                                     </form>
                                                 ';
-                                    } elseif ($row['status'] == "acceptée") {
-                                        echo '
+                            } elseif ($row['status'] == "acceptée") {
+                                echo '
                    
                                                      <button id="payer_btn" type="submit" class="btn waves-effect waves-light modal-trigger"  onclick=payerDemandeTraduction(' . $row['idDemandeTrad'] . ')  href="#modal-payement"   name="action">Payer
                                                     <i class="material-icons right">send</i>
                                                     </button>
                                          ';
-                                    } elseif ($row['status'] == "payée") {
-                                        echo ' <form action="controllers/archiverDemandeDevis.php" enctype="multipart/form-data" method="post">
-                                                    <input type="hidden" name="idDemandeDevisArchiver" value="' . $row['idDemandeTrad'] . '" id="hiddenArchiverDemandeDevis">
-                                                    <button type="submit" class="btn waves-effect waves-light modal-trigger"  name="action">Archiver
-                                                    <i class="material-icons right">send</i>
-                                                    </button>
-                                                </form>';
-                                    } elseif ($row['status'] == "terminée") {
-                                        echo '
-                                                     <button type="submit" class="btn waves-effect waves-light modal-trigger"  onclick=noterDemandeTraduction('. $row['idDemandeTrad'] .','.$row['idTraducteur']. ')  href="#modal-notation" name="action">Resultat
+                            } elseif ($row['status'] == "payée") {
+                                echo ' ';
+                            } elseif ($row['status'] == "terminée") {
+                                echo '
+                                                     <button type="submit" class="btn waves-effect waves-light modal-trigger"  onclick=noterDemandeTraduction(' . $row['idDemandeTrad'] . ',' . $row['idTraducteur'] . ',"' . $row['resultFileLink'] . '")  href="#modal-notation" name="action">Resultat
                                                     <i class="material-icons right">send</i>
                                                     </button>
                                          ';
-                                    }
-                                    elseif ($row['status'] == "achevée") {
-                                        echo '
-                                        <button type="submit" class="btn waves-effect waves-light modal-trigger">Document Traduit
+                            } elseif ($row['status'] == "achevée") {
+                                echo '
+                                        <button type="submit" class="btn waves-effect href="' . $row['resultFileLink'] . '" waves-light modal-trigger">Document Traduit
                                         <i class="material-icons right">attach_file</i>
                                         </button>    
                                          ';
-                                    }
-                                    echo '  
+                            }
+                            echo '  
                                         </div>
     
                                     </div>
                                 </li>';
-                                }
-                            }
-                            ?>
+                        }
+                    }
+                    ?>
 
-                        </ul>
-                    </div>
-                    <div id="test-swipe-3" class="col s12 green">Test 3</div>
-
-                </div>
+                </ul>
             </div>
+            <div id="test-swipe-3" class="col s12 green">Test 3</div>
+
+        </div>
+        </div>
 
         </div>
 
 
         <!-- payement feature discovery  -->
         <!-- Tap Target Structure -->
-  <div class="tap-target" data-target="payer_btn">
-    <div class="tap-target-content">
-      <h5>Title</h5>
-      <p>A bunch of text</p>
-    </div>
-  </div>
+        <div class="tap-target" data-target="payer_btn">
+            <div class="tap-target-content">
+                <h5>Title</h5>
+                <p>A bunch of text</p>
+            </div>
+        </div>
 
         <!-- modal of cancelling demande devis -->
         <div id="modal1" class="modal ">
@@ -346,8 +351,8 @@ class ClientProfileView
 
 
 
-            <!-- modal of responding demande traduction notation -->
-            <div id="modal-notation" class="modal">
+        <!-- modal of responding demande traduction notation -->
+        <div id="modal-notation" class="modal">
             <form action="controllers/noterTraduction.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="hiddenNotertraducteurID" value="none" id="hiddenNotertraducteurID">
                 <div class="modal-content">
@@ -362,7 +367,7 @@ class ClientProfileView
 
                         <br>
                         <div>
-                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Document Traduit</a>
+                            <a id="resultPopupLink" target="_blank" href="" class="waves-effect waves-teal btn-flat grey lighten-3">Document Traduit</a>
                         </div>
                     </div>
 
@@ -376,6 +381,70 @@ class ClientProfileView
             </form>
 
         </div>
+
+
+
+        <!-- update profile modal  -->
+        <div id="modal-profile" class="modal">
+            <div class="modal-content">
+                <form action="controllers/cancelDemandeDevis.php" enctype="multipart/form-data" method="post">
+
+                    <h4>Mon Compte</h4>
+                    <p>Mise à jour des informations du compte</p>
+
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input placeholder="Prenom" id="first_name" name="first_name" type="text" value= "<?php echo $user['prenom'] ?>" class="validate" />
+                            <label for="first_name">Prenom</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="last_name" name="last_name" type="text" value= "<?php echo $user['nom'] ?>" class="validate" />
+                            <label for="last_name">Nom</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="email" name="email" type="email" class="validate" value= "<?php echo $user['email'] ?>" />
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="commune" name="commune" type="text" class="validate" value= "<?php echo $user['commune'] ?>"/>
+                            <label for="commune">Commune</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="wilayaicon" name="wilaya" type="text" class="validate" value= "<?php echo $user['wilaya'] ?>" />
+                            <label for="wilayaicon">Wilaya</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <textarea id="adresse" name="adresse" class="materialize-textarea" value= "<?php echo $user['adresse'] ?>"></textarea>
+                            <label for="adresse">Adresse</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="icon_telephone" name="telephone" type="tel" class="validate" value= "<?php echo $user['telephone'] ?>" />
+                            <label for="icon_telephone">Telephone</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">local_printshop</i>
+                            <input id="icon_fax" name="fax" type="tel" class="validate" value= "<?php echo $user['fax'] ?>" />
+                            <label for="icon_fax">Fax</label>
+                        </div>
+                    </div>
+
+                    <br>
+                    <button type="submit" class="waves-effect waves-green btn right">Appliquer</button>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <input type="hidden" name="deleteDemandeDevisId" value="none" id="hiddenDeleteDemandeDevis">
+            </div>
+
+        </div>
+
+
 <?php
 
     }

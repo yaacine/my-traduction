@@ -112,7 +112,7 @@ class IndexView
                     <input id="email" name="email" type="email" class="validate" />
                     <label for="email">Email</label>
                   </div>
-                  <div class="input-field col s6">
+                  <div class="input-field col s6" >
                     <i class="material-icons prefix">phone</i>
                     <input id="icon_telephone" name="telephone" type="tel" class="validate" />
                     <label for="icon_telephone">Telephone</label>
