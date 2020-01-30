@@ -79,8 +79,8 @@ class ListClientsViewAdmin
                                     <b>Actif</b>  
                                     <br> 
                                     <form action="controllers/blockUser.php" method="post">
-                                        <input type="hidden" name="idTraducteurAdmin" value="'.$row['idTraducteur'].'">
-                                        <input class="btn" type="submit"  name="deblock" value="Bloquer" />
+                                        <input type="hidden" name="idUserAdmin" value="'.$row['idClient'].'">
+                                        <input class="btn" type="submit"  name="block" value="Bloquer" />
 
                                     </form>
                                     </td>
@@ -92,8 +92,8 @@ class ListClientsViewAdmin
                                     <b>Bloqué</b>  
                                     <br> 
                                     <form action="controllers/deblockUser.php" method="post">
-                                        <input type="hidden" name="idTraducteurAdmin" value="'.$row['idTraducteur'].'">
-                                        <input class="btn" type="submit"  name="deblock" value="Débloquer" /><
+                                        <input type="hidden" name="idUserAdmin" value="'.$row['idClient'].'">
+                                        <input class="btn" type="submit"  name="deblock" value="Débloquer" />
                                     </form>
                                     </td>
                                     '; 

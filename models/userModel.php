@@ -68,7 +68,7 @@ class UserModel
 
     public function blockClient($id){
         DBManager::connection();
-        $userQuery = 'UPDATE `Client` SET `status`="blocked" WHERE idClient'.$id.';';
+        $userQuery = 'UPDATE `Client` SET `status`="blocked" WHERE idClient='.$id.';';
         // echo $userQuery;
         // echo '<br>';
         $user = (DBManager::$conn)->query($userQuery);
@@ -78,7 +78,7 @@ class UserModel
     public function deblockClient($id){
         DBManager::connection();
        
-        $userQuery = 'UPDATE `Client` SET `status`="active" WHERE idClient'.$id.';';
+        $userQuery = 'UPDATE `Client` SET `status`="active" WHERE idClient='.$id.';';
         // echo $userQuery;
         // echo '<br>';
         $user = (DBManager::$conn)->query($userQuery);
