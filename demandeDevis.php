@@ -11,11 +11,6 @@ session_start();
 if(isset($_SESSION["loggedin"]) && isset($_SESSION["userId"]) && $_SESSION["loggedin"] === true) {
     $clientId = $_SESSION["userId"];
     //header("location: index.php");
-    echo '<script >
-    alert("cava");
-    location="index.php";
-    </script>';
-
 }
 else{
     echo '<script >
@@ -135,7 +130,7 @@ if (isset($_POST["submit-ask"])) {
         echo 'flutter' . $_SESSION["userId"];
 
         foreach ($_POST['traducteurs_ckecked'] as $value) {
-            $demandeDevis->createDemandeDevis($clientId, $value['idTraducteur'], null, $target_file, $langueSource, $langueDestination, $typeTraduction, $lastName, $firstName, $telephone, $adresse, 'open');
+            $demandeDevis->createDemandeDevis($clientId, $value['idTraducteur'], null, $target_file, $langueSource, $langueDestination, $typeTraduction, $lastName, $firstName, $telephone, $adresse, 'ouverte');
         }
 
         echo '<script >

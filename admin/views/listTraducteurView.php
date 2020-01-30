@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . '/globalItems.php';
+require_once __DIR__ . '/../../models/traducteurModel.php';
+
 
 
 class ListTraductionViewAdmin
@@ -15,6 +17,9 @@ class ListTraductionViewAdmin
     $g->getPageHead();
     $g->getNavbar();
 
+    $traducteurM = new TraducteurModel();
+    $traducteurs = $traducteurM->getAllTraducteurs();
+   // $tradM = new TraducteurModel();
     echo'
     <nav>
     <div class="nav-wrapper indigo darken-2">
@@ -30,6 +35,7 @@ class ListTraductionViewAdmin
 
 <main style="margin: 10px;">
 
+
 <table id="example" class="mdl-data-table" style="width:100%">
     <thead>
         <tr>
@@ -38,34 +44,70 @@ class ListTraductionViewAdmin
             <th>Prenom</th>
             <th>Email</th>
             <th>Langues</th>
-            <th>Nombre de Traductions</th>
-            <th>Profile</th>
+            <th>Nbr Traductions</th>
+            <th>Nbr Devis</th>
             <th>Etat</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Zidelmal</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>2011/04/25</td>
-            <td > Actif <br><a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Blocker</a>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
-        </tr>
+
+    <?php
+            foreach ($traducteurs as $row){
+                $nbDemandesDevisResponse = $traducteurM->getNbDemabdesDevis($row['idTraducteur']);
+                foreach ($nbDemandesDevisResponse as $demande) {
+                    $nbDemandesDevis = $demande['nbDemandesDevis'];
+                }
+
+                $nbDemandeesTrad = $traducteurM->getNbDemabdesTraductions($row['idTraducteur']);
+                foreach ($nbDemandeesTrad as $demande) {
+                    $nbDemandesTrad = $demande['nbDemandesTrad'];
+                }
+                $languagesResponse = $traducteurM->getLanguagesForSingleTraducteur($row['idTraducteur']);
+               
+                echo'    
+                <tr>
+                    <td>'.$row['idTraducteur'].'</td>
+                    <td> <a href="controllers/traducteur-profile.php?id='.$row['idTraducteur'].'" </a> '.$row['nom'].'</td>
+                    <td>'.$row['prenom'].'</td>
+                    <td>'.$row['email'].'</td>
+                    <td>';
+                    foreach($languagesResponse as $lang){
+                        echo $lang['designation'].'<br>';
+                    }
+                    
+                    echo'</td>
+                    <td>' . $nbDemandesDevis . '</td>
+                    <td>' . $nbDemandesTrad . '</td>';
+
+                                if ($row['status'] == "active") {
+                                    echo '
+                                    <td style="text-align: center;"> 
+                                    <b>Actif</b>  
+                                    <br> 
+                                    <form action="controllers/blockTraducteur.php" method="post">
+                                        <input type="hidden" name="idTraducteurAdmin" value="'.$row['idTraducteur'].'"/>
+                                        <input class="btn" type="submit"  name="block" value="Bloquer" />
+
+                                    </form>
+                                    </td>
+                                    ';
+                                }
+                                elseif($row['status'] == "blocked"){
+                                    echo '
+                                    <td style="text-align: center;"> 
+                                    <b>Bloqué</b>  
+                                    <br> 
+                                    <form action="controllers/deblockTraducteur.php" method="post">
+                                        <input type="hidden" name="idTraducteurAdmin" value="'.$row['idTraducteur'].'">
+                                        <input class="btn" type="submit"  name="deblock" value="Débloquer" />
+                                    </form>
+                                    </td>
+                                    '; 
+                                }
+                        echo '</tr>';
+            }
+        ?>
+ 
        
     </tbody>
     <tfoot>

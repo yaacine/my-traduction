@@ -18,6 +18,10 @@ class GlobalItems
             <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
             <script src="logic.js"></script>
+            <!-- <script src="node_modules/tablefilter/dist/tablefilter/tablefilter.js"></script> -->
+            <script src="./tablefilterPackage/TableFilter/dist/tablefilter/tablefilter.js"></script>
+        <link rel="stylesheet" href="./tablefilterPackage/TableFilter/dist/tablefilter/style/tablefilter.css">
+            <script src="tableFilters.js"></script>
             <title>Document</title>
 
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -27,10 +31,21 @@ class GlobalItems
 
             <script src=" https://code.jquery.com/jquery-3.3.1.js"></script>
             <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
             <script src="https://cdn.datatables.net/1.10.20/js/dataTables.material.min.js"></script>
+            <script src="https://cdnjs.com/libraries/Chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+            
+            <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css.css">
+            <link rel="stylesheet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
+            
 
 
-
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>
+            <script src="chatrJs.js"></script> -->
         </head>
 
     <?php
@@ -46,8 +61,8 @@ class GlobalItems
                     <div class="row">
                         <img style="margin-top: 5%;" width="100" height="100" src="https://res.cloudinary.com/dacg0wegv/image/upload/t_media_lib_thumb/v1463990208/photo_dkkrxc.png" class="circle responsive-img" />
                         <br>
-                        <a href="#!" class="brand-logo"> T'Raduiz</a>
-                    </div>
+                        <a href="#!" class="brand-logo" style="color:aliceblue; margin-bottom:5px "> <h6>T'Raduiz</h6> </a>
+                    </div >
                 </div>
             </li>
 

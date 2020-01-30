@@ -91,7 +91,7 @@ class DemandeDevisModel{
         DBManager::connection();    
 
 
-        $createDDevisQuery ='INSERT INTO `DemandeDevis`( `cleint_id`, `traducteur_id`, `date`, `fileLink`, `langueSource_id`, `langueDestination_id`, `typeTraduction`, `nom`, `prenom`, `telephone`, `adresse` ,`status`) 
+        $createDDevisQuery ='INSERT INTO `DemandeDevis`( `client_id`, `traducteur_id`, `date`, `fileLink`, `langueSource_id`, `langueDestination_id`, `typeTraduction`, `nom`, `prenom`, `telephone`, `adresse` ,`status`) 
         VALUES ('.$idclient.','.$idTraducteur.',NOW(),"'.$file.'",'.$langSrc.','.$langDest.',"'.$typeTrad.'","'.$nom.'","'.$prenom.'","'.$telephone.'","'. $adresse .'","'.$status .'")';
 
         echo $createDDevisQuery;  
