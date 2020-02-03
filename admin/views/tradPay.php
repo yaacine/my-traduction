@@ -1,20 +1,22 @@
 <?php
 
 require_once __DIR__ . '/globalItems.php';
+require_once __DIR__ . '/../../models/payementModel.php';
+
 
 
 class TradPayViewAdmin
 {
-  public function getContent()
-  {
-    //   header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-    //  header("Cache-Control: post-check=0, pre-check=0", false);
-    //  header("Pragma: no-cache");
+    public function getContent()
+    {
+        //   header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        //  header("Cache-Control: post-check=0, pre-check=0", false);
+        //  header("Pragma: no-cache");
 
-    $g = new GlobalItems();
-    $g->getPageHead();
-    $g->getNavbar();
-    echo'
+        $g = new GlobalItems();
+        $g->getPageHead();
+        $g->getNavbar();
+        echo '
     <nav>
     <div class="nav-wrapper indigo darken-2">
       <a style="margin-left: 20px;" class="breadcrumb" href="#!">Admin</a>
@@ -25,65 +27,82 @@ class TradPayViewAdmin
   </nav>
 </header>
 ';
-    ?>
 
+        $paymentM = new PayementModel();
+        //get payement join demandeTraduction
+        $payements = $paymentM->getAllPayementsPerOperation();
+?>
 
-<main style="margin: 10px;">
+        <main style="margin: 10px;">
+            <table id="example" class="mdl-data-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Montant</th>
+                        <th>Traducteur</th>
+                        <th>Client</th>
+                        <th>Date</th>
+                        <th>Fichier</th>
+                        <th>Etat</th>
 
-<table id="example" class="mdl-data-table" style="width:100%">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Email</th>
-            <th>Langues</th>
-            <th>Nombre de Traductions</th>
-            <th>Profile</th>
-            <th>Etat</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Zidelmal</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>2011/04/25</td>
-            <td > Actif <br><a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Blocker</a>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
-        </tr>
-       
-    </tbody>
-    <tfoot>
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Email</th>
-            <th>Langues</th>
-            <th>Nombre de Traductions</th>
-            <th>Profile</th>
-            <th>Etat</th>
-        </tr>
-    </tfoot>
-</table>
-</main>
-    <?php
-    $g->getFooter();
+                    </tr>
+                </thead>
+                <tbody>
 
-  }
+                    <?php
+                    foreach ($payements as $payement) {
+                        echo '
+                <tr>
+                <td>' . $payement['idPayement'] . '</td>
+                <td>' . $payement['montant'] . '</td>
+                <td>' . $payement['traducteur_id'] . '</td>
+                <td>' . $payement['client_id'] . '</td>
+                <td>' . $payement['paydate'] . '</td>
+                <td><a class="btn" href="../'. $payement['payementFile'] .'" target="_blank">Document Payement</a></td>';
+                    
+                if ($payement['etat'] == "non-valide") {
+                    echo '
+                    <td style="text-align: center;"> 
+                    <b>Non Validé</b>  
+                    <br> 
+                    <form action="controllers/validatePayement.php" method="post">
+                        <input type="hidden" name="validatePayementId" value="'.$payement['idPayement'] .'">
+                        <input type="hidden" name="validatePayementTraductionId" value="'.$payement['idDemandeTrad'] .'">
+                        <input class="btn" type="submit"  name="validatePayement" value="Valider" />
+
+                    </form>
+                    </td>
+                    ';
+                }elseif($payement['etat'] == "valide"){
+                    echo '
+                    <td style="text-align: center;"> 
+                    <b>Validé</b>  
+                    
+                    </td>
+                    '; 
+                }
+
+               echo' </tr>
+                ';
+                    }
+                    ?>
+                   
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                    <th>N°</th>
+                        <th>Montant</th>
+                        <th>Traducteur</th>
+                        <th>Client</th>
+                        <th>Date</th>
+                        <th>Fichier</th>
+                        <th>Etat</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </main>
+<?php
+        $g->getFooter();
+    }
 }

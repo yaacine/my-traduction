@@ -75,7 +75,7 @@ class DemandeTraductionModel{
 
 
 
-   public function createDemandeTraduction($idclient, $idTraducteur, $date, $file, $langSrc, $langDest, $typeTrad, $nom, $prenom,$telephone, $adresse, $status )
+   public function createDemandeTraduction($idclient,$montant, $idTraducteur, $date, $file, $langSrc, $langDest, $typeTrad, $nom, $prenom,$telephone, $adresse, $status )
    {
         if(DBManager::$conn == null){  
             DBManager::connection();    
@@ -83,8 +83,8 @@ class DemandeTraductionModel{
         DBManager::connection();    
 
 
-        $createDTraductionQuery ='INSERT INTO `DemandeTraduction`( `clie    nt_id`, `traducteur_id`, `date`, `fileLink`, `langueSource_id`, `langueDestination_id`, `typeTraduction`, `nom`, `prenom`, `telephone`, `adresse` ,`status`) 
-        VALUES ('.$idclient.','.$idTraducteur.',NOW(),"'.$file.'",'.$langSrc.','.$langDest.',"'.$typeTrad.'","'.$nom.'","'.$prenom.'","'.$telephone.'","'. $adresse .'","'.$status .'")';
+        $createDTraductionQuery ='INSERT INTO `DemandeTraduction`( `client_id`, `montant`, `traducteur_id`, `date`, `fileLink`, `langueSource_id`, `langueDestination_id`, `typeTraduction`, `nom`, `prenom`, `telephone`, `adresse` ,`status`) 
+        VALUES ('.$idclient.', '.$montant.','.$idTraducteur.',NOW(),"'.$file.'",'.$langSrc.','.$langDest.',"'.$typeTrad.'","'.$nom.'","'.$prenom.'","'.$telephone.'","'. $adresse .'","'.$status .'")';
 
         echo $createDTraductionQuery;  
         $r = (DBManager::$conn)->query( $createDTraductionQuery );

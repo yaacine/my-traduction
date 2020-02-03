@@ -115,7 +115,7 @@ class ClientProfileView
 
                             echo '
                                         <div style="display:flex; justify-content:space-between">
-                                            <a class="waves-effect waves-teal btn-flat grey href="" lighten-3" href="' . $row['fileLink'] . '" target="_blank">Document Original <i class="material-icons right">attach_file</i></a>';
+                                            <a class="waves-effect waves-teal btn-flat grey lighten-3" href="' . $row['fileLink'] . '" target="_blank">Document Original <i class="material-icons right">attach_file</i></a>';
                             if ($row['status'] == "ouverte") {
                                 echo '
                                                      <button class="btn waves-effect waves-light modal-trigger" onclick=deleteDemandeDevis(' . $row['idDemandeDevis'] . ') href="#modal1" name="action">Annuler
@@ -246,9 +246,9 @@ class ClientProfileView
                                          ';
                             } elseif ($row['status'] == "achevée") {
                                 echo '
-                                        <button type="submit" class="btn waves-effect href="' . $row['resultFileLink'] . '" waves-light modal-trigger">Document Traduit
+                                        <a  class="btn waves-effect waves-light "  href="'.$row['resultFileLink'].'" target="_blank">Document Traduit
                                         <i class="material-icons right">attach_file</i>
-                                        </button>    
+                                        </a>    
                                          ';
                             }
                             echo '  

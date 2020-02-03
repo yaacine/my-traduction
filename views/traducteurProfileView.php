@@ -136,7 +136,7 @@ class TraducteurProfileView
 
                                 echo '
                                     <div style="display:flex; justify-content:space-between">
-                                        <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>';
+                                        <a class="waves-effect waves-teal btn-flat grey lighten-3" href="'. $row['fileLink'] .'" target="_blank">Document Original <i class="material-icons right">attach_file</i></a>';
                                 if ($row['status'] == 'ouverte') {
                                     echo '<button class="btn waves-effect waves-light modal-trigger" onclick=respondeDemandeDevis(' . $row['idDemandeDevis'] . ') href="#modal1" name="action">Repondre
                                             <i class="material-icons right">send</i>
@@ -203,7 +203,7 @@ class TraducteurProfileView
 
                                 echo '
                                 <div style="display:flex; justify-content:space-between">
-                                    <a class="waves-effect waves-teal btn-flat grey lighten-3">Voir Le fichier</a>';
+                                    <a class="waves-effect waves-teal btn-flat grey lighten-3" target="_blank" href="'. $row['fileLink'] .'">Document Original <i class="material-icons right">attach_file</i></a>';
 
                                 if ($row['status'] == 'ouverte') {
                                     echo '<button class="btn waves-effect waves-light modal-trigger" onclick=respondeDemandeTraduction(' . $row['idDemandeTrad'] . ') href="#modal2_traducion" name="action">Repondre

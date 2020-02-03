@@ -2,11 +2,9 @@
 
 require_once __DIR__ . '/../models/demandeTraductionModel.php';
 session_start();
-echo'flutter';
+
 if(isset($_POST['submitDemandeTraductionResult'])){
     
-    echo'flutter';
-
     $demandeTraductionM = new DemandeTraductionModel();
     $demandeId =$_POST['ResultDemandeTraductionId'];
     
@@ -20,11 +18,11 @@ if(isset($_POST['submitDemandeTraductionResult'])){
      $uploadError = 0;
  
      // Check file size
-     if ($_FILES["fileToUploadResult"]["size"] > 500000) {
-         //echo "Sorry, your file is too large.";
-         $uploadError = 1;
-         $uploadOk = 0;
-     }
+    //  if ($_FILES["fileToUploadResult"]["size"] > 500000) {
+    //      //echo "Sorry, your file is too large.";
+    //      $uploadError = 1;
+    //      $uploadOk = 0;
+    //  }
  
      //Allow certain file formats
     //  if (

@@ -7,7 +7,11 @@ $demandeDevisM = new DemandeDevisModel();
 $demandeTradM= new DemandeTraductionModel();
 session_start();
 
+echo 'we are here ';
+
 if(isset($_POST['idDemandeDevisTraduire'])) {
+    echo 'we are here ';
+
     $demandeDevisM->updateDemandeDevisStatus($_POST['idDemandeDevisTraduire'], 'soumise pour traduction');
     $demandeList = $demandeDevisM->getAllDemandeDevisById($_POST['idDemandeDevisTraduire']);
     $i = 0;
@@ -16,11 +20,11 @@ if(isset($_POST['idDemandeDevisTraduire'])) {
         $i++;
     }
     if($i>0){
-        $demandeTradM->createDemandeTraduction($row['client_id'],$row['traducteur_id'] ,$row['date'],$row['fileLink'],$row['langueSource_id'], $row['langueDestination_id'], $row['typeTraduction'] ,$row['nom'] , $row['prenom'] , $row['telephone'] , $row['adresse'],"ouverte");
+        $demandeTradM->createDemandeTraduction($row['client_id'],$row['montant'], $row['traducteur_id'] ,$row['date'],$row['fileLink'],$row['langueSource_id'], $row['langueDestination_id'], $row['typeTraduction'] ,$row['nom'] , $row['prenom'] , $row['telephone'] , $row['adresse'],"ouverte");
     }
    
 }
 
-header("Location: ../user-profile.php");
+//header("Location: ../user-profile.php");
 
 ?>

@@ -78,21 +78,21 @@ if (isset($_POST["submit-ask"])) {
 
 
     // get the file
-    $target_dir = "uploads/results/";
+    $target_dir = "uploads/demandes_devis/";
     $target_file = $target_dir . date("h:i:sa") . basename($_FILES["fileToUpload"]["name"]);
     $target_file =str_replace(' ', '', $target_file);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $uploadError = 0;
 
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        //echo "Sorry, your file is too large.";
-        $uploadError = 1;
-        $uploadOk = 0;
-    }
+    // // Check file size
+    // if ($_FILES["fileToUpload"]["size"] > 500000) {
+    //     //echo "Sorry, your file is too large.";
+    //     $uploadError = 1;
+    //     $uploadOk = 0;
+    // }
 
-    // Allow certain file formats
+    // // Allow certain file formats
     // if (
     //     $imageFileType != "pdf" && $imageFileType != "docx" && $imageFileType != "odt"
     //     && $imageFileType != "doc"
