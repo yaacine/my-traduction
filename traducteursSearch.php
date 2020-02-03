@@ -78,7 +78,8 @@ foreach($traducteurs as $row){
         }
     }
     echo'
-      <a class="waves-effect waves-teal btn-flat  blue lighten-3"> Profile </a>
+    <a class="waves-effect waves-teal btn-flat   blue lighten-3" href="public-traducteur-profile.php?id='.$row['idTraducteur'].'">Profile</a>
+
   </li>   </br>';
 }
 

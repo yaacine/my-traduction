@@ -59,7 +59,7 @@ class GlobalItems
             <li class="center no-padding">
                 <div class="indigo darken-2 white-text" style="height: 180px;">
                     <div class="row">
-                        <img style="margin-top: 5%;" width="100" height="100" src="https://res.cloudinary.com/dacg0wegv/image/upload/t_media_lib_thumb/v1463990208/photo_dkkrxc.png" class="circle responsive-img" />
+                        <img style="margin-top: 5%;" width="100" height="100" src="views/assets/logo.png" class="circle responsive-img" />
                         <br>
                         <a href="#!" class="brand-logo" style="color:aliceblue; margin-bottom:5px "> <h6>T'Raduiz</h6> </a>
                     </div >
@@ -140,13 +140,13 @@ class GlobalItems
 
         <header>
             <ul class="dropdown-content" id="user_dropdown">
-                <li><a class="indigo-text" href="#!">Profile</a></li>
-                <li><a class="indigo-text" href="#!">Logout</a></li>
+                <!-- <li><a class="indigo-text" href="#!">Profile</a></li> -->
+                <li><a class="indigo-text" href="controllers/logout.php">Logout</a></li>
             </ul>
 
             <nav class="indigo" role="navigation">
                 <div class="nav-wrapper">
-                    <a data-activates="slide-out" class="button-collapse show-on-" href="#!"><img style="margin-top: 17px; margin-left: 5px;" src="https://res.cloudinary.com/dacg0wegv/image/upload/t_media_lib_thumb/v1463989873/smaller-main-logo_3_bm40iv.gif" /></a>
+                    <!-- <a data-activates="slide-out" class="button-collapse show-on-" href="#!"><img style="margin-top: 17px; margin-left: 5px;" src="https://res.cloudinary.com/dacg0wegv/image/upload/t_media_lib_thumb/v1463989873/smaller-main-logo_3_bm40iv.gif" /></a> -->
 
                     <ul class="right hide-on-med-and-down">
                         <li>
@@ -154,7 +154,7 @@ class GlobalItems
                         </li>
                     </ul>
 
-                    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                    <!-- <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a> -->
                 </div>
             </nav>
 
