@@ -1,20 +1,25 @@
 <?php
 
 require_once __DIR__ . '/globalItems.php';
+require_once __DIR__ . '/../../models/demandeTraductionModel.php';
 
 
 class TraductionViewAdmin
 {
-  public function getContent()
-  {
-    //   header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-    //  header("Cache-Control: post-check=0, pre-check=0", false);
-    //  header("Pragma: no-cache");
+    public function getContent()
+    {
+        //   header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        //  header("Cache-Control: post-check=0, pre-check=0", false);
+        //  header("Pragma: no-cache");
 
-    $g = new GlobalItems();
-    $g->getPageHead();
-    $g->getNavbar();
-    echo'
+        $g = new GlobalItems();
+        $g->getPageHead();
+        $g->getNavbar();
+      
+        $traductionM = new DemandeTraductionModel();
+        $result = $traductionM->getAllDemandeTraduction();
+        
+        echo '
     <nav>
     <div class="nav-wrapper indigo darken-2">
       <a style="margin-left: 20px;" class="breadcrumb" href="#!">Admin</a>
@@ -26,65 +31,63 @@ class TraductionViewAdmin
 </header>
 ';
 
-    ?>
+?>
 
-<main style="margin: 10px;">
+        <main style="margin: 10px;">
 
-<table id="example" class="mdl-data-table" style="width:100%">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Email</th>
-            <th>Langues</th>
-            <th>Nombre de Traductions</th>
-            <th>Profile</th>
-            <th>Etat</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Zidelmal</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>2011/04/25</td>
-            <td > Actif <br><a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Blocker</a>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
-        </tr>
-       
-    </tbody>
-    <tfoot>
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Email</th>
-            <th>Langues</th>
-            <th>Nombre de Traductions</th>
-            <th>Profile</th>
-            <th>Etat</th>
-        </tr>
-    </tfoot>
-</table>
-</main>
+            <table id="example" class="mdl-data-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Traducteur</th>
+                        <th>Client</th>
+                        <th>Document</th>
+                        <th>Resultat</th>
+                        <th>Montant</th>
+                        <th>Etat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        foreach($result as $trad){
+                            $classe ='';
+                            if(empty( $trad['resultFileLink'])){
+                                $classe ='disabled';
+                            }
+                            echo'
+                                <tr>
+                                    <td>'.$trad['idDemandeTrad'].'</td>
+                                    <td>'.$trad['date'].'</td>
+                                    <td>'.$trad['traducteur_id'].'</td>
+                                    <td>'.$trad['client_id'].'</td>
+                                    <td><a class="btn"  href="../'.$trad['fileLink'].'" target="_blank">Document </a></td>
+                                    <td><a class="btn '.$classe.'" href="../'.$trad['resultFileLink'].'" target="_blank">Resultat</a></td>
+                                    <td>'.$trad['montant'].'</td>
+                                    <td>'.$trad['status'].'</td>                              
+                                </tr>
+                            ';
+                        }
+                    ?>
+                 
 
-    <?php
-    $g->getFooter();
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Traducteur</th>
+                        <th>Client</th>
+                        <th>Document</th>
+                        <th>Resultat</th>
+                        <th>Montant</th>
+                        <th>Etat</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </main>
 
-  }
+<?php
+        $g->getFooter();
+    }
 }

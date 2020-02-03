@@ -252,21 +252,6 @@ class IndexView
                 <div id="responsecontainer" align="center">
                   <div class="row">
                   
-                    <div class="row">
-                      <p class="col s12 m6">
-                        <label>
-                          <input type="checkbox" name="traducteurs_ckecked[]" value="hamid" class="filled-in" checked="checked" />
-                          <span>Filled in</span>
-                        </label>
-                      </p>
-                      <p class="col s4">
-                        <label>
-                          <input type="checkbox" name="traducteurs_ckecked[]" value="yacine" class="filled-in" checked="checked" />
-                          <span>Filled in</span>
-                        </label>
-                      </p>
-
-                    </div>
                   </div>
 
                 </div>

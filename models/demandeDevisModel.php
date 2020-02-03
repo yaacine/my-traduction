@@ -12,9 +12,7 @@ require_once __DIR__.'/dbManager.php' ;
 class DemandeDevisModel{
    
    public function getAllDemandeDevis(){
-        if(DBManager::$conn == NULL){  
-            DBManager::connection();    
-        }
+        DBManager::connection();    
         $formationsQuery ="SELECT * FROM `DemandeDevis`";
         $articles = (DBManager::$conn)->query($formationsQuery);
         return $articles;

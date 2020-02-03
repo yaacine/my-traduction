@@ -10,7 +10,7 @@ if(isset($_POST['submitResponseDemandeDevis'])){
     $demandeDevisM = new DemandeDevisModel();
     $demandeId =$_POST['hiddenResponseDemandeDevis'];
     if(isset($_POST['demandeDevisReponse'])){
-        echo'flutter set</br>';
+       
         if($_POST['demandeDevisReponse'] =='accepter'){
 
             
@@ -21,7 +21,7 @@ if(isset($_POST['submitResponseDemandeDevis'])){
             $demandeDevisM->updateDemandeDevisPrice($demandeId,$montant);
             
         }elseif($_POST['demandeDevisReponse'] =='refuser'){
-            echo'flutter refuser</br>';
+        ;
 
             $commentaire =$_POST['commentReponseDemandeDevis'];
             $demandeDevisM->updateDemandeDevisStatus( $demandeId , 'refusée');

@@ -12,9 +12,7 @@ require_once __DIR__.'/dbManager.php' ;
 class DemandeTraductionModel{
    
    public function getAllDemandeTraduction(){
-        if(DBManager::$conn == NULL){  
-            DBManager::connection();    
-        }
+        DBManager::connection();    
         $formationsQuery ="SELECT * FROM `DemandeTraduction`";
         $articles = (DBManager::$conn)->query($formationsQuery);
         return $articles;
@@ -106,7 +104,7 @@ class DemandeTraductionModel{
    public function updateDemandeTraductionPrice($idDemande, $newPrice){
 
     DBManager::connection();    
-    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `montant`= ' .$newPrice. ' WHERE idDemandeTraduction='.$idDemande;
+    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `montant`= ' .$newPrice. ' WHERE idDemandeTrad='.$idDemande;
     echo $updateDDevisQuery;  
     (DBManager::$conn)->query( $updateDDevisQuery );
    }
@@ -115,7 +113,7 @@ class DemandeTraductionModel{
    public  function setResponseComment($idDemande, $comment)
    {
     DBManager::connection();    
-    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `responseCommentaire`="'.$comment.'" WHERE idDemandeTraduction='.$idDemande;
+    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `responseCommentaire`="'.$comment.'" WHERE idDemandeTrad='.$idDemande;
     echo $updateDDevisQuery;  
     (DBManager::$conn)->query( $updateDDevisQuery );
    }

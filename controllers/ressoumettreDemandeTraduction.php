@@ -8,7 +8,7 @@ session_start();
 
 if(isset($_POST['idDemandeTraductionResoumettre'])) {
     $demandeTradM->updateDemandeTraductionStatus($_POST['idDemandeTraductionResoumettre'], 'ouverte');
-    echo'fluutttt';
+   
 }
 header("Location: ../user-profile.php#test-swipe-2");
 

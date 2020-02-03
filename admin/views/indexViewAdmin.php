@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/globalItems.php';
+require_once __DIR__ . '/../models/statistics.php';
 
 
 class IndexViewAdmin
@@ -14,7 +15,28 @@ class IndexViewAdmin
     $g = new GlobalItems();
     $g->getPageHead();
     $g->getNavbar();
+    $statM = new StatisticsModel();
 
+    $nbTraducteur = $statM->getNbTraducteur();
+    $nbClient = $statM->getNbClient();
+    $nbDemandeDevis = $statM->getNbDemandesDevis();
+    $nbDemandeTrad  =$statM->getNbDemandesTraduction();
+
+    foreach($nbTraducteur as $c){
+      $nbTraducteur = $c['nbTraducteur'];
+    }
+
+    foreach($nbClient as $c){
+      $nbClient = $c['nbClient'];
+    }
+
+    foreach($nbDemandeDevis as $c){
+      $nbDemandeDevis = $c['nbDemandeDevis'];
+    }
+
+    foreach($nbDemandeTrad as $c){
+      $nbDemandeTrad = $c['nbDemandeTrad'];
+    }
     echo '
     <nav>
     <div class="nav-wrapper indigo darken-2">
@@ -35,8 +57,16 @@ class IndexViewAdmin
           <div class="card blue white-text">
             <div class="card-content valign-wrapper">
               <div class="card-text">
-                <h6>25%</h6>
-                <p>Charge Du Site</p>
+              
+                <?php
+                  echo'
+                  <h5>'.$nbTraducteur.'  Traducteurs</h5>
+                  <h5> '.$nbClient.' Clients</h5>
+                  ';
+                
+                ?>   
+               
+                <h6>Utilisateurs</6>
               </div>
               <div class="card-icon"><i class="material-icons medium valign">pie_chart</i></div>
             </div>
@@ -47,8 +77,15 @@ class IndexViewAdmin
           <div class="card blue white-text">
             <div class="card-content valign-wrapper">
               <div class="card-text">
-                <h6>156</h6>
-                <p>Nombre d'utilisateurs</p>
+                <?php
+                  echo '
+                  <h5>'.$nbDemandeDevis.'</h5>
+                  
+                  ';
+                ?>
+
+                <h6>Demandes De Devis</h6>
+                <br>
               </div>
               <div class="card-icon"><i class="material-icons medium valign">check_circle</i></div>
             </div>
@@ -59,8 +96,14 @@ class IndexViewAdmin
           <div class="card blue white-text">
             <div class="card-content valign-wrapper">
               <div class="card-text">
-                <h6>50</h6>
-                <p>Nombre d'operations</p>
+              <?php
+                  echo '
+                  <h5>'.$nbDemandeTrad.'</h5>
+                  
+                  ';
+                ?>
+              <br>
+                <p>Demandes De Traduction</p>
               </div>
               <div class="card-icon"><i class="material-icons medium valign">build</i></div>
             </div>
@@ -81,12 +124,19 @@ class IndexViewAdmin
    
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
+data: [{
+    x: new Date(),
+    y: 1
+}, {
+    t: new Date(),
+    y: 10
+}]
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            label: '# of Votes',
+            label: 'Traductions',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -126,7 +176,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            label: '# of Votes',
+            label: 'Devis',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
