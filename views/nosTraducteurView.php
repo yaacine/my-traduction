@@ -68,7 +68,7 @@ class NosTraducteursView{
                 }
             }
             echo'
-              <a class="waves-effect waves-teal btn-flat  blue lighten-3">Visiter le profile</a>
+              <a class="waves-effect waves-teal btn" href="public-traducteur-profile.php?id='.$row['idTraducteur'].'">Visiter le profile</a>
           </li>   </br>';
         }
         ?>

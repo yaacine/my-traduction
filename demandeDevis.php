@@ -5,22 +5,12 @@ require_once __DIR__ . '/models/userModel.php';
 require_once __DIR__ . '/models/demandeDevisModel.php';
 
 
-echo '<script >
-alert("cava");
-location="index.php";
-</script>';
-
 // Initialize the session
 session_start();
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && isset($_SESSION["userId"]) && $_SESSION["loggedin"] === true) {
     $clientId = $_SESSION["userId"];
     //header("location: index.php");
-    echo '<script >
-    alert("cava");
-    location="index.php";
-    </script>';
-
 }
 else{
     echo '<script >
@@ -88,28 +78,29 @@ if (isset($_POST["submit-ask"])) {
 
 
     // get the file
-    $target_dir = "uploads/";
+    $target_dir = "uploads/demandes_devis/";
     $target_file = $target_dir . date("h:i:sa") . basename($_FILES["fileToUpload"]["name"]);
+    $target_file =str_replace(' ', '', $target_file);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $uploadError = 0;
 
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        //echo "Sorry, your file is too large.";
-        $uploadError = 1;
-        $uploadOk = 0;
-    }
+    // // Check file size
+    // if ($_FILES["fileToUpload"]["size"] > 500000) {
+    //     //echo "Sorry, your file is too large.";
+    //     $uploadError = 1;
+    //     $uploadOk = 0;
+    // }
 
-    // Allow certain file formats
-    if (
-        $imageFileType != "pdf" && $imageFileType != "docx" && $imageFileType != "odt"
-        && $imageFileType != "doc"
-    ) {
-        //echo "Sorry, only PDF, DOCX, DOC & ODT files are allowed.";
-        $uploadError = 2;
-        $uploadOk = 0;
-    }
+    // // Allow certain file formats
+    // if (
+    //     $imageFileType != "pdf" && $imageFileType != "docx" && $imageFileType != "odt"
+    //     && $imageFileType != "doc"
+    // ) {
+    //     //echo "Sorry, only PDF, DOCX, DOC & ODT files are allowed.";
+    //     $uploadError = 2;
+    //     $uploadOk = 0;
+    // }
 
     if ($uploadOk == 0) {
         //echo "Sorry, your file was not uploaded.";
@@ -139,7 +130,7 @@ if (isset($_POST["submit-ask"])) {
         echo 'flutter' . $_SESSION["userId"];
 
         foreach ($_POST['traducteurs_ckecked'] as $value) {
-            $demandeDevis->createDemandeDevis($clientId, $value['idTraducteur'], null, $target_file, $langueSource, $langueDestination, $typeTraduction, $lastName, $firstName, $telephone, $adresse, 'open');
+            $demandeDevis->createDemandeDevis($clientId, $value['idTraducteur'], null, $target_file, $langueSource, $langueDestination, $typeTraduction, $lastName, $firstName, $telephone, $adresse, 'ouverte');
         }
 
         echo '<script >

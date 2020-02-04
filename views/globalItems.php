@@ -39,6 +39,7 @@ class GlobalItems
             <script type="text/javascript" src="./javascript/manageModals.js"></script>
 
             <link rel="stylesheet" href="./styles/nosTraducteurs.css" />
+            <link rel="stylesheet" href="./styles/rating.css" />
             <!--Let browser know website is optimized for mobile-->
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </head>
@@ -60,13 +61,13 @@ class GlobalItems
         <div class="navbar-fixed">
             <nav id="navbar">
                 <div class="nav-wrapper blue-grey darken-3">
-                    <a href="#!" class="brand-logo">Logo</a>
+                    <a href="#!" class="brand-logo">T'Raduiz</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="left hide-on-med-and-down menu-items">
                         <li><a href="index.php">Acceuil</a></li>
                         <li><a href="badges.php">Nos Offres</a></li>
                         <?php
-                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == false) {
+                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == 'FALSE') {
                             echo '<li><a href="nosTraducteurs.php">Nos Traducteurs</a></li>';
                         }
                          elseif (!isset($_SESSION["isTraducteur"])) {
@@ -75,8 +76,9 @@ class GlobalItems
                         ?>
 
                         <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
                         <?php
-                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == false) {
+                        if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == 'FALSE' ) {
                             echo '<li><a href="recrutement.php">Devenir Traducteur</a></li>';
                         }
                         //  elseif (!isset($_SESSION["isTraducteur"])) {

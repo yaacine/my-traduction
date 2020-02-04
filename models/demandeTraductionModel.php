@@ -2,7 +2,7 @@
 require_once __DIR__.'/dbManager.php' ;
 require_once __DIR__.'/dbManager.php' ;
 /**
- * !demade devis status culomn in the database
+ * !demade Traduction status culomn in the database
  * open : sent but no response yet
  * accepted : accepted by the translator by no response yet
  * responded : the translator gave the amount af money needed to process the translation
@@ -12,10 +12,8 @@ require_once __DIR__.'/dbManager.php' ;
 class DemandeTraductionModel{
    
    public function getAllDemandeTraduction(){
-        if(DBManager::$conn == NULL){  
-            DBManager::connection();    
-        }
-        $formationsQuery ="SELECT * FROM `DemandeDevis`";
+        DBManager::connection();    
+        $formationsQuery ="SELECT * FROM `DemandeTraduction`";
         $articles = (DBManager::$conn)->query($formationsQuery);
         return $articles;
    }
@@ -40,10 +38,12 @@ class DemandeTraductionModel{
     if(DBManager::$conn == NULL){  
         DBManager::connection();    
     }
-    $formationsQuery ="SELECT * FROM `DemandeDevis` WHERE cleint_id ".$clientId;
+    $formationsQuery ="SELECT * FROM `DemandeTraduction` WHERE cleint_id ".$clientId;
     $articles = (DBManager::$conn)->query($formationsQuery);
     return $articles;
 }
+
+
 
 
 
@@ -51,7 +51,12 @@ class DemandeTraductionModel{
     if(DBManager::$conn == NULL){  
         DBManager::connection();    
     }
-    $formationsQuery ="SELECT * FROM `DemandeDevis` WHERE tradicteur_id ".$traducteurId;
+    $formationsQuery ='SELECT tab1.* , tab2.designation lngSrc , tab3.designation lngDest FROM 
+    ((SELECT d.*, t.nom nomClient, t.prenom prenomClient , t.idClient  FROM DemandeTraduction d 
+    JOIN Client t on d.client_id= t.idClient
+    WHERE traducteur_id ='.$traducteurId.' order by date DESC) tab1 
+    JOIN Langue tab2 on tab1.langueSource_id = tab2.idLangue)
+    JOIN Langue tab3 on tab1.langueDestination_id=tab3.idLangue;';
     $articles = (DBManager::$conn)->query($formationsQuery);
     return $articles;
    }
@@ -61,14 +66,14 @@ class DemandeTraductionModel{
     if(DBManager::$conn == NULL){  
         DBManager::connection();    
     }
-    $formationsQuery ='SELECT * FROM `DemandeDevis` WHERE tradicteur_id ".$traducteurId."and status="'.$status.';';
+    $formationsQuery ='SELECT * FROM `DemandeTraduction` WHERE tradicteur_id ".$traducteurId."and status="'.$status.';';
     $articles = (DBManager::$conn)->query($formationsQuery);
     return $articles;
    }
 
 
 
-   public function createDemandeTraduction($idclient, $idTraducteur, $date, $file, $langSrc, $langDest, $typeTrad, $nom, $prenom,$telephone, $adresse, $status )
+   public function createDemandeTraduction($idclient,$montant, $idTraducteur, $date, $file, $langSrc, $langDest, $typeTrad, $nom, $prenom,$telephone, $adresse, $status )
    {
         if(DBManager::$conn == null){  
             DBManager::connection();    
@@ -76,26 +81,52 @@ class DemandeTraductionModel{
         DBManager::connection();    
 
 
-        $createDDevisQuery ='INSERT INTO `DemandeDevis`( `cleint_id`, `traducteur_id`, `date`, `fileLink`, `langueSource_id`, `langueDestination_id`, `typeTraduction`, `nom`, `prenom`, `telephone`, `adresse` ,`status`) 
-        VALUES ('.$idclient.','.$idTraducteur.',NOW(),"'.$file.'",'.$langSrc.','.$langDest.',"'.$typeTrad.'","'.$nom.'","'.$prenom.'","'.$telephone.'","'. $adresse .'","'.$status .'")';
+        $createDTraductionQuery ='INSERT INTO `DemandeTraduction`( `client_id`, `montant`, `traducteur_id`, `date`, `fileLink`, `langueSource_id`, `langueDestination_id`, `typeTraduction`, `nom`, `prenom`, `telephone`, `adresse` ,`status`) 
+        VALUES ('.$idclient.', '.$montant.','.$idTraducteur.',NOW(),"'.$file.'",'.$langSrc.','.$langDest.',"'.$typeTrad.'","'.$nom.'","'.$prenom.'","'.$telephone.'","'. $adresse .'","'.$status .'")';
 
-        echo $createDDevisQuery;  
-        $r = (DBManager::$conn)->query( $createDDevisQuery );
+        echo $createDTraductionQuery;  
+        $r = (DBManager::$conn)->query( $createDTraductionQuery );
        
    }
 
-   public function alterDemandeDevisStatus($idDemande, $newStatus){
-  
-    if(DBManager::$conn == null){  
-        DBManager::connection();    
-    }
+   public function updateDemandeTraductionStatus($idDemande, $newStatus){
+
     DBManager::connection();    
-
-
-    $updateDDevisQuery =' UPDATE `DemandeDevis` SET `status`='.$newStatus.' WHERE idDemandeDevis='.$idDemande;
-    echo $updateDDevisQuery;  
-    (DBManager::$conn)->query( $updateDDevisQuery );
+    $updateDTraductionQuery =' UPDATE `DemandeTraduction` SET `status`="'.$newStatus.'" WHERE idDemandeTrad='.$idDemande;
+    echo $updateDTraductionQuery;  
+    (DBManager::$conn)->query( $updateDTraductionQuery );
    
    }
+
+
+
+
+   public function updateDemandeTraductionPrice($idDemande, $newPrice){
+
+    DBManager::connection();    
+    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `montant`= ' .$newPrice. ' WHERE idDemandeTrad='.$idDemande;
+    echo $updateDDevisQuery;  
+    (DBManager::$conn)->query( $updateDDevisQuery );
+   }
+
+
+   public  function setResponseComment($idDemande, $comment)
+   {
+    DBManager::connection();    
+    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `responseCommentaire`="'.$comment.'" WHERE idDemandeTrad='.$idDemande;
+    echo $updateDDevisQuery;  
+    (DBManager::$conn)->query( $updateDDevisQuery );
+   }
+
+   public  function setResultFileLink($idDemande, $link)
+   {
+    DBManager::connection();    
+    $updateDDevisQuery =' UPDATE `DemandeTraduction` SET `resultFileLink`="'.$link.'" WHERE idDemandeTrad='.$idDemande;
+    echo $updateDDevisQuery;  
+    (DBManager::$conn)->query( $updateDDevisQuery );
+   }
+
+
+
 
 }

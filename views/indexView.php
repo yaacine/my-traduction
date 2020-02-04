@@ -112,7 +112,7 @@ class IndexView
                     <input id="email" name="email" type="email" class="validate" />
                     <label for="email">Email</label>
                   </div>
-                  <div class="input-field col s6">
+                  <div class="input-field col s6" >
                     <i class="material-icons prefix">phone</i>
                     <input id="icon_telephone" name="telephone" type="tel" class="validate" />
                     <label for="icon_telephone">Telephone</label>
@@ -140,7 +140,7 @@ class IndexView
                       ?>
 
                     </select>
-                    <label>Materialize Select</label>
+                    <label>Langue Source</label>
                   </div>
 
                   <div class="input-field col s6">
@@ -152,7 +152,7 @@ class IndexView
                       }
                       ?>
                     </select>
-                    <label>Langue de destination</label>
+                    <label>Langue Destination</label>
                   </div>
                 </div>
 
@@ -252,21 +252,6 @@ class IndexView
                 <div id="responsecontainer" align="center">
                   <div class="row">
                   
-                    <div class="row">
-                      <p class="col s12 m6">
-                        <label>
-                          <input type="checkbox" name="traducteurs_ckecked[]" value="hamid" class="filled-in" checked="checked" />
-                          <span>Filled in</span>
-                        </label>
-                      </p>
-                      <p class="col s4">
-                        <label>
-                          <input type="checkbox" name="traducteurs_ckecked[]" value="yacine" class="filled-in" checked="checked" />
-                          <span>Filled in</span>
-                        </label>
-                      </p>
-
-                    </div>
                   </div>
 
                 </div>
