@@ -28,7 +28,7 @@ class DemandeTraductionModel{
         JOIN Traducteur t on d.traducteur_id= 			t.idTraducteur
         WHERE client_id ='.$clientId.' order by date DESC) tab1 
         JOIN Langue tab2 on tab1.langueSource_id = tab2.idLangue)
-        JOIN Langue tab3 on tab1.langueDestination_id=tab3.idLangue;';
+        JOIN Langue tab3 on tab1.langueDestination_id=tab3.idLangue ORDER BY tab1.date DESC;;';
         $articles = (DBManager::$conn)->query($formationsQuery);
         return $articles;
    }
@@ -56,7 +56,7 @@ class DemandeTraductionModel{
     JOIN Client t on d.client_id= t.idClient
     WHERE traducteur_id ='.$traducteurId.' order by date DESC) tab1 
     JOIN Langue tab2 on tab1.langueSource_id = tab2.idLangue)
-    JOIN Langue tab3 on tab1.langueDestination_id=tab3.idLangue;';
+    JOIN Langue tab3 on tab1.langueDestination_id=tab3.idLangue ORDER BY tab1.date DESC;;';
     $articles = (DBManager::$conn)->query($formationsQuery);
     return $articles;
    }

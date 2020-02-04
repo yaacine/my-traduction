@@ -21,8 +21,6 @@ $traducteurs =$t->getAllTraducteurs();
  }
  //$traducteurs =$t->getFiltredTraducteur($langSrc, $langDst , $assermentedVal);
 
-
-
 echo ' <ul class="collection">';
 
 foreach($traducteurs as $row){
@@ -78,7 +76,7 @@ foreach($traducteurs as $row){
         }
     }
     echo'
-    <a class="waves-effect waves-teal btn-flat   blue lighten-3" href="public-traducteur-profile.php?id='.$row['idTraducteur'].'">Profile</a>
+    <a class="waves-effect waves-teal btn-flat   blue lighten-3" href="public-traducteur-profile.php?id='.$row['idTraducteur'].'" target="_blank">Profile</a>
 
   </li>   </br>';
 }

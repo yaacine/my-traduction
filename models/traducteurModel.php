@@ -59,9 +59,9 @@ class TraducteurModel
     {
         DBManager::connection();
         $langueQuery = 'SELECT * FROM
-        (SELECT * FROM Traducteur t JOIN MaitriseLangue m on m.traducteur_id=t.idTraducteur and t.assermente=' . $asserment . ') tab1 JOIN 
-        (SELECT * FROM Traducteur t JOIN MaitriseLangue m on m.traducteur_id=t.idTraducteur and t.assermente=' . $asserment . ') tab2 
-        on tab1.idTraducteur=tab2.idTraducteur and (tab1.langue_id = ' . $langueSrcId . ' and tab2.langue_id= ' . $langueDestId . ') or (tab1.langue_id = ' . $langueDestId . ' and tab2.langue_id= ' . $langueSrcId . ')';
+            (SELECT * FROM Traducteur t JOIN MaitriseLangue m on m.traducteur_id=t.idTraducteur and t.assermente=0) tab1 JOIN 
+            (SELECT * FROM Traducteur t JOIN MaitriseLangue m on m.traducteur_id=t.idTraducteur and t.assermente=0) tab2 
+            on tab1.idTraducteur=tab2.idTraducteur and (tab1.langue_id = ' . $langueSrcId . ' and tab2.langue_id= ' . $langueDestId . ') or (tab1.langue_id = ' . $langueDestId . ' and tab2.langue_id=' . $langueSrcId .')';
         $langues = (DBManager::$conn)->query($langueQuery);
         return ($langues);
     }

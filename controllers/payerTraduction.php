@@ -58,7 +58,7 @@ if (isset($_POST['submitDemandeTraductionPayement'])) {
             $payementM->createPayement($demandeTradId, $storefile);
              echo'<script >
              alert("Fichier Bien Soumis, La traducion Commencera une fois que le payement soit Validé");
-             location="../trad-profile.php";
+             location="../user-profile.php";
              </script>';
 
         } else {
@@ -66,8 +66,8 @@ if (isset($_POST['submitDemandeTraductionPayement'])) {
             $uploadError = 4;
             echo '<script >
             alert("Fichier n`a pas pu etre chargée , Veuillez Réessayer");
-            location="../trad-profile.php";
-        </script>';
+            location="../user-profile.php";
+          </script>';
         }
     }
 }

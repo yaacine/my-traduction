@@ -38,6 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </script>';
         } else {
             $userModel->createUser($email, $password);
+            echo '<script >
+            alert("Réussi ! compte créé avec succès");
+            location="index.php";
+            </script>';
         }
     }
 }
