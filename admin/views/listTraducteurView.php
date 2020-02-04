@@ -67,7 +67,7 @@ class ListTraductionViewAdmin
                 echo'    
                 <tr>
                     <td>'.$row['idTraducteur'].'</td>
-                    <td> <a href="../controllers/traducteur-profile.php?id='.$row['idTraducteur'].'" </a> '.$row['nom'].'</td>
+                    <td> <a target="_blank" href="../public-traducteur-profile.php?id='.$row['idTraducteur'].'" </a> '.$row['nom'].'</td>
                     <td>'.$row['prenom'].'</td>
                     <td>'.$row['email'].'</td>
                     <td>';

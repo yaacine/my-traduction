@@ -24,11 +24,16 @@ class PublicTraducteurProfileView
 
         $users = $userM->getTraducteurById($userId);
 
+
         //get the user
         foreach ($users as $row) {
 
             $user = $row;
         }
+
+        $langues=$userM->getLanguagesForSingleTraducteur( $userId );
+        $note=$userM->getTraducteurNote( $userId );
+        
 
         echo '
         
@@ -38,7 +43,7 @@ class PublicTraducteurProfileView
                     <div class="card">
                         <div class="card-image">
                             <img src="assets/slider/download.jpeg">
-                            <a class="btn-floating halfway-fab  waves-light red modal-trigger" href="#modal-profile"><i class="material-icons blue-grey">edit</i></a>
+                         
                         </div>
                         <div class="card-content">
                             <span class="card-title" style="color: black"> ' . $user['nom'] . ' ' . $user['prenom'] . ' </span>
@@ -50,9 +55,8 @@ class PublicTraducteurProfileView
                 </div>
 
 
-        <div class="col s12 m8">
-                    <br>
-                            <div class="blue-grey lighten-5 " style="padding:10px;">
+        <div class="col s12 m8">          
+                         <div class="blue-grey lighten-5 " style="padding:10px;">
                                <p><b>Nom:</b> ' . $user['nom'] . '</p> 
                                <p><b>Prenom:</b> ' . $user['prenom'] . '</p> 
                                <p><b>email:</b> ' . $user['email'] . '</p> 
@@ -61,8 +65,65 @@ class PublicTraducteurProfileView
                                <p><b>Adresse:</b> ' . $user['adresse'] . '</p> 
                                <p><b>Telephone:</b> ' . $user['telephone'] . '</p> 
                                <p><b>Fax:</b> ' . $user['fax'] . '</p> <br>
-                            </div>
-        </div>';
+                         
+            ';
+            for ($x = 0; $x <$note; $x++) {
+                echo  '<i class="material-icons ">grade</i>';
+              }
+  
+              //complete with white stars
+              if($note<5){
+                for ($x; $x <5; $x++) {
+                  echo  '<i class="material-icons " style="color:#FFF">grade</i>';
+                }
+              }
+              ?>
+              <br>
+
+     
+              <br>
+              <?php
+              if($langues !=NULL && count($langues)>0){
+                foreach($langues as $rowLangue){
+                  
+                    if(!empty($rowLangue['designation'])){
+                    echo'
+                    <div class="chip">
+                    '.$rowLangue['designation'].'
+                    </div>
+                    ';}
+                }
+            }
+             
+            
+            echo'
+            
+            <br>
+            <br>
+            <br>'
+            ;
+            session_start();
+            if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+                echo'
+                <div class="red lighten-3" style="padding:30px ;border-radius: 10px ">
+                
+             <h4>Attention</h4>
+             <p>Cette section est réservée pour signaler ce Traducteur en cas de mauvais service</p>
+             
+                <form action="controllers/signalTraducteur.php" method="post">
+                  <input type="hidden" name="idTraducteur" value="'.$userId.'">
+                  <textarea name="motif" id="mitif" cols="100" rows="10"></textarea>
+                  <input type="submit" class="btn" name="submitSignal" value="Signaler">
+                </form>
+                </div>
+              
+                ';
+            }
+            echo'
+            </div>
+        </div>
+        
+        ';
     }
 }
 ?>

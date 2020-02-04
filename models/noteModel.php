@@ -8,12 +8,23 @@ class NoteModel{
          DBManager::connection();   
         $formationsQuery ='INSERT INTO `Note`(`client_id`, `traducteur_id`, `date`, `note`, `idDemandeTraduction`) 
         VALUES ('.$idClient.','.$idTraducteur.',NOW(),'.$note.','.$idDemandeTradution.')';
-        echo $formationsQuery;
+         //echo $formationsQuery;
         $articles = (DBManager::$conn)->query($formationsQuery);
 
         return $articles;
 
    }
+
+
+   public function getAllNotes(){ 
+      DBManager::connection();   
+     $formationsQuery ='SELECT * From Note';
+   //   echo $formationsQuery;
+     $articles = (DBManager::$conn)->query($formationsQuery);
+
+     return $articles;
+
+}
 }
 
 

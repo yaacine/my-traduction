@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/globalItems.php';
+require_once __DIR__ . '/../../models/signalModel.php';
 
 
 class SignalementViewAdmin
@@ -26,6 +27,8 @@ class SignalementViewAdmin
 </header>
 ';
 
+    $signalM = new SignalModel();
+    $signalements = $signalM->getAllSignal();
     ?>
 
 <main style="margin: 10px;">
@@ -33,51 +36,37 @@ class SignalementViewAdmin
 <table id="example" class="mdl-data-table" style="width:100%">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Email</th>
-            <th>Langues</th>
-            <th>Nombre de Traductions</th>
-            <th>Profile</th>
-            <th>Etat</th>
+            <th>Id_signal</th>
+            <th>Id_Traducteur</th>
+            <th>Id_Client</th>
+            <th>Motif</th>
+            <th>Date</th>
+           
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Zidelmal</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>2011/04/25</td>
-            <td > Actif <br><a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Blocker</a>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
-        </tr>
+        <?php
+            foreach($signalements as $row){
+                echo'
+                <tr>
+                <td>'.$row['idSignal'].'</td>
+                <td>'.$row['traducteur_id'].'</td>
+                <td>'.$row['client_id'].'</td>
+                <td>'.$row['motif'].'</td>
+                <td>'.$row['date'].'</td>
+                </tr> ';
+            }
+        ?>
+       
        
     </tbody>
     <tfoot>
         <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Email</th>
-            <th>Langues</th>
-            <th>Nombre de Traductions</th>
-            <th>Profile</th>
-            <th>Etat</th>
+            <th>Id_signal</th>
+            <th>Id_Traducteur</th>
+            <th>Id_Client</th>
+            <th>Motif</th>
+            <th>Date</th>
         </tr>
     </tfoot>
 </table>
