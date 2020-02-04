@@ -46,7 +46,7 @@ class LoginAdminView{
   <div class="section"></div>
   <main>
     <center>
-      <!-- <img class="responsive-img" style="width: 250px;" src="https://i.imgur.com/ax0NCsK.gif" /> -->
+      <img class="responsive-img" style="width: 250px;" src="https://i.imgur.com/ax0NCsK.gif" />
       <div class="section"></div>
 
       <h5 class="indigo-text">Connexion en tant qu'administrateur</h5>

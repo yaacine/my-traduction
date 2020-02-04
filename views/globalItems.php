@@ -76,6 +76,7 @@ class GlobalItems
                         ?>
 
                         <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
                         <?php
                         if (isset($_SESSION["isTraducteur"]) && $_SESSION["isTraducteur"] == 'FALSE' ) {
                             echo '<li><a href="recrutement.php">Devenir Traducteur</a></li>';

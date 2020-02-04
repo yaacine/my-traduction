@@ -47,7 +47,7 @@ if (isset($_POST['submitDemandeTraductionPayement'])) {
       
 
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo '<br> flutter ';
+          
 
             echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
             $demandeTradM->updateDemandeTraductionStatus($demandeTradId, "Validation du Payement");
@@ -56,10 +56,10 @@ if (isset($_POST['submitDemandeTraductionPayement'])) {
 
             echo $storefile;
             $payementM->createPayement($demandeTradId, $storefile);
-            //  echo'<script >
-            //  alert("Fichier Bien Soumis, La traducion Commencera une fois que le payement soit Validé");
-            //  location="../trad-profile.php";
-            //  </script>';
+             echo'<script >
+             alert("Fichier Bien Soumis, La traducion Commencera une fois que le payement soit Validé");
+             location="../trad-profile.php";
+             </script>';
 
         } else {
             echo "Sorry, there was an error uploading your file.";

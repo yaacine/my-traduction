@@ -25,6 +25,6 @@ if(isset($_POST['idDemandeDevisTraduire'])) {
    
 }
 
-//header("Location: ../user-profile.php");
+header("Location: ../user-profile.php");
 
 ?>

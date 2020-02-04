@@ -80,7 +80,7 @@ class ClientProfileView
                                     <div class="collapsible-header ">
                                         <i class="material-icons">announcement</i>
                                         <div style="width:100% ;display:flex; justify-content:space-between">
-                                            <div class="col s4"> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                            <div class="col s4"> <a href="public-traducteur-profile.php?id='. $row['traducteur_id'].'" target="_blank" rel="noopener noreferrer">
                                                     <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
                                                 </a></div>
                                             <div class="col s4"> <b>Soumise le :</b> ' . $mysqldate . '</div>
@@ -178,7 +178,7 @@ class ClientProfileView
                                     <div class="collapsible-header ">
                                         <i class="material-icons">announcement</i>
                                         <div style="width:100% ;display:flex; justify-content:space-between">
-                                            <div class="col s4"> <a href="http://" target="_blank" rel="noopener noreferrer">
+                                            <div class="col s4"> <a href="public-traducteur-profile.php?id='. $row['traducteur_id'].'"  target="_blank" rel="noopener noreferrer">
                                                     <h6>' . $row['nomTrad'] . ' ' . $row['prenomTrad'] . '</h6>
                                                 </a></div>
                                             <div class="col s4"> <b>Soumise le :</b> ' . $mysqldate . '</div>
